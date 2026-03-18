@@ -37,10 +37,12 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="text-2xl font-bold text-primary">
-            {"<Dev />"}
-          </Link>
-
+          <div className="flex items-center gap-4">
+            <img src="/logo-perso.png" className="object-contain h-10 w-auto"></img>
+            <Link to="/#hero" className="text-2xl font-bold text-primary">
+              {"Florian Batard"}
+            </Link>
+          </div>
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (

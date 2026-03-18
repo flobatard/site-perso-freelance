@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="text-center md:text-left">
-              <p className="text-2xl font-bold text-primary mb-2">{"<Dev />"}</p>
+              <p className="text-2xl font-bold text-primary mb-2">{"Florian Batard"}</p>
               <p className="text-muted-foreground">
                 Développeur Full-Stack Freelance
               </p>

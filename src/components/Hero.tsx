@@ -5,6 +5,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 const Hero = () => {
   return (
     <section
+      id="hero"
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
       style={{
         backgroundImage: `linear-gradient(rgba(30, 20, 15, 0.7), rgba(30, 20, 15, 0.8)), url(${heroBg})`,

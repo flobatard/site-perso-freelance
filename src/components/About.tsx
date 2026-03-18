@@ -14,8 +14,7 @@ const About = () => {
             <div className="flex flex-col md:flex-row gap-8 items-center md:items-start mb-8">
               {/* Photo placeholder */}
               <div className="shrink-0 w-40 h-40 rounded-2xl bg-secondary border-2 border-primary/20 overflow-hidden flex items-center justify-center shadow-soft">
-                {/* Replace the placeholder below with: <img src="/your-photo.jpg" alt="Photo" className="w-full h-full object-cover" /> */}
-                <User className="text-muted-foreground" size={64} />
+                 <img src="/me_alpha_bg_resized.png" alt="Photo" className="w-full h-full object-cover" />
               </div>
 
               <div>
