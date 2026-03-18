@@ -2,35 +2,27 @@
   "projects": [
     {
       "id": 1,
-      "title": "Plateforme E-commerce B2B",
+      "title": "Beta Order Capture",
       "description": "Développement d'une plateforme complète de gestion des commandes et du catalogue pour un réseau de distributeurs.",
-      "stack": ["React", "Node.js", "PostgreSQL", "TypeScript"],
-      "link": "#",
+      "stack": ["Angular", "Node.js", "MongoDB", "Redis"],
+      "link": "https://order.betavetements.com", 
       "category": "web"
     },
     {
       "id": 2,
-      "title": "Application de Gestion Temps Réel",
-      "description": "Système de gestion en temps réel avec tableaux de bord interactifs et notifications instantanées.",
-      "stack": ["Elixir", "Angular", "MongoDB", "WebSocket"],
-      "link": "#",
+      "title": "Volley Team Optimizer",
+      "description": "Projet afin de générer des équipes de volley équilibrées pour les séances loisirs des clubs de volley",
+      "stack": ["Angular"],
+      "link": "https://vto.home.fbatard.fr",
       "category": "web"
     },
     {
       "id": 3,
-      "title": "API de Traitement de Données",
-      "description": "Infrastructure backend scalable pour le traitement et l'analyse de données volumineuses.",
-      "stack": ["Node.js", "PostgreSQL", "Riak", "TypeScript"],
-      "link": "#",
+      "title": "Site pro Guillaume Galland",
+      "description": "Site vitrine pour le compte de Guillaume Galland indépendant dans le secteur du bâtiment",
+      "stack": ["React"],
+      "link": "https://guillaumegalland.com/",
       "category": "backend"
-    },
-    {
-      "id": 4,
-      "title": "Dashboard Analytics",
-      "description": "Interface d'analyse et de visualisation de données complexes avec filtres avancés.",
-      "stack": ["React", "Node.js", "MongoDB", "TypeScript"],
-      "link": "#",
-      "category": "web"
     }
   ]
 }

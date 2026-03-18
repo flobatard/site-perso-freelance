@@ -24,9 +24,9 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { href: "#about", label: "À propos" },
-    { href: "#skills", label: "Compétences" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#about", label: "À propos" },
+    { href: "/#skills", label: "Compétences" },
+    { href: "/#contact", label: "Contact" },
   ];
 
   return (
