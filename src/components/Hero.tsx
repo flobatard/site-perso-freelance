@@ -1,6 +1,7 @@
 import { ArrowRight, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/Hero_Banner.jpg";
+import social_links from "@/data/social_links.json"
 
 const Hero = () => {
   return (
@@ -55,14 +56,14 @@ const Hero = () => {
 
           <div className="flex gap-4 justify-center">
             <a
-              href="#"
+              href={social_links.github.link}
               className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110"
               aria-label="GitHub"
             >
               <Github className="text-white" size={24} />
             </a>
             <a
-              href="#"
+              href={social_links.linkedin.link}
               className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110"
               aria-label="LinkedIn"
             >

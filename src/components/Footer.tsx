@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail } from "lucide-react";
+import social_links from "@/data/social_links.json"
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -17,14 +18,14 @@ const Footer = () => {
 
             <div className="flex gap-4">
               <a
-                href="#"
+                href={social_links.github.link}
                 className="p-3 bg-secondary rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
                 aria-label="GitHub"
               >
                 <Github size={20} />
               </a>
               <a
-                href="#"
+                href={social_links.github.link}
                 className="p-3 bg-secondary rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
                 aria-label="LinkedIn"
               >
