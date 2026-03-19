@@ -72,21 +72,6 @@ const Contact = () => {
 
                 <div className="flex items-start gap-4">
                   <div className="p-3 bg-primary/10 rounded-lg">
-                    <Phone className="text-primary" size={24} />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">{t("contact.phone_label")}</h4>
-                    <a
-                      href="tel:+33638751939"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      +33 6 38 75 19 39
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-primary/10 rounded-lg">
                     <MapPin className="text-primary" size={24} />
                   </div>
                   <div>

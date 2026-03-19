@@ -101,10 +101,6 @@ const CurriculumVitae = () => {
                   fb.batard@gmail.com
                 </span>
                 <span className="flex items-center gap-2">
-                  <Phone size={14} className="text-primary shrink-0" />
-                  06 38 75 19 39
-                </span>
-                <span className="flex items-center gap-2">
                   <MapPin size={14} className="text-primary shrink-0" />
                   27 Rue Léon Frot, 75011, Paris
                 </span>
