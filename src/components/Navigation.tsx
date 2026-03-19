@@ -25,8 +25,7 @@ const Navigation = () => {
 
   const navLinks = [
     { href: "/#about", label: "À propos" },
-    { href: "/#skills", label: "Compétences" },
-    { href: "/#contact", label: "Contact" },
+    { href: "/#skills", label: "Compétences" }
   ];
 
   return (
@@ -58,7 +57,7 @@ const Navigation = () => {
             {/* Portfolio Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-1 text-foreground hover:text-primary transition-colors duration-300 font-medium outline-none">
-                Portfolio
+                <a>Portfolio</a>
                 <ChevronDown size={16} />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="center" className="w-56">
@@ -74,9 +73,11 @@ const Navigation = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Button className="bg-gradient-warm shadow-soft hover:shadow-hover transition-all duration-300">
-              Me contacter
-            </Button>
+            <a href="/#contact">
+              <Button className="bg-gradient-warm shadow-soft hover:shadow-hover transition-all duration-300">
+                Me contacter
+              </Button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -121,9 +122,11 @@ const Navigation = () => {
                 </div>
               </div>
 
-              <Button className="bg-gradient-warm shadow-soft hover:shadow-hover transition-all duration-300 w-full">
-                Me contacter
-              </Button>
+              <a href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button className="bg-gradient-warm shadow-soft hover:shadow-hover transition-all duration-300 w-full">
+                  Me contacter
+                </Button>
+              </a>
             </div>
           </div>
         )}

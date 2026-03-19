@@ -2,6 +2,7 @@ import { ExternalLink } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import portfolioData from "@/data/portfolio.json";
+import { Link } from "react-router-dom";
 
 const Portfolio = () => {
   return (
@@ -21,7 +22,7 @@ const Portfolio = () => {
               >
                 <CardHeader>
                   <CardTitle className="text-2xl group-hover:text-primary transition-colors">
-                    {project.title}
+                    <Link to={`/projet/${project.id}`}>{project.title}</Link>
                   </CardTitle>
                   <CardDescription className="text-base mt-2">
                     {project.description}
