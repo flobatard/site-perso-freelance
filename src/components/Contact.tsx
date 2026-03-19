@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import axios from "axios";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -19,8 +20,14 @@ const Contact = () => {
       toast.error("Veuillez remplir tous les champs");
       return;
     }
-    toast.success("Message envoyé avec succès ! Je vous répondrai rapidement.");
-    setFormData({ name: "", email: "", message: "" });
+    const url = "https://formspree.io/f/xojkrqbe  "
+    axios.post(url, formData)
+      .then(res => 
+      {
+        toast.success("Merci pour votre message ! Nous vous recontacterons très prochainement.");
+        setFormData({ name: "", email: "", message: "" })
+      })
+      .catch(err => toast.error("Une erreur est survenue lors de l'envoie du message veuillez réessayer ultérieurement"))
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
