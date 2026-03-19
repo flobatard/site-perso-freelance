@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "Beta Order Capture",
-      "description": "Développement d'une plateforme complète de gestion des commandes et du catalogue pour un réseau de distributeurs.",
+      "description": "Développement d'une plateforme complète de gestion des commandes et de catalogue pour la vente de vêtements personnalisés",
       "stack": ["Angular", "Node.js", "MongoDB", "Redis"],
       "link": "https://order.betavetements.com", 
       "category": "e-commerce"
