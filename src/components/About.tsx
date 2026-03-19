@@ -1,12 +1,14 @@
 import { Code2, Heart, Users, User } from "lucide-react";
+import { Trans, useTranslation } from "react-i18next";
 
 const About = () => {
+  const { t } = useTranslation();
   return (
     <section id="about" className="py-20 bg-gradient-subtle">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center">
-            À propos de moi
+            {t("about.title")}
           </h2>
           <div className="w-20 h-1 bg-gradient-warm mx-auto mb-12 rounded-full"></div>
 
@@ -19,15 +21,11 @@ const About = () => {
 
               <div>
                 <p className="text-lg md:text-xl text-foreground/90 mb-6 leading-relaxed">
-                  Développeur full-stack passionné avec <strong>5 ans d'expérience</strong>, j'accompagne 
-                  mes clients dans la réalisation de leurs projets digitaux, de la conception à la mise en production.
+                  <Trans i18nKey="about.p1" components={{ strong: <strong /> }} />
                 </p>
-                
+
                 <p className="text-lg md:text-xl text-foreground/90 leading-relaxed">
-                  Ce qui me distingue ? Une approche <strong>centrée sur l'humain</strong>. Je crois fermement 
-                  qu'une bonne communication et une écoute active sont aussi importantes que les compétences techniques. 
-                  Mon objectif : créer des solutions qui répondent vraiment à vos besoins, tout en restant maintenables 
-                  et évolutives.
+                  <Trans i18nKey="about.p2" components={{ strong: <strong /> }} />
                 </p>
               </div>
             </div>
@@ -35,26 +33,20 @@ const About = () => {
             <div className="grid md:grid-cols-3 gap-6 mt-12">
               <div className="text-center p-6 bg-secondary/50 rounded-xl">
                 <Code2 className="mx-auto mb-4 text-primary" size={40} />
-                <h3 className="font-semibold text-lg mb-2">Expertise Technique</h3>
-                <p className="text-muted-foreground">
-                  Maîtrise des technologies modernes et des bonnes pratiques
-                </p>
+                <h3 className="font-semibold text-lg mb-2">{t("about.card1_title")}</h3>
+                <p className="text-muted-foreground">{t("about.card1_desc")}</p>
               </div>
-              
+
               <div className="text-center p-6 bg-secondary/50 rounded-xl">
                 <Heart className="mx-auto mb-4 text-primary" size={40} />
-                <h3 className="font-semibold text-lg mb-2">Approche Humaine</h3>
-                <p className="text-muted-foreground">
-                  Communication transparente et collaboration étroite
-                </p>
+                <h3 className="font-semibold text-lg mb-2">{t("about.card2_title")}</h3>
+                <p className="text-muted-foreground">{t("about.card2_desc")}</p>
               </div>
-              
+
               <div className="text-center p-6 bg-secondary/50 rounded-xl">
                 <Users className="mx-auto mb-4 text-primary" size={40} />
-                <h3 className="font-semibold text-lg mb-2">Travail d'Équipe</h3>
-                <p className="text-muted-foreground">
-                  Intégration facile dans vos équipes et processus
-                </p>
+                <h3 className="font-semibold text-lg mb-2">{t("about.card3_title")}</h3>
+                <p className="text-muted-foreground">{t("about.card3_desc")}</p>
               </div>
             </div>
           </div>

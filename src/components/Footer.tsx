@@ -1,7 +1,9 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import social_links from "@/data/social_links.json"
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -12,7 +14,7 @@ const Footer = () => {
             <div className="text-center md:text-left">
               <p className="text-2xl font-bold text-primary mb-2">{"Florian Batard"}</p>
               <p className="text-muted-foreground">
-                Développeur Full-Stack Freelance
+                {t("footer.role")}
               </p>
             </div>
 
@@ -42,7 +44,7 @@ const Footer = () => {
           </div>
 
           <div className="mt-8 pt-8 border-t border-border text-center text-muted-foreground">
-            <p>© {currentYear} Tous droits réservés.</p>
+            <p>© {currentYear} {t("footer.rights")}</p>
           </div>
         </div>
       </div>

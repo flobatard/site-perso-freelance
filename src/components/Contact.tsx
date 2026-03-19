@@ -5,8 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,17 +19,16 @@ const Contact = () => {
     e.preventDefault();
     // Form validation
     if (!formData.name || !formData.email || !formData.message) {
-      toast.error("Veuillez remplir tous les champs");
+      toast.error(t("contact.error_fields"));
       return;
     }
     const url = "https://formspree.io/f/xojkrqbe  "
     axios.post(url, formData)
-      .then(res => 
-      {
-        toast.success("Merci pour votre message ! Nous vous recontacterons très prochainement.");
-        setFormData({ name: "", email: "", message: "" })
+      .then(() => {
+        toast.success(t("contact.success"));
+        setFormData({ name: "", email: "", message: "" });
       })
-      .catch(err => toast.error("Une erreur est survenue lors de l'envoie du message veuillez réessayer ultérieurement"))
+      .catch(() => toast.error(t("contact.error_send")))
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -42,16 +43,15 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center">
-            Travaillons Ensemble
+            {t("contact.title")}
           </h2>
           <div className="w-20 h-1 bg-gradient-warm mx-auto mb-12 rounded-full"></div>
 
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-bold mb-6">Discutons de votre projet</h3>
+              <h3 className="text-2xl font-bold mb-6">{t("contact.subtitle")}</h3>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Vous avez un projet en tête ? Je serais ravi d'échanger avec vous pour comprendre 
-                vos besoins et voir comment je peux vous aider à le concrétiser.
+                {t("contact.desc")}
               </p>
 
               <div className="space-y-6">
@@ -60,7 +60,7 @@ const Contact = () => {
                     <Mail className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-1">Email</h4>
+                    <h4 className="font-semibold mb-1">{t("contact.email_label")}</h4>
                     <a
                       href="mailto:contact@example.com"
                       className="text-muted-foreground hover:text-primary transition-colors"
@@ -75,9 +75,9 @@ const Contact = () => {
                     <Phone className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-1">Téléphone</h4>
+                    <h4 className="font-semibold mb-1">{t("contact.phone_label")}</h4>
                     <a
-                      href="tel:+33123456789"
+                      href="tel:+33638751939"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
                       +33 6 38 75 19 39
@@ -90,8 +90,8 @@ const Contact = () => {
                     <MapPin className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-1">Localisation</h4>
-                    <p className="text-muted-foreground">France, Paris, Remote</p>
+                    <h4 className="font-semibold mb-1">{t("contact.location_label")}</h4>
+                    <p className="text-muted-foreground">{t("contact.location_value")}</p>
                   </div>
                 </div>
               </div>
@@ -101,13 +101,13 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Nom
+                    {t("contact.name_label")}
                   </label>
                   <Input
                     id="name"
                     name="name"
                     type="text"
-                    placeholder="Votre nom"
+                    placeholder={t("contact.name_placeholder")}
                     value={formData.name}
                     onChange={handleChange}
                     className="h-12"
@@ -117,13 +117,13 @@ const Contact = () => {
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Email
+                    {t("contact.email_label")}
                   </label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="votre@email.com"
+                    placeholder={t("contact.email_placeholder")}
                     value={formData.email}
                     onChange={handleChange}
                     className="h-12"
@@ -133,12 +133,12 @@ const Contact = () => {
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Message
+                    {t("contact.message_label")}
                   </label>
                   <Textarea
                     id="message"
                     name="message"
-                    placeholder="Parlez-moi de votre projet..."
+                    placeholder={t("contact.message_placeholder")}
                     value={formData.message}
                     onChange={handleChange}
                     rows={6}
@@ -151,7 +151,7 @@ const Contact = () => {
                   size="lg"
                   className="w-full bg-gradient-warm shadow-soft hover:shadow-hover transition-all duration-300"
                 >
-                  Envoyer le message
+                  {t("contact.send")}
                   <Send className="ml-2" size={18} />
                 </Button>
               </form>

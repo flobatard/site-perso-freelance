@@ -1,1 +1,62 @@
-{}
+{
+  "nav": {
+    "about": "À propos",
+    "skills": "Compétences",
+    "cv": "CV",
+    "portfolio": "Portfolio",
+    "contact": "Me contacter"
+  },
+  "hero": {
+    "badge": "Développeur Full-Stack Freelance",
+    "title1": "Transformons vos idées",
+    "title2": "en solutions digitales",
+    "desc": "5 ans d'expérience en développement full-stack. J'allie expertise technique et approche humaine pour créer des applications performantes et sur-mesure.",
+    "cta_work": "Voir mon travail",
+    "cta_contact": "Me contacter"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "p1": "Développeur full-stack passionné avec <strong>5 ans d'expérience</strong>, j'accompagne mes clients dans la réalisation de leurs projets digitaux, de la conception à la mise en production.",
+    "p2": "Ce qui me distingue ? Une approche <strong>centrée sur l'humain</strong>. Je crois fermement qu'une bonne communication et une écoute active sont aussi importantes que les compétences techniques. Mon objectif : créer des solutions qui répondent vraiment à vos besoins, tout en restant maintenables et évolutives.",
+    "card1_title": "Expertise Technique",
+    "card1_desc": "Maîtrise des technologies modernes et des bonnes pratiques",
+    "card2_title": "Approche Humaine",
+    "card2_desc": "Communication transparente et collaboration étroite",
+    "card3_title": "Travail d'Équipe",
+    "card3_desc": "Intégration facile dans vos équipes et processus"
+  },
+  "skills": {
+    "title": "Compétences & Technologies",
+    "frontend_desc": "Interfaces modernes et réactives avec les frameworks les plus performants",
+    "backend_desc": "APIs robustes et scalables pour des applications performantes",
+    "database_desc": "Conception et optimisation de bases de données relationnelles et NoSQL",
+    "dev_title": "Développement",
+    "dev_desc": "Bonnes pratiques et méthodologies pour un code maintenable"
+  },
+  "portfolio": {
+    "title": "Projets Récents",
+    "view_project": "Voir le projet"
+  },
+  "contact": {
+    "title": "Travaillons Ensemble",
+    "subtitle": "Discutons de votre projet",
+    "desc": "Vous avez un projet en tête ? Je serais ravi d'échanger avec vous pour comprendre vos besoins et voir comment je peux vous aider à le concrétiser.",
+    "email_label": "Email",
+    "phone_label": "Téléphone",
+    "location_label": "Localisation",
+    "location_value": "France, Paris, Remote",
+    "name_label": "Nom",
+    "name_placeholder": "Votre nom",
+    "email_placeholder": "votre@email.com",
+    "message_label": "Message",
+    "message_placeholder": "Parlez-moi de votre projet...",
+    "send": "Envoyer le message",
+    "error_fields": "Veuillez remplir tous les champs",
+    "success": "Merci pour votre message ! Nous vous recontacterons très prochainement.",
+    "error_send": "Une erreur est survenue lors de l'envoi du message, veuillez réessayer ultérieurement."
+  },
+  "footer": {
+    "role": "Développeur Full-Stack Freelance",
+    "rights": "Tous droits réservés."
+  }
+}

@@ -1,1 +1,62 @@
-{}
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "cv": "CV",
+    "portfolio": "Portfolio",
+    "contact": "Contact me"
+  },
+  "hero": {
+    "badge": "Freelance Full-Stack Developer",
+    "title1": "Let's turn your ideas",
+    "title2": "into digital solutions",
+    "desc": "5 years of experience in full-stack development. I combine technical expertise and a human approach to build high-performance, tailor-made applications.",
+    "cta_work": "See my work",
+    "cta_contact": "Contact me"
+  },
+  "about": {
+    "title": "About me",
+    "p1": "Passionate full-stack developer with <strong>5 years of experience</strong>, I help clients bring their digital projects to life, from design to production.",
+    "p2": "What sets me apart? A <strong>human-centered approach</strong>. I firmly believe that good communication and active listening are just as important as technical skills. My goal: to create solutions that truly meet your needs, while remaining maintainable and scalable.",
+    "card1_title": "Technical Expertise",
+    "card1_desc": "Mastery of modern technologies and best practices",
+    "card2_title": "Human Approach",
+    "card2_desc": "Transparent communication and close collaboration",
+    "card3_title": "Teamwork",
+    "card3_desc": "Easy integration into your teams and processes"
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "frontend_desc": "Modern, reactive interfaces with the most performant frameworks",
+    "backend_desc": "Robust and scalable APIs for high-performance applications",
+    "database_desc": "Design and optimization of relational and NoSQL databases",
+    "dev_title": "Development",
+    "dev_desc": "Best practices and methodologies for maintainable code"
+  },
+  "portfolio": {
+    "title": "Recent Projects",
+    "view_project": "View project"
+  },
+  "contact": {
+    "title": "Let's Work Together",
+    "subtitle": "Let's talk about your project",
+    "desc": "Have a project in mind? I'd love to chat with you to understand your needs and see how I can help you bring it to life.",
+    "email_label": "Email",
+    "phone_label": "Phone",
+    "location_label": "Location",
+    "location_value": "France, Paris, Remote",
+    "name_label": "Name",
+    "name_placeholder": "Your name",
+    "email_placeholder": "your@email.com",
+    "message_label": "Message",
+    "message_placeholder": "Tell me about your project...",
+    "send": "Send message",
+    "error_fields": "Please fill in all fields",
+    "success": "Thank you for your message! We will get back to you very soon.",
+    "error_send": "An error occurred while sending your message, please try again later."
+  },
+  "footer": {
+    "role": "Freelance Full-Stack Developer",
+    "rights": "All rights reserved."
+  }
+}

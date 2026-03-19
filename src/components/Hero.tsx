@@ -2,8 +2,10 @@ import { ArrowRight, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/Hero_Banner.jpg";
 import social_links from "@/data/social_links.json"
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
+  const { t } = useTranslation();
   return (
     <section
       id="hero"
@@ -17,22 +19,21 @@ const Hero = () => {
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
           <div className="inline-block mb-6 px-4 py-2 bg-primary/10 backdrop-blur-sm rounded-full border border-primary/20">
-            <span className="text-primary font-medium">Développeur Full-Stack Freelance</span>
+            <span className="text-primary font-medium">{t("hero.badge")}</span>
           </div>
-          
+
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight">
-            Transformons vos idées
+            {t("hero.title1")}
             <br />
             <span className="bg-gradient-warm bg-clip-text text-transparent">
-              en solutions digitales
+              {t("hero.title2")}
             </span>
           </h1>
-          
+
           <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
-            5 ans d'expérience en développement full-stack. 
-            J'allie expertise technique et approche humaine pour créer des applications performantes et sur-mesure.
+            {t("hero.desc")}
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Button
               size="lg"
@@ -40,7 +41,7 @@ const Hero = () => {
               asChild
             >
               <a href="#portfolio">
-                Voir mon travail
+                {t("hero.cta_work")}
                 <ArrowRight className="ml-2" size={20} />
               </a>
             </Button>
@@ -50,7 +51,7 @@ const Hero = () => {
               className="border-white text-foreground hover:bg-white hover:text-primary transition-all duration-300 text-lg px-8"
               asChild
             >
-              <a href="/#contact">Me contacter</a>
+              <a href="/#contact">{t("hero.cta_contact")}</a>
             </Button>
           </div>
 

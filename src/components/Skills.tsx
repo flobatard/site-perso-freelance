@@ -1,31 +1,34 @@
 import { Database, Server, Monitor, Code } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useTranslation } from "react-i18next";
 
 const Skills = () => {
+  const { t } = useTranslation();
+
   const skills = [
     {
       icon: <Monitor className="text-primary" size={40} />,
       title: "Frontend",
       technologies: ["React", "Angular", "TypeScript", "JavaScript"],
-      description: "Interfaces modernes et réactives avec les frameworks les plus performants",
+      description: t("skills.frontend_desc"),
     },
     {
       icon: <Server className="text-primary" size={40} />,
       title: "Backend",
       technologies: ["Elixir", "Node.js", "C++"],
-      description: "APIs robustes et scalables pour des applications performantes",
+      description: t("skills.backend_desc"),
     },
     {
       icon: <Database className="text-primary" size={40} />,
       title: "Databases",
       technologies: ["PostgreSQL", "MongoDB", "Riak"],
-      description: "Conception et optimisation de bases de données relationnelles et NoSQL",
+      description: t("skills.database_desc"),
     },
     {
       icon: <Code className="text-primary" size={40} />,
-      title: "Développement",
+      title: t("skills.dev_title"),
       technologies: ["Architecture", "DevOps", "Testing", "CI/CD"],
-      description: "Bonnes pratiques et méthodologies pour un code maintenable",
+      description: t("skills.dev_desc"),
     },
   ];
 
@@ -34,7 +37,7 @@ const Skills = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center">
-            Compétences & Technologies
+            {t("skills.title")}
           </h2>
           <div className="w-20 h-1 bg-gradient-warm mx-auto mb-12 rounded-full"></div>
 

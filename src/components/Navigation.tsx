@@ -10,12 +10,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import portfolioData from "@/data/portfolio.json";
+import { useTranslation } from "react-i18next";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { theme, cycleTheme } = useTheme();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,10 +27,14 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const toggleLanguage = () => {
+    i18n.changeLanguage(i18n.language === "fr" ? "en" : "fr");
+  };
+
   const navLinks = [
-    { href: "/#about", label: "À propos" },
-    { href: "/#skills", label: "Compétences" },
-    { href: "/curriculum_vitae", label: "CV" }
+    { href: "/#about", label: t("nav.about") },
+    { href: "/#skills", label: t("nav.skills") },
+    { href: "/curriculum_vitae", label: t("nav.cv") },
   ];
 
   return (
@@ -70,7 +76,7 @@ const Navigation = () => {
             {/* Portfolio Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-1 text-foreground hover:text-primary transition-colors duration-300 font-medium outline-none">
-                <a>Portfolio</a>
+                <a>{t("nav.portfolio")}</a>
                 <ChevronDown size={16} />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="center" className="w-56">
@@ -94,15 +100,30 @@ const Navigation = () => {
               {theme === "dark" ? <Sun size={20} /> : theme === "light" ? <Moon size={20} /> : <SunMoon size={20} />}
             </button>
 
+            <button
+              onClick={toggleLanguage}
+              aria-label="Toggle language"
+              className="text-foreground hover:text-primary transition-colors duration-300 font-medium text-sm"
+            >
+              {i18n.language === "fr" ? "EN" : "FR"}
+            </button>
+
             <a href="/#contact">
               <Button className="bg-gradient-warm shadow-soft hover:shadow-hover transition-all duration-300">
-                Me contacter
+                {t("nav.contact")}
               </Button>
             </a>
           </div>
 
           {/* Mobile right buttons */}
           <div className="md:hidden flex items-center gap-3">
+            <button
+              onClick={toggleLanguage}
+              aria-label="Toggle language"
+              className="text-foreground hover:text-primary transition-colors duration-300 font-medium text-sm"
+            >
+              {i18n.language === "fr" ? "EN" : "FR"}
+            </button>
             <button
               onClick={cycleTheme}
               aria-label="Toggle theme"
@@ -148,7 +169,7 @@ const Navigation = () => {
               
               {/* Mobile Portfolio Links */}
               <div className="py-2">
-                <a href="/#portfolio" className="text-muted-foreground text-sm font-semibold uppercase tracking-wider">Portfolio</a>
+                <a href="/#portfolio" className="text-muted-foreground text-sm font-semibold uppercase tracking-wider">{t("nav.portfolio")}</a>
                 <div className="flex flex-col gap-2 mt-2 pl-3 border-l-2 border-primary/20">
                   {portfolioData.projects.map((project) => (
                     <Link
@@ -165,7 +186,7 @@ const Navigation = () => {
 
               <a href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>
                 <Button className="bg-gradient-warm shadow-soft hover:shadow-hover transition-all duration-300 w-full">
-                  Me contacter
+                  {t("nav.contact")}
                 </Button>
               </a>
             </div>

@@ -3,14 +3,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import portfolioData from "@/data/portfolio.json";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Portfolio = () => {
+  const { t } = useTranslation();
   return (
     <section id="portfolio" className="py-20 bg-gradient-subtle">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center">
-            Projets Récents
+            {t("portfolio.title")}
           </h2>
           <div className="w-20 h-1 bg-gradient-warm mx-auto mb-12 rounded-full"></div>
 
@@ -45,7 +47,7 @@ const Portfolio = () => {
                     asChild
                   >
                     <a href={project.link}>
-                      Voir le projet
+                      {t("portfolio.view_project")}
                       <ExternalLink className="ml-2" size={16} />
                     </a>
                   </Button>
