@@ -51,6 +51,5 @@ src/
 
 ## Points d'attention
 
-- Le formulaire de contact est **uniquement côté client** (pas de backend) — toute intégration d'envoi d'email devra être ajoutée
 - La navigation charge dynamiquement les projets depuis `portfolio.json` pour le dropdown Portfolio
 - SEO géré via les meta tags dans `index.html` (Open Graph, Twitter Card)

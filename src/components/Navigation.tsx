@@ -25,7 +25,8 @@ const Navigation = () => {
 
   const navLinks = [
     { href: "/#about", label: "À propos" },
-    { href: "/#skills", label: "Compétences" }
+    { href: "/#skills", label: "Compétences" },
+    { href: "/curriculum_vitae", label: "CV" }
   ];
 
   return (
@@ -44,15 +45,25 @@ const Navigation = () => {
           </div>
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.href.includes("#") ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
 
             {/* Portfolio Dropdown */}
             <DropdownMenu>
@@ -94,16 +105,27 @@ const Navigation = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 py-4 border-t border-border animate-fade-in">
             <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-foreground hover:text-primary transition-colors duration-300 font-medium py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) =>
+                link.href.includes("#") ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="text-foreground hover:text-primary transition-colors duration-300 font-medium py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    className="text-foreground hover:text-primary transition-colors duration-300 font-medium py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
               
               {/* Mobile Portfolio Links */}
               <div className="py-2">
