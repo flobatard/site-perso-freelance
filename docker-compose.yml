@@ -1,0 +1,7 @@
+services:
+  site-perso:
+    build: .
+    image: registry.vpn.h.fbatard.fr/admin/site-perso
+    ports:
+      - "4400:80"
+    restart: unless-stopped
