@@ -7,10 +7,12 @@ import Index from "./pages/Index";
 import ProjectDetail from "./pages/ProjectDetail";
 import CurriculumVitae from "./pages/CurriculumVitae";
 import NotFound from "./pages/NotFound";
+import { ThemeProvider } from "./hooks/use-theme";
 
 const queryClient = new QueryClient();
 
 const App = () => (
+  <ThemeProvider>
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -26,6 +28,7 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
+  </ThemeProvider>
 );
 
 export default App;
