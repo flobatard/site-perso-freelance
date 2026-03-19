@@ -36,6 +36,10 @@
   "portfolio": {
     "title": "Projets Récents",
     "view_project": "Voir le projet",
+    "not_found": "Projet introuvable",
+    "back_home": "Retour à l'accueil",
+    "back": "Retour",
+    "tech_stack": "Stack technique",
     "projects": {
       "1": { "description": "Développement d'une plateforme complète de gestion des commandes et de catalogue pour la vente de vêtements personnalisés" },
       "2": { "description": "Projet afin de générer des équipes de volley équilibrées pour les séances loisirs des clubs de volley" },

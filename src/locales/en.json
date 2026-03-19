@@ -36,6 +36,10 @@
   "portfolio": {
     "title": "Recent Projects",
     "view_project": "View project",
+    "not_found": "Project not found",
+    "back_home": "Back to home",
+    "back": "Back",
+    "tech_stack": "Tech stack",
     "projects": {
       "1": { "description": "Development of a complete order management and catalogue platform for selling custom clothing" },
       "2": { "description": "Project to generate balanced volleyball teams for recreational sessions in volleyball clubs" },
