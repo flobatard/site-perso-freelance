@@ -8,7 +8,8 @@ import { useTranslation } from "react-i18next";
 
 const ProjectDetail = () => {
   const { id } = useParams();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language === "fr" ? "fr" : "en";
   const project = portfolioData.projects.find((p) => p.id === Number(id));
 
   if (!project) {
@@ -19,7 +20,7 @@ const ProjectDetail = () => {
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4">{t("portfolio.not_found")}</h1>
             <Button asChild>
-              <Link to="/">
+              <Link to={`/${lang}`}>
                 <ArrowLeft className="mr-2" size={16} />
                 {t("portfolio.back_home")}
               </Link>
@@ -37,7 +38,7 @@ const ProjectDetail = () => {
       <main className="flex-1 pt-28 pb-20">
         <div className="container mx-auto px-4 max-w-4xl">
           <Button variant="ghost" className="mb-8" asChild>
-            <Link to="/#portfolio">
+            <Link to={`/${lang}#portfolio`}>
               <ArrowLeft className="mr-2" size={16} />
               {t("portfolio.back")}
             </Link>

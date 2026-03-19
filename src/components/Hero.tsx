@@ -40,7 +40,7 @@ const Hero = () => {
               className="bg-gradient-warm shadow-hover hover:scale-105 transition-all duration-300 text-lg px-8"
               asChild
             >
-              <a href="#portfolio">
+              <a href="#portfolio" onClick={(e) => { e.preventDefault(); document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" }); }}>
                 {t("hero.cta_work")}
                 <ArrowRight className="ml-2" size={20} />
               </a>
@@ -51,7 +51,7 @@ const Hero = () => {
               className="border-white text-foreground hover:bg-white hover:text-primary transition-all duration-300 text-lg px-8"
               asChild
             >
-              <a href="/#contact">{t("hero.cta_contact")}</a>
+              <a href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}>{t("hero.cta_contact")}</a>
             </Button>
           </div>
 
