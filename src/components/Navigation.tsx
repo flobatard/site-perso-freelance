@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Sun, Moon } from "lucide-react";
+import { Menu, X, ChevronDown, Sun, Moon, SunMoon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/use-theme";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { theme, toggleTheme } = useTheme();
+  const { theme, cycleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,11 +87,11 @@ const Navigation = () => {
             </DropdownMenu>
 
             <button
-              onClick={toggleTheme}
+              onClick={cycleTheme}
               aria-label="Toggle theme"
               className="text-foreground hover:text-primary transition-colors duration-300"
             >
-              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+              {theme === "dark" ? <Sun size={20} /> : theme === "light" ? <Moon size={20} /> : <SunMoon size={20} />}
             </button>
 
             <a href="/#contact">
@@ -104,11 +104,11 @@ const Navigation = () => {
           {/* Mobile right buttons */}
           <div className="md:hidden flex items-center gap-3">
             <button
-              onClick={toggleTheme}
+              onClick={cycleTheme}
               aria-label="Toggle theme"
               className="text-foreground hover:text-primary transition-colors duration-300"
             >
-              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+              {theme === "dark" ? <Sun size={20} /> : theme === "light" ? <Moon size={20} /> : <SunMoon size={20} />}
             </button>
             <button
               className="text-foreground"

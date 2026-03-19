@@ -122,6 +122,37 @@ All colors MUST be HSL.
   }
 }
 
+/* Section-level light theme override for hybrid mode.
+   Overrides .dark CSS vars on a scoped wrapper so specific sections
+   render in light mode regardless of the global <html> class. */
+.section-light {
+  --background: 30 20% 98%;
+  --foreground: 25 20% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 25 20% 15%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 25 20% 15%;
+  --primary: 15 85% 60%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 30 40% 94%;
+  --secondary-foreground: 25 20% 15%;
+  --muted: 30 30% 92%;
+  --muted-foreground: 25 15% 45%;
+  --accent: 20 70% 65%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 30 20% 88%;
+  --input: 30 20% 88%;
+  --ring: 15 85% 60%;
+  --gradient-warm: linear-gradient(135deg, hsl(15 85% 60%), hsl(25 80% 65%));
+  --gradient-subtle: linear-gradient(180deg, hsl(30 20% 98%), hsl(30 30% 96%));
+  --shadow-soft: 0 4px 20px -2px hsl(15 50% 50% / 0.1);
+  --shadow-hover: 0 8px 30px -4px hsl(15 50% 50% / 0.15);
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
 @layer utilities {
   .animate-fade-in {
     animation: fadeIn 0.6s ease-out forwards;
