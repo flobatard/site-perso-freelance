@@ -13,8 +13,8 @@ const About = () => {
           <div className="bg-card rounded-2xl p-8 md:p-12 shadow-soft">
             <div className="flex flex-col md:flex-row gap-8 items-center md:items-start mb-8">
               {/* Photo placeholder */}
-              <div className="shrink-0 w-40 h-40 rounded-2xl bg-secondary border-2 border-primary/20 overflow-hidden flex items-center justify-center shadow-soft">
-                 <img src="/me_alpha_bg_resized.png" alt="Photo" className="w-full h-full object-cover" />
+              <div className="shrink-0 w-60 h-60 rounded-2xl bg-secondary border-2 border-primary/20 overflow-hidden flex items-center justify-center shadow-soft">
+                 <img src="/me_alpha_bg_resized.png" alt="Photo" className="grayscale hover:grayscale-0 transition duration-300 w-full h-full object-cover" />
               </div>
 
               <div>
