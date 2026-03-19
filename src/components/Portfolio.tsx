@@ -27,7 +27,7 @@ const Portfolio = () => {
                     <Link to={`/projet/${project.id}`}>{project.title}</Link>
                   </CardTitle>
                   <CardDescription className="text-base mt-2">
-                    {project.description}
+                    {t(`portfolio.projects.${project.id}.description`, { defaultValue: project.description })}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

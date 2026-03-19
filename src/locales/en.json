@@ -35,7 +35,12 @@
   },
   "portfolio": {
     "title": "Recent Projects",
-    "view_project": "View project"
+    "view_project": "View project",
+    "projects": {
+      "1": { "description": "Development of a complete order management and catalogue platform for selling custom clothing" },
+      "2": { "description": "Project to generate balanced volleyball teams for recreational sessions in volleyball clubs" },
+      "3": { "description": "Showcase website for Guillaume Galland, an independent contractor in the construction sector" }
+    }
   },
   "contact": {
     "title": "Let's Work Together",
@@ -58,5 +63,119 @@
   "footer": {
     "role": "Freelance Full-Stack Developer",
     "rights": "All rights reserved."
+  },
+  "cv": {
+    "download": "Download CV",
+    "sections": {
+      "profile": "Profile",
+      "experience": "Experience",
+      "freelance": "Freelance Projects",
+      "education": "Education",
+      "skills": "Skills",
+      "languages": "Languages",
+      "personal_projects": "Personal Projects",
+      "interests": "Interests"
+    },
+    "profile_text": "I am a curious person, always looking for new things to learn and explore. I have a proactive mindset and enjoy understanding things holistically, which allows me to develop skills in fields beyond my initial training. I am looking for a freelance mission starting early April 2026.",
+    "experiences": [
+      {
+        "title": "Lead Developer",
+        "company": "KBRW",
+        "period": "05/2023 – 03/2026",
+        "location": "Paris, France",
+        "description": "Development of an order management software for Michelin.",
+        "stack": ["Elixir", "React", "Riak", "LXC"]
+      },
+      {
+        "title": "C++ Development Engineer",
+        "company": "Viveris",
+        "period": "05/2021 – 05/2023",
+        "location": "Évry, France",
+        "description": "Various missions for large companies: SNCF — Lidar data processing for rail detection as part of the autonomous train project; MBDA — software development of the application layer for a project at MBDA Software Engineering.",
+        "stack": ["C++"]
+      },
+      {
+        "title": "Python R&D Engineer",
+        "company": "HORIBA",
+        "period": "03/2020 – 08/2020",
+        "location": "Palaiseau, France",
+        "description": "Design and development of a test bench for the electronics of a distance measurement tool.",
+        "stack": ["Python"]
+      },
+      {
+        "title": "Student Researcher",
+        "company": "Jožef Stefan Institute",
+        "period": "06/2019 – 09/2019",
+        "location": "Ljubljana, Slovenia",
+        "description": "Writing a research paper on the correlation matrix of delayed neutron measurements.",
+        "stack": []
+      },
+      {
+        "title": "Java Developer",
+        "company": "Eurofeedback",
+        "period": "06/2018 – 09/2018",
+        "location": "Lisses, France",
+        "description": "Design and development of a SQL data display tool with deployment on Raspberry Pi.",
+        "stack": ["Java"]
+      }
+    ],
+    "freelance_projects": [
+      {
+        "title": "Freelance Developer",
+        "company": "BETA Vêtements",
+        "period": "06/2024 – present",
+        "location": "Remote",
+        "description": "Architecture, specification and development of order.betavetements.com, an order management site for custom clothing and accessories.",
+        "stack": ["Docker", "Angular", "Node.js", "MongoDB", "Redis"]
+      }
+    ],
+    "education": [
+      {
+        "degree": "Computer Science Engineer",
+        "school": "ENSIIE",
+        "period": "09/2017 – 03/2021",
+        "location": "Évry, France",
+        "detail": "Specialization in Artificial Intelligence and Operations Research"
+      },
+      {
+        "degree": "Master ANDROID",
+        "school": "Université Pierre-et-Marie-Curie",
+        "period": "09/2019 – 12/2020",
+        "location": "Paris, France",
+        "detail": "Distributed Agents, Robotics, Operations Research, Interaction, Decision"
+      },
+      {
+        "degree": "Bachelor in Applied Mathematics",
+        "school": "Université d'Évry",
+        "period": "09/2017 – 09/2018",
+        "location": "Évry, France",
+        "detail": "In partnership with ENSIIE"
+      },
+      {
+        "degree": "Preparatory class MPSI/MP*",
+        "school": "Lycée Camille Guérin",
+        "period": "09/2015 – 09/2017",
+        "location": "Poitiers, France",
+        "detail": ""
+      }
+    ],
+    "skills_section": {
+      "programming_label": "Programming Languages",
+      "tools_label": "Environment & Tools",
+      "software_label": "Software",
+      "soft_skills_label": "Soft Skills",
+      "soft_skills_items": ["Patient", "Good listener", "Reactive", "Driven"]
+    },
+    "languages_list": [
+      { "lang": "French", "level": "Native" },
+      { "lang": "English", "level": "C1 (BULATS)" },
+      { "lang": "Spanish", "level": "C1" }
+    ],
+    "personal_project": {
+      "title": "French Robotics Cup",
+      "period": "09/2017 – 05/2022",
+      "description": "4 participations in the French Robotics Cup through the ENSIIE student association."
+    },
+    "interests_list": ["Robotics", "Volleyball", "Football", "Science communication", "Board games"]
   }
 }

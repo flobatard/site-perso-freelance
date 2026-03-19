@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Download, MapPin, Mail, Phone, Calendar } from "lucide-react";
 import essentialCvPdf from "@/assets/Essential_CV.pdf";
+import { useTranslation } from "react-i18next";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -22,96 +23,6 @@ interface Education {
   location: string;
   detail?: string;
 }
-
-// ── Data ───────────────────────────────────────────────────────────────────────
-
-const experiences: Experience[] = [
-  {
-    title: "Lead Développeur",
-    company: "KBRW",
-    period: "05/2023 – 03/2026",
-    location: "Paris, France",
-    description: "Développement d'un logiciel de prise et de gestion de commande pour Michelin.",
-    stack: ["Elixir", "React", "Riak", "LXC"],
-  },
-  {
-    title: "Ingénieur en développement C++",
-    company: "Viveris",
-    period: "05/2021 – 05/2023",
-    location: "Évry, France",
-    description:
-      "Différentes missions pour des grandes entreprises : SNCF — traitement de données Lidar pour la détection des rails dans le cadre du projet train autonome ; MBDA — développement logiciel de la partie applicative d'un projet pour MBDA Software Engineering.",
-    stack: ["C++"],
-  },
-  {
-    title: "Ingénieur R&D Python",
-    company: "HORIBA",
-    period: "03/2020 – 08/2020",
-    location: "Palaiseau, France",
-    description:
-      "Conception et développement d'un banc de test pour l'électronique d'un outil de mesure de distance.",
-    stack: ["Python"],
-  },
-  {
-    title: "Étudiant chercheur",
-    company: "Jožef Stefan Institute",
-    period: "06/2019 – 09/2019",
-    location: "Ljubljana, Slovénie",
-    description:
-      "Rédaction d'un article de recherche sur la matrice de corrélation des mesures sur les neutrons retardés.",
-  },
-  {
-    title: "Développeur Java",
-    company: "Eurofeedback",
-    period: "06/2018 – 09/2018",
-    location: "Lisses, France",
-    description:
-      "Conception et développement d'un outil d'affichage de données SQL et déploiement sur Raspberry Pi.",
-    stack: ["Java"],
-  },
-];
-
-const freelanceProjects: Experience[] = [
-  {
-    title: "Développeur Freelance",
-    company: "BETA Vêtements",
-    period: "06/2024 – présent",
-    location: "Remote",
-    description:
-      "Architecture, spécification et développement du site web order.betavetements.com, site de prise de commande de vêtements et accessoires personnalisés.",
-    stack: ["Docker", "Angular", "Node.js", "MongoDB", "Redis"],
-  },
-];
-
-const education: Education[] = [
-  {
-    degree: "Ingénieur en informatique",
-    school: "ENSIIE",
-    period: "09/2017 – 03/2021",
-    location: "Évry, France",
-    detail: "Spécialisation en Intelligence Artificielle et Recherche Opérationnelle",
-  },
-  {
-    degree: "Master ANDROID",
-    school: "Université Pierre-et-Marie-Curie",
-    period: "09/2019 – 12/2020",
-    location: "Paris, France",
-    detail: "Agents Distribués, Robotique, Recherche Opérationnelle, Interaction, Décision",
-  },
-  {
-    degree: "Licence en Mathématiques appliquées",
-    school: "Université d'Évry",
-    period: "09/2017 – 09/2018",
-    location: "Évry, France",
-    detail: "En partenariat avec l'ENSIIE",
-  },
-  {
-    degree: "Classe préparatoire MPSI/MP*",
-    school: "Lycée Camille Guérin",
-    period: "09/2015 – 09/2017",
-    location: "Poitiers, France",
-  },
-];
 
 // ── Sub-components ─────────────────────────────────────────────────────────────
 
@@ -138,7 +49,7 @@ const ExperienceCard = ({ exp }: { exp: Experience }) => (
     </div>
     <p className="text-primary font-medium italic mb-2">{exp.company}</p>
     <p className="text-foreground/80 text-sm leading-relaxed mb-3">{exp.description}</p>
-    {exp.stack && (
+    {exp.stack && exp.stack.length > 0 && (
       <div className="flex flex-wrap gap-2">
         {exp.stack.map((tech) => (
           <Tag key={tech} label={tech} />
@@ -164,6 +75,15 @@ const EducationCard = ({ edu }: { edu: Education }) => (
 // ── Page ───────────────────────────────────────────────────────────────────────
 
 const CurriculumVitae = () => {
+  const { t } = useTranslation();
+
+  const experiences = t("cv.experiences", { returnObjects: true }) as Experience[];
+  const freelanceProjects = t("cv.freelance_projects", { returnObjects: true }) as Experience[];
+  const education = t("cv.education", { returnObjects: true }) as Education[];
+  const languagesList = t("cv.languages_list", { returnObjects: true }) as { lang: string; level: string }[];
+  const interestsList = t("cv.interests_list", { returnObjects: true }) as string[];
+  const softSkillsItems = t("cv.skills_section.soft_skills_items", { returnObjects: true }) as string[];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
@@ -197,27 +117,24 @@ const CurriculumVitae = () => {
             <a href={essentialCvPdf} download="CV_Florian_Batard.pdf">
               <Button className="bg-gradient-warm shadow-soft hover:shadow-hover transition-all duration-300 shrink-0">
                 <Download size={16} className="mr-2" />
-                Télécharger le CV
+                {t("cv.download")}
               </Button>
             </a>
           </div>
 
           <div className="bg-card rounded-2xl p-8 md:p-12 shadow-soft space-y-12">
 
-            {/* Profil */}
+            {/* Profile */}
             <section>
-              <SectionTitle>Profil</SectionTitle>
+              <SectionTitle>{t("cv.sections.profile")}</SectionTitle>
               <p className="text-foreground/80 leading-relaxed">
-                Je suis une personne curieuse, toujours à la recherche de nouvelles choses à apprendre et à explorer.
-                J'ai l'esprit d'initiative et j'aime comprendre les choses dans leur globalité, ce qui me permet de
-                faire évoluer des compétences dans des domaines plus variés que ma formation initiale.
-                Je recherche une mission en freelance à partir de début Avril 2026.
+                {t("cv.profile_text")}
               </p>
             </section>
 
-            {/* Expérience */}
+            {/* Experience */}
             <section>
-              <SectionTitle>Expérience</SectionTitle>
+              <SectionTitle>{t("cv.sections.experience")}</SectionTitle>
               {experiences.map((exp) => (
                 <ExperienceCard key={`${exp.company}-${exp.period}`} exp={exp} />
               ))}
@@ -225,26 +142,26 @@ const CurriculumVitae = () => {
 
             {/* Freelance */}
             <section>
-              <SectionTitle>Projets Freelance</SectionTitle>
+              <SectionTitle>{t("cv.sections.freelance")}</SectionTitle>
               {freelanceProjects.map((exp) => (
                 <ExperienceCard key={`${exp.company}-${exp.period}`} exp={exp} />
               ))}
             </section>
 
-            {/* Formation */}
+            {/* Education */}
             <section>
-              <SectionTitle>Formation</SectionTitle>
+              <SectionTitle>{t("cv.sections.education")}</SectionTitle>
               {education.map((edu) => (
                 <EducationCard key={`${edu.school}-${edu.period}`} edu={edu} />
               ))}
             </section>
 
-            {/* Compétences */}
+            {/* Skills */}
             <section>
-              <SectionTitle>Compétences</SectionTitle>
+              <SectionTitle>{t("cv.sections.skills")}</SectionTitle>
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold mb-3">Langages informatiques</h3>
+                  <h3 className="font-semibold mb-3">{t("cv.skills_section.programming_label")}</h3>
                   <div className="flex flex-wrap gap-2">
                     {["Elixir", "C/C++", "Python", "JavaScript", "Java", "C#", "Caml", "R", "Matlab"].map((lang) => (
                       <Tag key={lang} label={lang} />
@@ -252,7 +169,7 @@ const CurriculumVitae = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-3">Environnement & Outils</h3>
+                  <h3 className="font-semibold mb-3">{t("cv.skills_section.tools_label")}</h3>
                   <div className="flex flex-wrap gap-2">
                     {["Linux", "Git", "Jenkins", "Docker", "Méthode Agile", "Suite Office", "LaTeX"].map((tool) => (
                       <Tag key={tool} label={tool} />
@@ -260,7 +177,7 @@ const CurriculumVitae = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-3">Logiciels</h3>
+                  <h3 className="font-semibold mb-3">{t("cv.skills_section.software_label")}</h3>
                   <div className="flex flex-wrap gap-2">
                     {["Fusion360", "FLStudio", "Gimp", "Suite Adobe"].map((soft) => (
                       <Tag key={soft} label={soft} />
@@ -268,9 +185,9 @@ const CurriculumVitae = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-3">Soft Skills</h3>
+                  <h3 className="font-semibold mb-3">{t("cv.skills_section.soft_skills_label")}</h3>
                   <div className="flex flex-wrap gap-2">
-                    {["Patient", "À l'écoute", "Réactif", "Moteur"].map((skill) => (
+                    {softSkillsItems.map((skill) => (
                       <Tag key={skill} label={skill} />
                     ))}
                   </div>
@@ -278,15 +195,11 @@ const CurriculumVitae = () => {
               </div>
             </section>
 
-            {/* Langues */}
+            {/* Languages */}
             <section>
-              <SectionTitle>Langues</SectionTitle>
+              <SectionTitle>{t("cv.sections.languages")}</SectionTitle>
               <div className="grid grid-cols-3 gap-4">
-                {[
-                  { lang: "Français", level: "Langue maternelle" },
-                  { lang: "English", level: "C1 (BULATS)" },
-                  { lang: "Espagnol", level: "C1" },
-                ].map(({ lang, level }) => (
+                {languagesList.map(({ lang, level }) => (
                   <div key={lang} className="bg-secondary/50 rounded-xl p-4 text-center">
                     <p className="font-semibold">{lang}</p>
                     <p className="text-muted-foreground text-sm mt-1">{level}</p>
@@ -295,16 +208,16 @@ const CurriculumVitae = () => {
               </div>
             </section>
 
-            {/* Projets personnels */}
+            {/* Personal projects */}
             <section>
-              <SectionTitle>Projets personnels</SectionTitle>
+              <SectionTitle>{t("cv.sections.personal_projects")}</SectionTitle>
               <div className="mb-2">
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-                  <h3 className="font-bold text-lg">Coupe de robotique</h3>
-                  <span className="text-muted-foreground text-sm shrink-0">09/2017 – 05/2022</span>
+                  <h3 className="font-bold text-lg">{t("cv.personal_project.title")}</h3>
+                  <span className="text-muted-foreground text-sm shrink-0">{t("cv.personal_project.period")}</span>
                 </div>
                 <p className="text-foreground/80 text-sm leading-relaxed mb-3">
-                  4 participations à la coupe de France de robotique via l'association de l'ENSIIE.
+                  {t("cv.personal_project.description")}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {["Python", "C++", "Arduino", "Raspberry Pi", "SLAM", "ICP", "Fusion360", "Lidar"].map((tech) => (
@@ -314,11 +227,11 @@ const CurriculumVitae = () => {
               </div>
             </section>
 
-            {/* Centres d'intérêt */}
+            {/* Interests */}
             <section>
-              <SectionTitle>Centres d'intérêt</SectionTitle>
+              <SectionTitle>{t("cv.sections.interests")}</SectionTitle>
               <div className="flex flex-wrap gap-2">
-                {["Robotique", "Volley", "Football", "Vulgarisation scientifique", "Jeux de société"].map((item) => (
+                {interestsList.map((item) => (
                   <span
                     key={item}
                     className="px-4 py-2 bg-secondary text-secondary-foreground rounded-full text-sm font-medium"

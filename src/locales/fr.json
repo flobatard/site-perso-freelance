@@ -35,7 +35,12 @@
   },
   "portfolio": {
     "title": "Projets Récents",
-    "view_project": "Voir le projet"
+    "view_project": "Voir le projet",
+    "projects": {
+      "1": { "description": "Développement d'une plateforme complète de gestion des commandes et de catalogue pour la vente de vêtements personnalisés" },
+      "2": { "description": "Projet afin de générer des équipes de volley équilibrées pour les séances loisirs des clubs de volley" },
+      "3": { "description": "Site vitrine pour le compte de Guillaume Galland indépendant dans le secteur du bâtiment" }
+    }
   },
   "contact": {
     "title": "Travaillons Ensemble",
@@ -58,5 +63,119 @@
   "footer": {
     "role": "Développeur Full-Stack Freelance",
     "rights": "Tous droits réservés."
+  },
+  "cv": {
+    "download": "Télécharger le CV",
+    "sections": {
+      "profile": "Profil",
+      "experience": "Expérience",
+      "freelance": "Projets Freelance",
+      "education": "Formation",
+      "skills": "Compétences",
+      "languages": "Langues",
+      "personal_projects": "Projets personnels",
+      "interests": "Centres d'intérêt"
+    },
+    "profile_text": "Je suis une personne curieuse, toujours à la recherche de nouvelles choses à apprendre et à explorer. J'ai l'esprit d'initiative et j'aime comprendre les choses dans leur globalité, ce qui me permet de faire évoluer des compétences dans des domaines plus variés que ma formation initiale. Je recherche une mission en freelance à partir de début Avril 2026.",
+    "experiences": [
+      {
+        "title": "Lead Développeur",
+        "company": "KBRW",
+        "period": "05/2023 – 03/2026",
+        "location": "Paris, France",
+        "description": "Développement d'un logiciel de prise et de gestion de commande pour Michelin.",
+        "stack": ["Elixir", "React", "Riak", "LXC"]
+      },
+      {
+        "title": "Ingénieur en développement C++",
+        "company": "Viveris",
+        "period": "05/2021 – 05/2023",
+        "location": "Évry, France",
+        "description": "Différentes missions pour des grandes entreprises : SNCF — traitement de données Lidar pour la détection des rails dans le cadre du projet train autonome ; MBDA — développement logiciel de la partie applicative d'un projet pour MBDA Software Engineering.",
+        "stack": ["C++"]
+      },
+      {
+        "title": "Ingénieur R&D Python",
+        "company": "HORIBA",
+        "period": "03/2020 – 08/2020",
+        "location": "Palaiseau, France",
+        "description": "Conception et développement d'un banc de test pour l'électronique d'un outil de mesure de distance.",
+        "stack": ["Python"]
+      },
+      {
+        "title": "Étudiant chercheur",
+        "company": "Jožef Stefan Institute",
+        "period": "06/2019 – 09/2019",
+        "location": "Ljubljana, Slovénie",
+        "description": "Rédaction d'un article de recherche sur la matrice de corrélation des mesures sur les neutrons retardés.",
+        "stack": []
+      },
+      {
+        "title": "Développeur Java",
+        "company": "Eurofeedback",
+        "period": "06/2018 – 09/2018",
+        "location": "Lisses, France",
+        "description": "Conception et développement d'un outil d'affichage de données SQL et déploiement sur Raspberry Pi.",
+        "stack": ["Java"]
+      }
+    ],
+    "freelance_projects": [
+      {
+        "title": "Développeur Freelance",
+        "company": "BETA Vêtements",
+        "period": "06/2024 – présent",
+        "location": "Remote",
+        "description": "Architecture, spécification et développement du site web order.betavetements.com, site de prise de commande de vêtements et accessoires personnalisés.",
+        "stack": ["Docker", "Angular", "Node.js", "MongoDB", "Redis"]
+      }
+    ],
+    "education": [
+      {
+        "degree": "Ingénieur en informatique",
+        "school": "ENSIIE",
+        "period": "09/2017 – 03/2021",
+        "location": "Évry, France",
+        "detail": "Spécialisation en Intelligence Artificielle et Recherche Opérationnelle"
+      },
+      {
+        "degree": "Master ANDROID",
+        "school": "Université Pierre-et-Marie-Curie",
+        "period": "09/2019 – 12/2020",
+        "location": "Paris, France",
+        "detail": "Agents Distribués, Robotique, Recherche Opérationnelle, Interaction, Décision"
+      },
+      {
+        "degree": "Licence en Mathématiques appliquées",
+        "school": "Université d'Évry",
+        "period": "09/2017 – 09/2018",
+        "location": "Évry, France",
+        "detail": "En partenariat avec l'ENSIIE"
+      },
+      {
+        "degree": "Classe préparatoire MPSI/MP*",
+        "school": "Lycée Camille Guérin",
+        "period": "09/2015 – 09/2017",
+        "location": "Poitiers, France",
+        "detail": ""
+      }
+    ],
+    "skills_section": {
+      "programming_label": "Langages informatiques",
+      "tools_label": "Environnement & Outils",
+      "software_label": "Logiciels",
+      "soft_skills_label": "Soft Skills",
+      "soft_skills_items": ["Patient", "À l'écoute", "Réactif", "Moteur"]
+    },
+    "languages_list": [
+      { "lang": "Français", "level": "Langue maternelle" },
+      { "lang": "English", "level": "C1 (BULATS)" },
+      { "lang": "Espagnol", "level": "C1" }
+    ],
+    "personal_project": {
+      "title": "Coupe de robotique",
+      "period": "09/2017 – 05/2022",
+      "description": "4 participations à la coupe de France de robotique via l'association de l'ENSIIE."
+    },
+    "interests_list": ["Robotique", "Volley", "Football", "Vulgarisation scientifique", "Jeux de société"]
   }
 }
