@@ -6,7 +6,7 @@
       "description": "Développement d'une plateforme complète de gestion des commandes et du catalogue pour un réseau de distributeurs.",
       "stack": ["Angular", "Node.js", "MongoDB", "Redis"],
       "link": "https://order.betavetements.com", 
-      "category": "web"
+      "category": "e-commerce"
     },
     {
       "id": 2,
@@ -22,7 +22,7 @@
       "description": "Site vitrine pour le compte de Guillaume Galland indépendant dans le secteur du bâtiment",
       "stack": ["React"],
       "link": "https://guillaumegalland.com/",
-      "category": "backend"
+      "category": "web"
     }
   ]
 }
