@@ -26,6 +26,11 @@ npm run preview   # Prévisualisation du build
 ```
 src/
 ├── components/        # Composants métier (Hero, About, Skills, Portfolio, Contact, Navigation, Footer)
+│   ├── projects/      # Composants de contenu riche par projet (un fichier par projet)
+│   │   ├── BetaOrderCapture.tsx
+│   │   ├── VolleyTeamOptimizer.tsx
+│   │   ├── GuillaumeGalland.tsx
+│   │   └── index.ts   # Record<string, ComponentType> — map id → composant
 │   └── ui/            # Composants shadcn/ui — ne pas modifier manuellement
 ├── pages/             # Index.tsx, ProjectDetail.tsx, CurriculumVitae.tsx, NotFound.tsx
 ├── locales/
@@ -74,7 +79,13 @@ hero.*          — Section Hero (badge, titre, description, CTA)
 about.*         — Section À propos (textes, cartes)
 skills.*        — Section Compétences (titre, descriptions par catégorie)
 portfolio.*     — Section Portfolio + pages détail projet
-  portfolio.projects.<id>.description  — Description traduite par projet
+  portfolio.projects.<id>.description     — Description courte (carte portfolio + intro page détail)
+  portfolio.projects.<id>.context_title   — Titre section contexte
+  portfolio.projects.<id>.context_text    — Texte section contexte
+  portfolio.projects.<id>.features_title  — Titre section fonctionnalités
+  portfolio.projects.<id>.features        — string[] (returnObjects: true)
+  portfolio.projects.<id>.technical_title — Titre section choix techniques
+  portfolio.projects.<id>.technical       — { name, desc }[] (returnObjects: true)
 contact.*       — Section Contact (labels, placeholders, messages toast)
 footer.*        — Footer (rôle, droits)
 cv.*            — Page CV complète (sections, expériences, formation, compétences…)
@@ -82,11 +93,17 @@ cv.*            — Page CV complète (sections, expériences, formation, compé
 
 ### Portfolio et données projets
 
-`portfolio.json` reste la source de vérité pour les métadonnées des projets (id, title, stack, link, category). Les **descriptions traduisibles** sont dans les locales sous `portfolio.projects.<id>.description`. Les composants utilisent `t(`portfolio.projects.${project.id}.description`, { defaultValue: project.description })` avec fallback sur le JSON.
+`portfolio.json` reste la source de vérité pour les métadonnées des projets. Les IDs sont des slugs string (ex. `beta_order_capture`) réutilisés dans la route `/:lang/projet/:id` et comme clés de traduction.
+
+Les textes traduisibles sont dans les locales sous `portfolio.projects.<id>.*`. Les composants utilisent `t(`portfolio.projects.${project.id}.description`, { defaultValue: project.description })` avec fallback sur le JSON pour la description courte.
+
+Le contenu riche de chaque page détail est dans `src/components/projects/` — un composant TSX par projet, enregistré dans `src/components/projects/index.ts`. `ProjectDetail.tsx` charge et rend le composant correspondant si il existe.
 
 Pour ajouter un nouveau projet :
-1. Ajouter l'entrée dans `portfolio.json`
-2. Ajouter `"<id>": { "description": "..." }` dans `portfolio.projects` dans `fr.json` et `en.json`
+1. Ajouter l'entrée dans `portfolio.json` (avec un slug comme `id`)
+2. Ajouter les clés `portfolio.projects.<id>.*` dans `fr.json` et `en.json`
+3. Créer `src/components/projects/NomDuProjet.tsx`
+4. Ajouter `"<id>": NomDuProjet` dans `src/components/projects/index.ts`
 
 ## Conventions
 
