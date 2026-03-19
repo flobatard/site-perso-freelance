@@ -41,9 +41,60 @@
     "back": "Retour",
     "tech_stack": "Stack technique",
     "projects": {
-      "beta_order_capture": { "description": "Développement d'une plateforme complète de gestion des commandes et de catalogue pour la vente de vêtements personnalisés" },
-      "volley_team_optimizer": { "description": "Projet afin de générer des équipes de volley équilibrées pour les séances loisirs des clubs de volley" },
-      "guillaume_galland": { "description": "Site vitrine pour le compte de Guillaume Galland indépendant dans le secteur du bâtiment" }
+      "beta_order_capture": {
+        "description": "Développement d'une plateforme complète de gestion des commandes et de catalogue pour la vente de vêtements personnalisés",
+        "context_title": "Contexte & objectif",
+        "context_text": "Beta Vêtements est une marque de vêtements personnalisés. L'objectif était de remplacer un processus de commande manuel (emails, tableurs) par une plateforme centralisée permettant aux revendeurs de passer commande directement en ligne.",
+        "features_title": "Fonctionnalités clés",
+        "features": [
+          "Catalogue produits avec gestion des variantes (taille, couleur, personnalisation)",
+          "Panier et passage de commande avec validation des stocks en temps réel",
+          "Interface d'administration pour la gestion des produits et des commandes",
+          "Système de cache Redis pour les performances du catalogue",
+          "Authentification par rôle (admin, revendeur)"
+        ],
+        "technical_title": "Choix techniques",
+        "technical": [
+          { "name": "Angular", "desc": "structure modulaire adaptée à une application métier complexe" },
+          { "name": "MongoDB", "desc": "schéma flexible pour des produits avec des variantes très hétérogènes" },
+          { "name": "Redis", "desc": "mise en cache du catalogue pour éviter des requêtes répétées à la base" },
+          { "name": "Node.js / Express", "desc": "API REST légère en cohérence avec l'écosystème JS full-stack" }
+        ]
+      },
+      "volley_team_optimizer": {
+        "description": "Projet afin de générer des équipes de volley équilibrées pour les séances loisirs des clubs de volley",
+        "context_title": "Contexte & objectif",
+        "context_text": "Dans les séances de volley loisir, former des équipes équilibrées manuellement prend du temps et donne souvent des résultats inégaux. VTO automatise cette répartition en tenant compte du niveau de chaque joueur.",
+        "features_title": "Fonctionnalités",
+        "features": [
+          "Saisie des joueurs présents avec leur niveau",
+          "Génération automatique d'équipes équilibrées",
+          "Possibilité d'ajuster manuellement la répartition",
+          "Interface simple et rapide à utiliser sur mobile depuis le terrain"
+        ],
+        "technical_title": "Choix techniques",
+        "technical": [
+          { "name": "Angular standalone", "desc": "projet léger sans backend, déployé en statique" },
+          { "name": "Algorithme de répartition", "desc": "distribution par niveaux avec randomisation pour varier les équipes" }
+        ]
+      },
+      "guillaume_galland": {
+        "description": "Site vitrine pour le compte de Guillaume Galland indépendant dans le secteur du bâtiment",
+        "context_title": "Contexte & objectif",
+        "context_text": "Guillaume Galland est artisan indépendant dans le secteur du bâtiment. Il avait besoin d'une présence en ligne professionnelle pour présenter ses services et faciliter la prise de contact avec de nouveaux clients.",
+        "features_title": "Ce que le site propose",
+        "features": [
+          "Présentation des services proposés",
+          "Galerie de réalisations",
+          "Formulaire de contact",
+          "Design épuré, responsive, adapté à une clientèle locale"
+        ],
+        "technical_title": "Choix techniques",
+        "technical": [
+          { "name": "React", "desc": "stack simple et rapide pour un site vitrine sans besoin de backend complexe" },
+          { "name": "Déploiement statique", "desc": "temps de chargement optimal" }
+        ]
+      }
     }
   },
   "contact": {

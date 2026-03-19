@@ -41,9 +41,60 @@
     "back": "Back",
     "tech_stack": "Tech stack",
     "projects": {
-      "beta_order_capture": { "description": "Development of a full-featured platform for managing orders and selling custom clothing." },
-      "volley_team_optimizer": { "description": "Project to generate balanced volleyball teams for recreational sessions in volleyball clubs" },
-      "guillaume_galland": { "description": "Showcase website for Guillaume Galland, an independent contractor in the construction sector" }
+      "beta_order_capture": {
+        "description": "Development of a full-featured platform for managing orders and selling custom clothing.",
+        "context_title": "Context & goal",
+        "context_text": "Beta Vêtements is a custom clothing brand. The goal was to replace a manual ordering process (emails, spreadsheets) with a centralized platform allowing resellers to place orders directly online.",
+        "features_title": "Key features",
+        "features": [
+          "Product catalog with variant management (size, color, customization)",
+          "Cart and checkout with real-time stock validation",
+          "Admin interface for product and order management",
+          "Redis cache for catalog performance",
+          "Role-based authentication (admin, reseller)"
+        ],
+        "technical_title": "Technical choices",
+        "technical": [
+          { "name": "Angular", "desc": "modular structure suited for a complex business application" },
+          { "name": "MongoDB", "desc": "flexible schema for products with highly heterogeneous variants" },
+          { "name": "Redis", "desc": "catalog caching to avoid repeated database queries" },
+          { "name": "Node.js / Express", "desc": "lightweight REST API consistent with the full-stack JS ecosystem" }
+        ]
+      },
+      "volley_team_optimizer": {
+        "description": "Project to generate balanced volleyball teams for recreational sessions in volleyball clubs",
+        "context_title": "Context & goal",
+        "context_text": "In recreational volleyball sessions, manually forming balanced teams is time-consuming and often produces uneven results. VTO automates this distribution by taking each player's level into account.",
+        "features_title": "Features",
+        "features": [
+          "Input of present players with their skill level",
+          "Automatic generation of balanced teams",
+          "Ability to manually adjust the distribution",
+          "Simple and fast mobile interface usable directly on the court"
+        ],
+        "technical_title": "Technical choices",
+        "technical": [
+          { "name": "Standalone Angular", "desc": "lightweight project with no backend, deployed as static files" },
+          { "name": "Distribution algorithm", "desc": "level-based distribution with randomization to vary team compositions" }
+        ]
+      },
+      "guillaume_galland": {
+        "description": "Showcase website for Guillaume Galland, an independent contractor in the construction sector",
+        "context_title": "Context & goal",
+        "context_text": "Guillaume Galland is an independent craftsman in the construction sector. He needed a professional online presence to showcase his services and make it easier for new clients to get in touch.",
+        "features_title": "What the site offers",
+        "features": [
+          "Presentation of offered services",
+          "Portfolio of completed work",
+          "Contact form",
+          "Clean, responsive design tailored for a local clientele"
+        ],
+        "technical_title": "Technical choices",
+        "technical": [
+          { "name": "React", "desc": "simple and fast stack for a showcase site with no need for a complex backend" },
+          { "name": "Static deployment", "desc": "optimal loading time" }
+        ]
+      }
     }
   },
   "contact": {
