@@ -5,12 +5,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import portfolioData from "@/data/portfolio.json";
 import { useTranslation } from "react-i18next";
+import projectContents from "@/components/projects";
 
 const ProjectDetail = () => {
   const { id } = useParams();
   const { t, i18n } = useTranslation();
   const lang = i18n.language === "fr" ? "fr" : "en";
-  const project = portfolioData.projects.find((p) => p.id === Number(id));
+  const project = portfolioData.projects.find((p) => p.id === id);
 
   if (!project) {
     return (
@@ -71,6 +72,12 @@ const ProjectDetail = () => {
               </a>
             </Button>
           </div>
+
+          {projectContents[project.id] && (
+            <div className="bg-card rounded-2xl p-8 md:p-12 shadow-soft">
+              {(() => { const Content = projectContents[project.id]; return <Content />; })()}
+            </div>
+          )}
         </div>
       </main>
       <Footer />

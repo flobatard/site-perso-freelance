@@ -41,9 +41,9 @@
     "back": "Retour",
     "tech_stack": "Stack technique",
     "projects": {
-      "1": { "description": "Développement d'une plateforme complète de gestion des commandes et de catalogue pour la vente de vêtements personnalisés" },
-      "2": { "description": "Projet afin de générer des équipes de volley équilibrées pour les séances loisirs des clubs de volley" },
-      "3": { "description": "Site vitrine pour le compte de Guillaume Galland indépendant dans le secteur du bâtiment" }
+      "beta_order_capture": { "description": "Développement d'une plateforme complète de gestion des commandes et de catalogue pour la vente de vêtements personnalisés" },
+      "volley_team_optimizer": { "description": "Projet afin de générer des équipes de volley équilibrées pour les séances loisirs des clubs de volley" },
+      "guillaume_galland": { "description": "Site vitrine pour le compte de Guillaume Galland indépendant dans le secteur du bâtiment" }
     }
   },
   "contact": {

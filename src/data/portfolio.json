@@ -1,15 +1,15 @@
 {
   "projects": [
     {
-      "id": 1,
+      "id": "beta_order_capture",
       "title": "Beta Order Capture",
       "description": "Développement d'une plateforme complète de gestion des commandes et de catalogue pour la vente de vêtements personnalisés",
       "stack": ["Angular", "Node.js", "MongoDB", "Redis"],
-      "link": "https://order.betavetements.com", 
+      "link": "https://order.betavetements.com",
       "category": "e-commerce"
     },
     {
-      "id": 2,
+      "id": "volley_team_optimizer",
       "title": "Volley Team Optimizer",
       "description": "Projet afin de générer des équipes de volley équilibrées pour les séances loisirs des clubs de volley",
       "stack": ["Angular"],
@@ -17,7 +17,7 @@
       "category": "web"
     },
     {
-      "id": 3,
+      "id": "guillaume_galland",
       "title": "Site pro Guillaume Galland",
       "description": "Site vitrine pour le compte de Guillaume Galland indépendant dans le secteur du bâtiment",
       "stack": ["React"],

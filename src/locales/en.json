@@ -41,9 +41,9 @@
     "back": "Back",
     "tech_stack": "Tech stack",
     "projects": {
-      "1": { "description": "Development of a full-featured platform for managing orders and selling custom clothing." },
-      "2": { "description": "Project to generate balanced volleyball teams for recreational sessions in volleyball clubs" },
-      "3": { "description": "Showcase website for Guillaume Galland, an independent contractor in the construction sector" }
+      "beta_order_capture": { "description": "Development of a full-featured platform for managing orders and selling custom clothing." },
+      "volley_team_optimizer": { "description": "Project to generate balanced volleyball teams for recreational sessions in volleyball clubs" },
+      "guillaume_galland": { "description": "Showcase website for Guillaume Galland, an independent contractor in the construction sector" }
     }
   },
   "contact": {
