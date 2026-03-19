@@ -1,6 +1,6 @@
 import { ArrowRight, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/Hero_Banner.jpg";
 
 const Hero = () => {
   return (
@@ -8,7 +8,7 @@ const Hero = () => {
       id="hero"
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
       style={{
-        backgroundImage: `linear-gradient(rgba(30, 20, 15, 0.7), rgba(30, 20, 15, 0.8)), url(${heroBg})`,
+        backgroundImage: `linear-gradient(rgba(30, 20, 15, 0.8), rgba(30, 20, 15, 0.9)), url(${heroBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -46,10 +46,10 @@ const Hero = () => {
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-foreground transition-all duration-300 text-lg px-8"
+              className="border-white text-foreground hover:bg-white hover:text-primary transition-all duration-300 text-lg px-8"
               asChild
             >
-              <a href="#contact">Me contacter</a>
+              <a href="/#contact">Me contacter</a>
             </Button>
           </div>
 
@@ -69,12 +69,6 @@ const Hero = () => {
               <Linkedin className="text-white" size={24} />
             </a>
           </div>
-        </div>
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full p-1">
-          <div className="w-1 h-3 bg-white/50 rounded-full mx-auto"></div>
         </div>
       </div>
     </section>

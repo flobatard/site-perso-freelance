@@ -106,7 +106,7 @@ const Navigation = () => {
               
               {/* Mobile Portfolio Links */}
               <div className="py-2">
-                <span className="text-muted-foreground text-sm font-semibold uppercase tracking-wider">Portfolio</span>
+                <a href="/#portfolio" className="text-muted-foreground text-sm font-semibold uppercase tracking-wider">Portfolio</a>
                 <div className="flex flex-col gap-2 mt-2 pl-3 border-l-2 border-primary/20">
                   {portfolioData.projects.map((project) => (
                     <Link
