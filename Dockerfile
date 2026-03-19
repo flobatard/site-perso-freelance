@@ -14,11 +14,15 @@ FROM nginx:alpine
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Config nginx pour SPA (React Router)
+# Config nginx pour SSG bilingue
 RUN printf 'server {\n\
     listen 80;\n\
     root /usr/share/nginx/html;\n\
     index index.html;\n\
+\n\
+    location = / {\n\
+        return 302 /en;\n\
+    }\n\
 \n\
     location / {\n\
         try_files $uri $uri/ /index.html;\n\
