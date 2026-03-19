@@ -10,11 +10,10 @@ const { render, i18n } = await import(
   path.join(distPath, "server/entry-server.js")
 );
 
-const projectIds = [
-  "beta_order_capture",
-  "volley_team_optimizer",
-  "guillaume_galland",
-];
+const portfolio = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, "../src/data/portfolio.json"), "utf-8")
+);
+const projectIds: string[] = portfolio.projects.map((p: { id: string }) => p.id);
 const langs = ["fr", "en"];
 
 const routes = [
