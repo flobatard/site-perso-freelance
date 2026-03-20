@@ -24,7 +24,7 @@ const Portfolio = () => {
               >
                 <CardHeader>
                   <CardTitle className="text-2xl group-hover:text-primary transition-colors">
-                    <Link to={`/projet/${project.id}`}>{project.title}</Link>
+                    <Link to={`projet/${project.id}`}>{project.title}</Link>
                   </CardTitle>
                   <CardDescription className="text-base mt-2">
                     {t(`portfolio.projects.${project.id}.description`, { defaultValue: project.description })}
