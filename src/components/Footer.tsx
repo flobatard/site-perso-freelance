@@ -27,14 +27,14 @@ const Footer = () => {
                 <Github size={20} />
               </a>
               <a
-                href={social_links.github.link}
+                href={social_links.linkedin.link}
                 className="p-3 bg-secondary rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
                 aria-label="LinkedIn"
               >
                 <Linkedin size={20} />
               </a>
               <a
-                href="mailto:contact@example.com"
+                href={`mailto:${social_links.mail.email}`}
                 className="p-3 bg-secondary rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
                 aria-label="Email"
               >

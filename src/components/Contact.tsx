@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import social_links from "@/data/social_links.json"
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -62,10 +63,10 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold mb-1">{t("contact.email_label")}</h4>
                     <a
-                      href="mailto:contact@example.com"
+                      href={`mailto:${social_links.mail.email}`}
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      batard.florian.pro@gmail.com
+                      {social_links.mail.email}
                     </a>
                   </div>
                 </div>
