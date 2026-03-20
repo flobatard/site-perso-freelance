@@ -1,4 +1,4 @@
-import { Database, Server, Monitor, Code, Brain } from "lucide-react";
+import { Server, Code, Brain, Layers } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useTranslation } from "react-i18next";
 
@@ -7,34 +7,28 @@ const Skills = () => {
 
   const skills = [
     {
-      icon: <Monitor className="text-primary" size={40} />,
-      title: "Frontend",
-      technologies: ["React", "Angular", "TypeScript", "JavaScript"],
-      description: t("skills.frontend_desc"),
-    },
-    {
-      icon: <Server className="text-primary" size={40} />,
-      title: "Backend",
-      technologies: ["Elixir", "Node.js", "C++", "Python"],
-      description: t("skills.backend_desc"),
-    },
-    {
-      icon: <Database className="text-primary" size={40} />,
-      title: "Databases",
-      technologies: ["PostgreSQL", "MongoDB", "Riak"],
-      description: t("skills.database_desc"),
-    },
-    {
-      icon: <Code className="text-primary" size={40} />,
-      title: t("skills.dev_title"),
-      technologies: ["Architecture", "DevOps", "Testing", "CI/CD"],
-      description: t("skills.dev_desc"),
+      icon: <Layers className="text-primary" size={40} />,
+      title: t("skills.fullstack_title"),
+      technologies: ["React", "Angular", "TypeScript", "Elixir", "Node.js", "Python"],
+      description: t("skills.fullstack_desc"),
     },
     {
       icon: <Brain className="text-primary" size={40} />,
       title: t("skills.ai_title"),
       technologies: ["RAG", "LangChain", "n8n", "MCP"],
       description: t("skills.ai_desc"),
+    },
+    {
+      icon: <Server className="text-primary" size={40} />,
+      title: t("skills.infra_title"),
+      technologies: ["PostgreSQL", "MongoDB", "Docker", "CI/CD"],
+      description: t("skills.infra_desc"),
+    },
+    {
+      icon: <Code className="text-primary" size={40} />,
+      title: t("skills.archi_title"),
+      technologies: ["System Design", "Testing", "Clean Code"],
+      description: t("skills.archi_desc"),
     },
   ];
 

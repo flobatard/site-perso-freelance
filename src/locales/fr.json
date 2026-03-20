@@ -27,13 +27,14 @@
   },
   "skills": {
     "title": "Compétences & Technologies",
-    "frontend_desc": "Interfaces modernes et réactives avec les frameworks les plus performants",
-    "backend_desc": "APIs robustes et scalables pour des applications performantes",
-    "database_desc": "Conception et optimisation de bases de données relationnelles et NoSQL",
-    "dev_title": "Développement",
-    "dev_desc": "Bonnes pratiques et méthodologies pour un code maintenable",
-    "ai_title": "Intelligence Artificielle",
-    "ai_desc": "Mise en place de pipelines RAG, intégration d'APIs IA (OpenAI, Anthropic…), orchestration avec LangChain et automatisation de workflows avec n8n"
+    "fullstack_title": "Full-Stack Dev",
+    "fullstack_desc": "Du composant React à l'API Elixir, je couvre l'ensemble de la chaîne applicative pour livrer des produits complets.",
+    "ai_title": "IA & Automatisation",
+    "ai_desc": "Mise en place de pipelines RAG, intégration d'APIs IA (OpenAI, Anthropic…), orchestration avec LangChain et automatisation de workflows avec n8n.",
+    "infra_title": "Data & Infrastructure",
+    "infra_desc": "Conception des bases de données, conteneurisation et mise en place de pipelines CI/CD pour des déploiements fiables.",
+    "archi_title": "Architecture & Qualité",
+    "archi_desc": "Conception système, design d'API, tests et bonnes pratiques pour un code maintenable sur le long terme."
   },
   "portfolio": {
     "title": "Projets Récents",
