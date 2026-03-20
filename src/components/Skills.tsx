@@ -9,7 +9,7 @@ const Skills = () => {
     {
       icon: <Layers className="text-primary" size={40} />,
       title: t("skills.fullstack_title"),
-      technologies: ["React", "Angular", "TypeScript", "Elixir", "Node.js", "Python"],
+      technologies: ["React", "Angular", "C++", "Elixir", "Node.js", "Python"],
       description: t("skills.fullstack_desc"),
     },
     {
