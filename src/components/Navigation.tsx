@@ -30,12 +30,6 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleLanguage = () => {
-    const newLang = lang === "fr" ? "en" : "fr";
-    // Navigate to the same page in the other language
-    const newPath = location.pathname.replace(/^\/(fr|en)/, `/${newLang}`);
-    navigate(newPath + location.hash);
-  };
 
   const navLinks = [
     { href: `/${lang}#about`, label: t("nav.about") },
@@ -107,13 +101,19 @@ const Navigation = () => {
               {theme === "dark" ? <Sun size={20} /> : theme === "light" ? <Moon size={20} /> : <SunMoon size={20} />}
             </button>
 
-            <button
-              onClick={toggleLanguage}
-              aria-label="Toggle language"
-              className="text-foreground hover:text-primary transition-colors duration-300 font-medium text-sm"
+            <select
+              value={lang}
+              onChange={(e) => {
+                const newLang = e.target.value;
+                const newPath = location.pathname.replace(/^\/(fr|en)/, `/${newLang}`);
+                navigate(newPath + location.hash);
+              }}
+              aria-label="Select language"
+              className="text-foreground bg-transparent hover:text-primary transition-colors duration-300 font-medium text-sm cursor-pointer outline-none"
             >
-              {lang === "fr" ? "EN" : "FR"}
-            </button>
+              <option value="fr">FR</option>
+              <option value="en">EN</option>
+            </select>
 
             <a href={`/${lang}#contact`}>
               <Button className="bg-gradient-warm shadow-soft hover:shadow-hover transition-all duration-300">
@@ -124,13 +124,19 @@ const Navigation = () => {
 
           {/* Mobile right buttons */}
           <div className="md:hidden flex items-center gap-3">
-            <button
-              onClick={toggleLanguage}
-              aria-label="Toggle language"
-              className="text-foreground hover:text-primary transition-colors duration-300 font-medium text-sm"
+            <select
+              value={lang}
+              onChange={(e) => {
+                const newLang = e.target.value;
+                const newPath = location.pathname.replace(/^\/(fr|en)/, `/${newLang}`);
+                navigate(newPath + location.hash);
+              }}
+              aria-label="Select language"
+              className="text-foreground bg-transparent hover:text-primary transition-colors duration-300 font-medium text-sm cursor-pointer outline-none"
             >
-              {lang === "fr" ? "EN" : "FR"}
-            </button>
+              <option value="fr">FR</option>
+              <option value="en">EN</option>
+            </select>
             <button
               onClick={cycleTheme}
               aria-label="Toggle theme"
