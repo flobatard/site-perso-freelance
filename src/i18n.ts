@@ -17,6 +17,13 @@ instance.init({
   interpolation: {
     escapeValue: false,
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  detection: {
+    order: ["cookie", "localStorage", "navigator"],
+    caches: ["cookie", "localStorage"],
+    cookieName: "lang",
+    cookieOptions: { path: "/", sameSite: "lax", maxAge: 31536000 },
+  } as any,
   resources: {
     fr: { translation: fr },
     en: { translation: en },
