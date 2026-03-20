@@ -102,7 +102,7 @@ const CurriculumVitae = () => {
                 </span>
                 <span className="flex items-center gap-2">
                   <MapPin size={14} className="text-primary shrink-0" />
-                  27 Rue Léon Frot, 75011, Paris
+                  Paris
                 </span>
                 <span className="flex items-center gap-2">
                   <Calendar size={14} className="text-primary shrink-0" />
