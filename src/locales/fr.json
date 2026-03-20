@@ -83,6 +83,7 @@
         "description": "Projet afin de générer des équipes de volley équilibrées pour les séances loisirs des clubs de volley",
         "context_title": "Contexte & objectif",
         "context_text": "Dans les séances de volley loisir, former des équipes équilibrées manuellement prend du temps et donne souvent des résultats inégaux. VTO automatise cette répartition en tenant compte du niveau de chaque joueur.",
+        "context_collab": "Projet co-développé avec <anchor>Baptiste Anorga</anchor> (qui s'y connait bien plus en volley que moi).",
         "features_title": "Fonctionnalités",
         "features": [
           "Saisie des joueurs présents avec leur niveau",

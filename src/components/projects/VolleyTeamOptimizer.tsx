@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 type TechnicalItem = { name: string; desc: string };
 type PricingItem = { label: string; value: string };
@@ -16,6 +16,12 @@ const VolleyTeamOptimizer = () => {
       <section>
         <h3 className="text-xl font-semibold mb-3">{t(`${ns}.context_title`)}</h3>
         <p className="text-foreground/80 leading-relaxed">{t(`${ns}.context_text`)}</p>
+        <p className="text-foreground/80 text-sm mt-2">
+          <Trans
+            i18nKey={`${ns}.context_collab`}
+            components={{ anchor: <a href="https://www.bapt-anorga.fr/" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary" /> }}
+          />
+        </p>
       </section>
 
       <section>

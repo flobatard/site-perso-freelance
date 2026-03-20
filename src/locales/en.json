@@ -83,6 +83,7 @@
         "description": "Project to generate balanced volleyball teams for recreational sessions in volleyball clubs",
         "context_title": "Context & goal",
         "context_text": "In recreational volleyball sessions, manually forming balanced teams is time-consuming and often produces uneven results. VTO automates this distribution by taking each player's level into account.",
+        "context_collab": "Project co-developed with <anchor>Baptiste Anorga</anchor> (who is much more knowledgeable in volleyball than me).",
         "features_title": "Features",
         "features": [
           "Input of present players with their skill level",
