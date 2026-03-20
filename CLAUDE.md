@@ -1,6 +1,6 @@
 # CLAUDE.md — site-perso-freelance
 
-Portfolio personnel freelance de Florian Batard. SPA React/TypeScript avec Vite et Tailwind CSS. Site bilingue français/anglais.
+Portfolio personnel freelance de Florian Batard. React/TypeScript avec Vite et Tailwind CSS. Site bilingue français/anglais avec **prerendering statique (SSG)** via Vite SSR.
 
 ## Stack
 
@@ -16,10 +16,15 @@ Portfolio personnel freelance de Florian Batard. SPA React/TypeScript avec Vite 
 
 ```bash
 npm run dev       # Serveur de développement (port 8080)
-npm run build     # Build de production
+npm run build     # Build complet : client + SSR bundle + prerendering des 10 routes
 npm run lint      # Lint ESLint
 npm run preview   # Prévisualisation du build
 ```
+
+Le `npm run build` enchaîne trois étapes :
+1. `vite build` — bundle client dans `dist/`
+2. `vite build --ssr src/entry-server.tsx` — bundle Node.js dans `dist/server/`
+3. `tsx scripts/prerender.ts` — génère les HTML statiques par route, supprime `dist/server/`
 
 ## Structure
 
@@ -40,9 +45,13 @@ src/
 │   ├── portfolio.json      # Source de vérité pour les projets (id, title, stack, link, category)
 │   └── social_links.json   # Liens vers les réseaux sociaux (GitHub, LinkedIn…)
 ├── hooks/             # use-mobile.tsx, use-toast.ts, use-theme.ts
-├── i18n.ts            # Configuration i18next (LanguageDetector + ressources fr/en)
+├── i18n.ts            # Configuration i18next (LanguageDetector désactivé en SSR)
+├── entry-client.tsx   # Point d'entrée client : hydrateRoot + pré-init langue depuis l'URL
+├── entry-server.tsx   # Point d'entrée SSR : render(url) avec StaticRouter
 └── lib/
     └── utils.ts       # cn() et utilitaires
+scripts/
+└── prerender.ts       # Génère dist/{lang}/[...]/index.html pour chaque route
 ```
 
 ## Internationalisation (i18n)
@@ -127,3 +136,29 @@ Pour ajouter un nouveau projet :
 - La page CV est accessible via `/:lang/curriculum_vitae`
 - SEO : meta tags dans `index.html` (Open Graph, Twitter Card) + balises `hreflang` pour `/fr` et `/en`
 - Les ancres de la page d'accueil (hero, about, skills, portfolio, contact) sont scrollées via `scrollIntoView` pour éviter les conflits avec le routage préfixé
+
+## Prerendering (SSG)
+
+Le site génère des fichiers HTML statiques à la compilation pour chaque route connue. React se réhydrate ensuite côté client (`hydrateRoot`).
+
+### Routes prérendues
+
+Générées automatiquement depuis `portfolio.json` × 2 langues :
+```
+/fr, /en
+/fr/curriculum_vitae, /en/curriculum_vitae
+/fr/projet/<id>, /en/projet/<id>   (un fichier par projet dans portfolio.json)
+```
+
+### Ajouter une route prérendue
+
+Pour les routes de projet : ajouter l'entrée dans `portfolio.json` suffit — `scripts/prerender.ts` lit les IDs dynamiquement.
+
+Pour une nouvelle page hors-projet (ex. `/fr/about`) : ajouter la route manuellement dans le tableau `routes` de `scripts/prerender.ts`.
+
+### Contraintes SSR
+
+- `i18next-browser-languagedetector` est désactivé côté serveur (`typeof window === "undefined"` dans `src/i18n.ts`) — la langue est déterminée par le préfixe URL
+- `localStorage` dans `ThemeProvider` est protégé par un guard SSR (`src/hooks/use-theme.tsx`)
+- `entry-server.tsx` duplique l'arbre de routes de `App.tsx` avec `StaticRouter` — garder les deux en sync si les routes changent
+- Le bundle SSR (`dist/server/`) est supprimé après le prerendering et ne doit pas être servi
