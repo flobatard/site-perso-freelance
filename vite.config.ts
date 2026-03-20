@@ -14,6 +14,17 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return;
+          if (id.includes("@radix-ui")) return "radix-ui";
+          if (id.includes("@tanstack")) return "query";
+        },
+      },
+    },
+  },
   ssr: {
     noExternal: ["react-router-dom"],
   },
