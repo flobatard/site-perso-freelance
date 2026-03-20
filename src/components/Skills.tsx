@@ -15,7 +15,7 @@ const Skills = () => {
     {
       icon: <Server className="text-primary" size={40} />,
       title: "Backend",
-      technologies: ["Elixir", "Node.js", "C++"],
+      technologies: ["Elixir", "Node.js", "C++", "Python"],
       description: t("skills.backend_desc"),
     },
     {
