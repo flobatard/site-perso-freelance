@@ -58,7 +58,26 @@
           { "name": "MongoDB", "desc": "flexible schema for products with highly heterogeneous variants" },
           { "name": "Redis", "desc": "catalog caching to avoid repeated database queries" },
           { "name": "Node.js / Express", "desc": "lightweight REST API consistent with the full-stack JS ecosystem" }
-        ]
+        ],
+        "pricing_title": "Price estimate",
+        "pricing": [
+          { "label": "Order pipeline", "value": "15 d" },
+          { "label": "Supplier integrations", "value": "10 d" },
+          { "label": "UX/UI design", "value": "5 d" },
+          { "label": "Back-Office", "value": "14 d" },
+          { "label": "Secured payment", "value": "5 d" },
+          { "label": "Accounting integration", "value": "3 d"},
+          { "label": "Supplier image integration and performance optimization", "value": "2 d"},
+          { "label": "Deployment", "value": "2 d"},
+          { "label": "Authentication", "value": "2 d"},
+          { "label": "Placement designer for custom clothing preview", "value": "10 d"},
+          { "label": "Automatic offer PDF generation", "value": "5 d" },
+          { "label": "Mailing and alerting through company channels", "value": "2 d"},
+          { "label": "Hypercare and tuning", "value": "5 d"}
+        ],
+        "pricing_total_label": "Estimated total",
+        "pricing_total": "~80 d · €50,000 – 60,000",
+        "pricing_note": "This is an indicative estimate, it might not be applicable to your project due to technical details."
       },
       "volley_team_optimizer": {
         "description": "Project to generate balanced volleyball teams for recreational sessions in volleyball clubs",
@@ -75,7 +94,15 @@
         "technical": [
           { "name": "Standalone Angular", "desc": "lightweight project with no backend, deployed as static files" },
           { "name": "Distribution algorithm", "desc": "level-based distribution with randomization to vary team compositions" }
-        ]
+        ],
+        "pricing_title": "Price estimate",
+        "pricing": [
+          { "label": "Conception & UX", "value": "1.5 d" },
+          { "label": "Development and tuning of algorithms", "value": "2.5 d" }
+        ],
+        "pricing_total_label": "Estimated total",
+        "pricing_total": "~4 d · €2,500",
+        "pricing_note": "This is an indicative estimate, it might not be applicable to your project due to technical details."
       },
       "guillaume_galland": {
         "description": "Showcase website for Guillaume Galland, an independent contractor in the construction sector",
@@ -91,7 +118,14 @@
         "technical_title": "Technical choices",
         "technical": [
           { "name": "React", "desc": "simple and fast stack for a showcase site with no need for a complex backend" }
-        ]
+        ],
+        "pricing_title": "Price estimate",
+        "pricing": [
+          { "label": "UX/UI Design + some tuning", "value": "2 d" }
+        ],
+        "pricing_total_label": "Estimated total",
+        "pricing_total": "~2 d · €1,200",
+        "pricing_note": "This is an indicative estimate, it might not be applicable to your project due to technical details."
       }
     }
   },

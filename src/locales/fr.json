@@ -58,7 +58,26 @@
           { "name": "MongoDB", "desc": "schéma flexible pour des produits avec des variantes très hétérogènes" },
           { "name": "Redis", "desc": "mise en cache du catalogue pour éviter des requêtes répétées à la base" },
           { "name": "Node.js / Express", "desc": "API REST légère en cohérence avec l'écosystème JS full-stack" }
-        ]
+        ],
+        "pricing_title": "Estimation tarifaire",
+        "pricing": [
+          { "label": "Pipeline de commande", "value": "15 j" },
+          { "label": "Intégrations fournisseurs", "value": "10 j" },
+          { "label": "Design UX/UI", "value": "5 j" },
+          { "label": "Back-Office", "value": "14 j" },
+          { "label": "Paiement sécurisé", "value": "5 j" },
+          { "label": "Intégration comptable", "value": "3 j" },
+          { "label": "Intégration des images fournisseurs et optimisation des performances", "value": "2 j" },
+          { "label": "Déploiement", "value": "2 j" },
+          { "label": "Authentification", "value": "2 j" },
+          { "label": "Éditeur de placement pour aperçu des vêtements personnalisés", "value": "10 j" },
+          { "label": "Génération automatique de PDF de devis", "value": "5 j" },
+          { "label": "Mailing et alertes via les canaux de l'entreprise", "value": "2 j" },
+          { "label": "Hypercare et ajustements", "value": "5 j" }
+        ],
+        "pricing_total_label": "Total estimé",
+        "pricing_total": "~80 j · 50 000 – 60 000 €",
+        "pricing_note": "Estimation indicative, peut ne pas s'appliquer à votre projet selon les détails techniques."
       },
       "volley_team_optimizer": {
         "description": "Projet afin de générer des équipes de volley équilibrées pour les séances loisirs des clubs de volley",
@@ -75,7 +94,15 @@
         "technical": [
           { "name": "Angular standalone", "desc": "projet léger sans backend, déployé en statique" },
           { "name": "Algorithme de répartition", "desc": "distribution par niveaux avec randomisation pour varier les équipes" }
-        ]
+        ],
+        "pricing_title": "Estimation tarifaire",
+        "pricing": [
+          { "label": "Conception & UX", "value": "1,5 j" },
+          { "label": "Développement et optimisation des algorithmes", "value": "2,5 j" }
+        ],
+        "pricing_total_label": "Total estimé",
+        "pricing_total": "~4 j · 2 500 €",
+        "pricing_note": "Estimation indicative, peut ne pas s'appliquer à votre projet selon les détails techniques."
       },
       "guillaume_galland": {
         "description": "Site vitrine pour le compte de Guillaume Galland indépendant dans le secteur du bâtiment",
@@ -91,7 +118,14 @@
         "technical_title": "Choix techniques",
         "technical": [
           { "name": "React", "desc": "stack simple et rapide pour un site vitrine sans besoin de backend complexe" }
-        ]
+        ],
+        "pricing_title": "Estimation tarifaire",
+        "pricing": [
+          { "label": "Design UX/UI + ajustements", "value": "2 j" }
+        ],
+        "pricing_total_label": "Total estimé",
+        "pricing_total": "~2 j · 1 200 €",
+        "pricing_note": "Estimation indicative, peut ne pas s'appliquer à votre projet selon les détails techniques."
       }
     }
   },
