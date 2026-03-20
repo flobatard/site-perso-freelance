@@ -31,7 +31,9 @@
     "backend_desc": "Robust and scalable APIs for high-performance applications",
     "database_desc": "Design and optimization of relational and NoSQL databases",
     "dev_title": "Development",
-    "dev_desc": "Best practices and methodologies for maintainable code"
+    "dev_desc": "Best practices and methodologies for maintainable code",
+    "ai_title": "Artificial Intelligence",
+    "ai_desc": "RAG pipeline setup, AI API integration (OpenAI, Anthropic…), orchestration with LangChain and workflow automation with n8n"
   },
   "portfolio": {
     "title": "Recent Projects",

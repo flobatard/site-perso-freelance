@@ -1,4 +1,4 @@
-import { Database, Server, Monitor, Code } from "lucide-react";
+import { Database, Server, Monitor, Code, Brain } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useTranslation } from "react-i18next";
 
@@ -29,6 +29,12 @@ const Skills = () => {
       title: t("skills.dev_title"),
       technologies: ["Architecture", "DevOps", "Testing", "CI/CD"],
       description: t("skills.dev_desc"),
+    },
+    {
+      icon: <Brain className="text-primary" size={40} />,
+      title: t("skills.ai_title"),
+      technologies: ["RAG", "LangChain", "n8n", "MCP"],
+      description: t("skills.ai_desc"),
     },
   ];
 
