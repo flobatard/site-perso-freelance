@@ -21,7 +21,7 @@ RUN printf 'server {\n\
     index index.html;\n\
 \n\
     location = / {\n\
-        return 302 /en;\n\
+        return 302 $scheme://$http_host/en;\n\
     }\n\
 \n\
     location / {\n\
