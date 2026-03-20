@@ -15,19 +15,19 @@ const Skills = () => {
     {
       icon: <Brain className="text-primary" size={40} />,
       title: t("skills.ai_title"),
-      technologies: ["RAG", "LangChain", "n8n", "MCP"],
+      technologies: ["RAG", "LangChain", "n8n", "MCP", "PyTorch"],
       description: t("skills.ai_desc"),
     },
     {
       icon: <Server className="text-primary" size={40} />,
       title: t("skills.infra_title"),
-      technologies: ["PostgreSQL", "MongoDB", "Docker", "CI/CD"],
+      technologies: ["PostgreSQL", "MongoDB", "Docker", "CI/CD", "Redis"],
       description: t("skills.infra_desc"),
     },
     {
       icon: <Code className="text-primary" size={40} />,
       title: t("skills.archi_title"),
-      technologies: ["System Design", "Testing", "Clean Code"],
+      technologies: ["System Design", "Testing", "Clean Code", "Agile"],
       description: t("skills.archi_desc"),
     },
   ];
