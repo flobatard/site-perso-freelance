@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const { theme, cycleTheme } = useTheme();
@@ -40,8 +41,10 @@ const Navigation = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-card/95 backdrop-blur-md shadow-soft" : "bg-transparent"
+        isScrolled || isHovered || isMobileMenuOpen ? "bg-card/95 backdrop-blur-md shadow-soft" : "bg-transparent"
       }`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
