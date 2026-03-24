@@ -34,19 +34,19 @@ const About = () => {
               <div className="text-center p-6 bg-secondary/50 rounded-xl">
                 <Code2 className="mx-auto mb-4 text-primary" size={40} />
                 <h3 className="font-semibold text-lg mb-2">{t("about.card1_title")}</h3>
-                <p className="text-muted-foreground">{t("about.card1_desc")}</p>
+                <p className="text-muted-foreground text-center">{t("about.card1_desc")}</p>
               </div>
 
               <div className="text-center p-6 bg-secondary/50 rounded-xl">
                 <Heart className="mx-auto mb-4 text-primary" size={40} />
                 <h3 className="font-semibold text-lg mb-2">{t("about.card2_title")}</h3>
-                <p className="text-muted-foreground">{t("about.card2_desc")}</p>
+                <p className="text-muted-foreground text-center">{t("about.card2_desc")}</p>
               </div>
 
               <div className="text-center p-6 bg-secondary/50 rounded-xl">
                 <Users className="mx-auto mb-4 text-primary" size={40} />
                 <h3 className="font-semibold text-lg mb-2">{t("about.card3_title")}</h3>
-                <p className="text-muted-foreground">{t("about.card3_desc")}</p>
+                <p className="text-muted-foreground text-center">{t("about.card3_desc")}</p>
               </div>
             </div>
           </div>

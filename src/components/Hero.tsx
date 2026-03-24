@@ -11,7 +11,7 @@ const Hero = () => {
       id="hero"
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
       style={{
-        backgroundImage: `linear-gradient(rgba(30, 20, 15, 0.8), rgba(30, 20, 15, 0.9)), url(${heroBg})`,
+        backgroundImage: `linear-gradient(rgba(30, 20, 15, 0.90), rgba(30, 20, 15, 0.95)), url(${heroBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -30,7 +30,7 @@ const Hero = () => {
             </span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto text-center">
             {t("hero.desc")}
           </p>
 

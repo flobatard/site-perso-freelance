@@ -98,5 +98,12 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function ({ addBase }: { addBase: (styles: Record<string, unknown>) => void }) {
+      addBase({
+        p: { textAlign: "justify" },
+      });
+    },
+  ],
 } satisfies Config;
