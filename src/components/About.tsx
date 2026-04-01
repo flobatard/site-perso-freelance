@@ -16,7 +16,7 @@ const About = () => {
             <div className="flex flex-col md:flex-row gap-8 items-center md:items-start mb-8">
               {/* Photo placeholder */}
               <div className="shrink-0 w-60 h-60 rounded-2xl bg-secondary border-2 border-primary/20 overflow-hidden flex items-center justify-center shadow-soft">
-                 <img src="/me_alpha_bg_resized.png" alt="Photo" className="grayscale hover:grayscale-0 transition duration-300 w-full h-full object-cover" />
+                 <img src="/contoured_me_centered.png" alt="Photo" className="grayscale hover:grayscale-0 transition duration-300 w-full h-full object-cover" />
               </div>
 
               <div>
