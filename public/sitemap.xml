@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Home -->
+  <url>
+    <loc>https://fbatard.fr/fr</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fbatard.fr/fr"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fbatard.fr/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fbatard.fr/fr"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://fbatard.fr/en</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fbatard.fr/fr"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fbatard.fr/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fbatard.fr/fr"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- CV -->
+  <url>
+    <loc>https://fbatard.fr/fr/curriculum_vitae</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fbatard.fr/fr/curriculum_vitae"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fbatard.fr/en/curriculum_vitae"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fbatard.fr/fr/curriculum_vitae"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fbatard.fr/en/curriculum_vitae</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fbatard.fr/fr/curriculum_vitae"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fbatard.fr/en/curriculum_vitae"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fbatard.fr/fr/curriculum_vitae"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Projects -->
+  <url>
+    <loc>https://fbatard.fr/fr/projet/beta_order_capture</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fbatard.fr/fr/projet/beta_order_capture"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fbatard.fr/en/projet/beta_order_capture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fbatard.fr/fr/projet/beta_order_capture"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fbatard.fr/en/projet/beta_order_capture</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fbatard.fr/fr/projet/beta_order_capture"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fbatard.fr/en/projet/beta_order_capture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fbatard.fr/fr/projet/beta_order_capture"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://fbatard.fr/fr/projet/volley_team_optimizer</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fbatard.fr/fr/projet/volley_team_optimizer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fbatard.fr/en/projet/volley_team_optimizer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fbatard.fr/fr/projet/volley_team_optimizer"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fbatard.fr/en/projet/volley_team_optimizer</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fbatard.fr/fr/projet/volley_team_optimizer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fbatard.fr/en/projet/volley_team_optimizer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fbatard.fr/fr/projet/volley_team_optimizer"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://fbatard.fr/fr/projet/guillaume_galland</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fbatard.fr/fr/projet/guillaume_galland"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fbatard.fr/en/projet/guillaume_galland"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fbatard.fr/fr/projet/guillaume_galland"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fbatard.fr/en/projet/guillaume_galland</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fbatard.fr/fr/projet/guillaume_galland"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fbatard.fr/en/projet/guillaume_galland"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fbatard.fr/fr/projet/guillaume_galland"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>
