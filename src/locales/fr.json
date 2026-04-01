@@ -47,7 +47,7 @@
       "beta_order_capture": {
         "description": "Développement d'une plateforme complète de gestion des commandes et de catalogue pour la vente de vêtements personnalisés",
         "context_title": "Contexte & objectif",
-        "context_text": "Beta Vêtements est une entreprise editant de vêtements personnalisés pour le compte d'autres entreprises, associations, evênements etc.... L'objectif était de remplacer un processus de commande manuel (emails, tableurs) par une plateforme centralisée permettant aux clients de passer commande directement en ligne.",
+        "context_text": "Beta Vêtements est une entreprise éditant des vêtements personnalisés pour le compte d'autres entreprises, associations, événements etc. L'objectif était de remplacer un processus de commande manuel (emails, tableurs) par une plateforme centralisée permettant aux clients de passer commande directement en ligne.",
         "features_title": "Fonctionnalités clés",
         "features": [
           "Catalogue produits avec gestion des variantes (taille, couleur, personnalisation)",
@@ -83,7 +83,7 @@
         "pricing_note": "Estimation indicative, peut ne pas s'appliquer à votre projet selon les détails techniques."
       },
       "volley_team_optimizer": {
-        "description": "Projet afin de générer des équipes de volley équilibrées pour les séances loisirs des clubs de volley",
+        "description": "Création d'un outil de composition et gestion des équipes pour des clubs de volley-ball loisirs, en prenant en compte les caractéristique de chaque joueur.",
         "context_title": "Contexte & objectif",
         "context_text": "Dans les séances de volley loisir, former des équipes équilibrées manuellement prend du temps et donne souvent des résultats inégaux. VTO automatise cette répartition en tenant compte du niveau de chaque joueur.",
         "context_collab": "Projet co-développé avec <anchor>Baptiste Anorga</anchor> (qui s'y connait bien plus en volley que moi).",
@@ -109,9 +109,9 @@
         "pricing_note": "Estimation indicative, peut ne pas s'appliquer à votre projet selon les détails techniques."
       },
       "guillaume_galland": {
-        "description": "Site vitrine pour le compte de Guillaume Galland indépendant dans le secteur du bâtiment",
+        "description": "Site vitrine pour le compte de Guillaume Galland, consultant indépendant dans le secteur du bâtiment",
         "context_title": "Contexte & objectif",
-        "context_text": "Guillaume Galland est consultant indépendant dans le secteur du bâtiment. Il avait besoin d'une présence en ligne professionnelle pour présenter ses services et faciliter la prise de contact avec de nouveaux clients.",
+        "context_text": "Guillaume Galland est consultant indépendant en tant qu'assistant maître d'ouvrage pour des projets immobiliers d'entreprise. Il avait besoin d'une présence en ligne professionnelle afin de présenter ses services et de faciliter la prise de contact avec de nouveaux clients.",    
         "features_title": "Ce que le site propose",
         "features": [
           "Présentation des services proposés",
@@ -136,7 +136,7 @@
   "contact": {
     "title": "Travaillons Ensemble",
     "subtitle": "Discutons de votre projet",
-    "desc": "Vous avez un projet en tête ? Je serais ravi d'échanger avec vous pour comprendre vos besoins et voir comment je peux vous aider à le concrétiser.",
+    "desc": "Vous avez un projet en tête ? Je serai ravi d'échanger avec vous pour comprendre vos besoins et voir comment je peux vous aider à le concrétiser.",
     "email_label": "Email",
     "phone_label": "Téléphone",
     "location_label": "Localisation",

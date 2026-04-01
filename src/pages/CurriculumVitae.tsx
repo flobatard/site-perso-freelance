@@ -2,8 +2,9 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Download, MapPin, Mail, Phone, Calendar } from "lucide-react";
-import essentialCvPdf from "@/assets/Essential_CV.pdf";
+import essentialCvPdf from "@/assets/CV_Florian_BATARD.pdf";
 import { useTranslation } from "react-i18next";
+import social_links from "@/data/social_links.json"
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -98,7 +99,7 @@ const CurriculumVitae = () => {
               <div className="flex flex-col gap-2 text-muted-foreground text-sm">
                 <span className="flex items-center gap-2">
                   <Mail size={14} className="text-primary shrink-0" />
-                  fb.batard@gmail.com
+                  {social_links.mail.email}
                 </span>
                 <span className="flex items-center gap-2">
                   <MapPin size={14} className="text-primary shrink-0" />
