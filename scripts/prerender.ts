@@ -25,7 +25,7 @@ const routes = [
 // ── SEO helpers ───────────────────────────────────────────────────────────────
 
 const BASE_URL = "https://fbatard.fr";
-const OG_IMAGE = `${BASE_URL}/me_alpha_bg_resized.png`;
+const OG_IMAGE = `${BASE_URL}/contoured_me.png`;
 
 const KEYWORDS_FR =
   "Lead Developer, Développeur Full-Stack, Consultant IA, Consultant SI, Architecte SI, Architecte IA, Freelance, React, Elixir, Angular, Node.js, Paris";
