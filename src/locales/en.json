@@ -151,7 +151,6 @@
           "Contact form with secure email delivery",
           "Basic SEO optimization (meta tags, Open Graph, sitemap, hreflang if multilingual)",
           "Static prerendering for optimal load times",
-          "Analytics integration (Google Analytics, Plausible or equivalent)",
           "Deployment and go-live on the hosting of your choice"
         ],
         "technical_title": "Technical choices",
