@@ -9,6 +9,7 @@ import { Routes, Route, Navigate, Outlet, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Index from "./pages/Index";
 import ProjectDetail from "./pages/ProjectDetail";
+import OfferingDetail from "./pages/OfferingDetail";
 import CurriculumVitae from "./pages/CurriculumVitae";
 import NotFound from "./pages/NotFound";
 import "./i18n";
@@ -49,6 +50,7 @@ export function render(url: string) {
                 <Route index element={<Index />} />
                 <Route path="curriculum_vitae" element={<CurriculumVitae />} />
                 <Route path="projet/:id" element={<ProjectDetail />} />
+                <Route path="offering/:id" element={<OfferingDetail />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>

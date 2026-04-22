@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import portfolioData from "@/data/portfolio.json";
+import offeringData from "@/data/offering.json";
 import { useTranslation } from "react-i18next";
 
 const Navigation = () => {
@@ -91,6 +92,25 @@ const Navigation = () => {
                     onClick={() => navigate(`/${lang}/projet/${project.id}`)}
                   >
                     {project.title}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Offering Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-foreground hover:text-primary transition-colors duration-300 font-medium outline-none">
+                <span>{t("nav.offering")}</span>
+                <ChevronDown size={16} />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="w-56">
+                {offeringData.offerings.map((offering) => (
+                  <DropdownMenuItem
+                    key={offering.id}
+                    className="cursor-pointer"
+                    onClick={() => navigate(`/${lang}/offering/${offering.id}`)}
+                  >
+                    {t(`offering.offerings.${offering.id}.title`, { defaultValue: offering.title })}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -197,6 +217,25 @@ const Navigation = () => {
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {project.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Mobile Offering Links */}
+              <div className="py-2">
+                <span className="text-muted-foreground text-sm font-semibold uppercase tracking-wider">
+                  {t("nav.offering")}
+                </span>
+                <div className="flex flex-col gap-2 mt-2 pl-3 border-l-2 border-primary/20">
+                  {offeringData.offerings.map((offering) => (
+                    <Link
+                      key={offering.id}
+                      to={`/${lang}/offering/${offering.id}`}
+                      className="text-foreground hover:text-primary transition-colors duration-300 font-medium py-1"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {t(`offering.offerings.${offering.id}.title`, { defaultValue: offering.title })}
                     </Link>
                   ))}
                 </div>

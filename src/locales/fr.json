@@ -4,6 +4,7 @@
     "skills": "Compétences",
     "cv": "CV",
     "portfolio": "Portfolio",
+    "offering": "Prestations",
     "contact": "Me contacter"
   },
   "hero": {
@@ -130,6 +131,46 @@
         "pricing_total_label": "Total estimé",
         "pricing_total": "~2 j · 1 200 €",
         "pricing_note": "Estimation indicative, peut ne pas s'appliquer à votre projet selon les détails techniques."
+      }
+    }
+  },
+  "offering": {
+    "not_found": "Prestation introuvable",
+    "back_home": "Retour à l'accueil",
+    "back": "Retour",
+    "offerings": {
+      "showcase_site": {
+        "title": "Site Vitrine",
+        "description": "Création d'un site vitrine moderne, rapide et responsive pour présenter votre activité, vos services et faciliter la prise de contact avec vos prospects.",
+        "context_title": "Pour qui & pourquoi",
+        "context_text": "Pensé pour les indépendants, artisans, consultants et petites entreprises qui ont besoin d'une présence en ligne professionnelle sans la complexité d'une plateforme e-commerce. L'objectif : un site qui inspire confiance, se charge vite, se réfère bien sur Google et convertit les visiteurs en demandes de contact.",
+        "features_title": "Ce qui est inclus",
+        "features": [
+          "Design sur-mesure, responsive mobile/tablette/desktop",
+          "Page d'accueil, présentation, services, portfolio/réalisations, contact",
+          "Formulaire de contact avec envoi d'email sécurisé",
+          "Optimisation SEO de base (balises meta, Open Graph, sitemap, hreflang si multilingue)",
+          "Prérendering statique pour des temps de chargement optimaux",
+          "Intégration analytics (Google Analytics, Plausible ou équivalent)",
+          "Déploiement et mise en ligne sur l'hébergement de votre choix"
+        ],
+        "technical_title": "Choix techniques",
+        "technical": [
+          { "name": "React + Vite", "desc": "stack moderne, légère et performante pour un site vitrine rapide à charger" },
+          { "name": "Tailwind CSS", "desc": "design system cohérent et maintenable, mise à jour facile du thème" },
+          { "name": "SSG (prerendering)", "desc": "HTML statique généré à la compilation, excellent pour le SEO et la vitesse" },
+          { "name": "i18n (optionnel)", "desc": "support multilingue FR/EN si nécessaire, avec routing et hreflang" }
+        ],
+        "pricing_title": "Estimation tarifaire",
+        "pricing": [
+          { "label": "Cadrage & design UX/UI", "value": "2 j" },
+          { "label": "Intégration & développement (5-6 pages)", "value": "4 j" },
+          { "label": "Formulaire de contact & SEO de base", "value": "1 j" },
+          { "label": "Déploiement & mise en ligne", "value": "1 j" }
+        ],
+        "pricing_total_label": "Total estimé",
+        "pricing_total": "~8 j · 4 000 – 5 000 €",
+        "pricing_note": "Estimation indicative pour un site vitrine standard. Le tarif peut varier selon le nombre de pages, la complexité du design et les options (multilingue, blog, CMS, etc.)."
       }
     }
   },

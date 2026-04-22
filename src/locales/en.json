@@ -4,6 +4,7 @@
     "skills": "Skills",
     "cv": "CV",
     "portfolio": "Portfolio",
+    "offering": "Services",
     "contact": "Contact me"
   },
   "hero": {
@@ -130,6 +131,46 @@
         "pricing_total_label": "Estimated total",
         "pricing_total": "~2 d · €1,200",
         "pricing_note": "This is an indicative estimate, it might not be applicable to your project due to technical details."
+      }
+    }
+  },
+  "offering": {
+    "not_found": "Offering not found",
+    "back_home": "Back to home",
+    "back": "Back",
+    "offerings": {
+      "showcase_site": {
+        "title": "Showcase Website",
+        "description": "Design and development of a modern, fast and responsive showcase website to present your business, services and make it easy for prospects to get in touch.",
+        "context_title": "For whom & why",
+        "context_text": "Designed for freelancers, craftsmen, consultants and small businesses who need a professional online presence without the complexity of an e-commerce platform. The goal: a site that inspires trust, loads fast, ranks well on Google and converts visitors into contact requests.",
+        "features_title": "What's included",
+        "features": [
+          "Custom design, responsive mobile/tablet/desktop",
+          "Home page, about, services, portfolio/case studies, contact",
+          "Contact form with secure email delivery",
+          "Basic SEO optimization (meta tags, Open Graph, sitemap, hreflang if multilingual)",
+          "Static prerendering for optimal load times",
+          "Analytics integration (Google Analytics, Plausible or equivalent)",
+          "Deployment and go-live on the hosting of your choice"
+        ],
+        "technical_title": "Technical choices",
+        "technical": [
+          { "name": "React + Vite", "desc": "modern, lightweight and performant stack for a fast-loading showcase site" },
+          { "name": "Tailwind CSS", "desc": "consistent and maintainable design system, easy theme updates" },
+          { "name": "SSG (prerendering)", "desc": "static HTML generated at build time, excellent for SEO and speed" },
+          { "name": "i18n (optional)", "desc": "multilingual FR/EN support if needed, with routing and hreflang" }
+        ],
+        "pricing_title": "Price estimate",
+        "pricing": [
+          { "label": "Scoping & UX/UI design", "value": "2 d" },
+          { "label": "Integration & development (5-6 pages)", "value": "4 d" },
+          { "label": "Contact form & basic SEO", "value": "1 d" },
+          { "label": "Deployment & go-live", "value": "1 d" }
+        ],
+        "pricing_total_label": "Estimated total",
+        "pricing_total": "~8 d · €4,000 – 5,000",
+        "pricing_note": "Indicative estimate for a standard showcase website. The price may vary depending on the number of pages, design complexity and options (multilingual, blog, CMS, etc.)."
       }
     }
   },

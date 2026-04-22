@@ -13,13 +13,18 @@ const { render, i18n } = await import(
 const portfolio = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, "../src/data/portfolio.json"), "utf-8")
 );
+const offering = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, "../src/data/offering.json"), "utf-8")
+);
 const projectIds: string[] = portfolio.projects.map((p: { id: string }) => p.id);
+const offeringIds: string[] = offering.offerings.map((o: { id: string }) => o.id);
 const langs = ["fr", "en"];
 
 const routes = [
   ...langs.map((l) => `/${l}`),
   ...langs.map((l) => `/${l}/curriculum_vitae`),
   ...langs.flatMap((l) => projectIds.map((id) => `/${l}/projet/${id}`)),
+  ...langs.flatMap((l) => offeringIds.map((id) => `/${l}/offering/${id}`)),
 ];
 
 // ── SEO helpers ───────────────────────────────────────────────────────────────
@@ -136,6 +141,29 @@ function buildProjectJsonLd(
   return JSON.stringify(schema);
 }
 
+function buildOfferingJsonLd(
+  title: string,
+  description: string,
+  url: string,
+  lang: string
+): string {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: title,
+    description,
+    url,
+    provider: {
+      "@type": "Person",
+      name: "Florian Batard",
+      url: BASE_URL,
+    },
+    areaServed: "FR",
+    inLanguage: lang === "fr" ? "fr-FR" : "en-US",
+  };
+  return JSON.stringify(schema);
+}
+
 function getPageMeta(route: string): PageMeta {
   const parts = route.split("/").filter(Boolean);
   const lang = parts[0];
@@ -181,6 +209,27 @@ function getPageMeta(route: string): PageMeta {
     };
   }
 
+  if (section === "offering" && parts[2]) {
+    const id = parts[2];
+    const off = offering.offerings.find((o: { id: string }) => o.id === id);
+    const offeringTitle = (i18n.t(`offering.offerings.${id}.title`) as string) || off?.title || id;
+    const desc = (i18n.t(`offering.offerings.${id}.description`) as string) || "";
+    const shortDesc = desc.slice(0, 155);
+
+    return {
+      lang,
+      title:
+        lang === "fr"
+          ? `${offeringTitle} | Florian Batard — Prestation Freelance`
+          : `${offeringTitle} | Florian Batard — Freelance Service`,
+      description: shortDesc,
+      keywords:
+        lang === "fr"
+          ? `${offeringTitle}, ${KEYWORDS_FR}`
+          : `${offeringTitle}, ${KEYWORDS_EN}`,
+    };
+  }
+
   // Home page
   return lang === "fr"
     ? {
@@ -217,6 +266,10 @@ function buildSeoBlock(route: string, meta: PageMeta): string {
     const stack = project?.stack ?? [];
     const projectUrl = project?.link ?? canonical;
     jsonLd = buildProjectJsonLd(id, title, desc, stack, projectUrl, meta.lang);
+  } else if (section === "offering" && parts[2]) {
+    const title = meta.title.split(" | ")[0];
+    const desc = meta.description;
+    jsonLd = buildOfferingJsonLd(title, desc, canonical, meta.lang);
   } else {
     jsonLd = buildPersonJsonLd(meta.lang);
   }

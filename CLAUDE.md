@@ -36,13 +36,17 @@ src/
 │   │   ├── VolleyTeamOptimizer.tsx
 │   │   ├── GuillaumeGalland.tsx
 │   │   └── index.ts   # Record<string, ComponentType> — map id → composant
+│   ├── offering/      # Composants de contenu riche par prestation (un fichier par offering)
+│   │   ├── ShowcaseSite.tsx
+│   │   └── index.tsx  # Record<string, ComponentType> — map id → composant (offeringContents)
 │   └── ui/            # Composants shadcn/ui — ne pas modifier manuellement
-├── pages/             # Index.tsx, ProjectDetail.tsx, CurriculumVitae.tsx, NotFound.tsx
+├── pages/             # Index.tsx, ProjectDetail.tsx, OfferingDetail.tsx, CurriculumVitae.tsx, NotFound.tsx
 ├── locales/
 │   ├── fr.json        # Traductions françaises (source de vérité des textes)
 │   └── en.json        # Traductions anglaises
 ├── data/
 │   ├── portfolio.json      # Source de vérité pour les projets (id, title, stack, link, category)
+│   ├── offering.json       # Source de vérité pour les prestations (id, title)
 │   └── social_links.json   # Liens vers les réseaux sociaux (GitHub, LinkedIn…)
 ├── hooks/             # use-mobile.tsx, use-toast.ts, use-theme.ts
 ├── i18n.ts            # Configuration i18next (LanguageDetector désactivé en SSR)
@@ -67,6 +71,7 @@ Toutes les routes sont préfixées par la langue :
 /:lang                → Index (page d'accueil)
 /:lang/curriculum_vitae → CV
 /:lang/projet/:id     → Détail d'un projet
+/:lang/offering/:id   → Détail d'une prestation
 ```
 
 Le composant `LanguageRoute` dans `App.tsx` lit le paramètre `:lang`, appelle `i18n.changeLanguage(lang)` et valide que la langue est supportée (`fr` ou `en`). Une langue invalide redirige vers la langue détectée.
@@ -95,6 +100,16 @@ portfolio.*     — Section Portfolio + pages détail projet
   portfolio.projects.<id>.features        — string[] (returnObjects: true)
   portfolio.projects.<id>.technical_title — Titre section choix techniques
   portfolio.projects.<id>.technical       — { name, desc }[] (returnObjects: true)
+offering.*      — Pages détail prestation (labels génériques + contenu par offering)
+  offering.not_found / back / back_home   — Labels du fallback 404 et bouton retour
+  offering.offerings.<id>.title           — Titre de la prestation (fallback sur offering.json)
+  offering.offerings.<id>.description     — Description courte (intro page détail)
+  offering.offerings.<id>.{context,features,technical,pricing}_title — Titres de sections
+  offering.offerings.<id>.context_text    — Texte section contexte
+  offering.offerings.<id>.features        — string[] (returnObjects: true)
+  offering.offerings.<id>.technical       — { name, desc }[] (returnObjects: true)
+  offering.offerings.<id>.pricing         — { label, value }[] (returnObjects: true)
+  offering.offerings.<id>.pricing_total_label / pricing_total / pricing_note
 contact.*       — Section Contact (labels, placeholders, messages toast)
 footer.*        — Footer (rôle, droits)
 cv.*            — Page CV complète (sections, expériences, formation, compétences…)
@@ -114,6 +129,22 @@ Pour ajouter un nouveau projet :
 3. Créer `src/components/projects/NomDuProjet.tsx`
 4. Ajouter `"<id>": NomDuProjet` dans `src/components/projects/index.ts`
 
+### Offerings (Prestations)
+
+Les prestations fonctionnent sur le même modèle que les projets :
+
+- `offering.json` (source de vérité pour `id` et `title` fallback)
+- Textes traduisibles sous `offering.offerings.<id>.*` dans `fr.json` / `en.json`
+- Composants riches dans `src/components/offering/` (un TSX par offering)
+- Registre `offeringContents` dans `src/components/offering/index.tsx` (export default)
+- `OfferingDetail.tsx` charge le composant correspondant si présent
+
+Pour ajouter une nouvelle prestation :
+1. Ajouter l'entrée dans `offering.json` (avec un slug comme `id`)
+2. Ajouter les clés `offering.offerings.<id>.*` dans `fr.json` et `en.json`
+3. Créer `src/components/offering/NomDeLaPrestation.tsx`
+4. Ajouter `"<id>": NomDeLaPrestation` dans `src/components/offering/index.tsx`
+
 ## Conventions
 
 - **Imports absolus** via alias `@/` (ex. `@/components/Hero`)
@@ -132,6 +163,7 @@ Pour ajouter un nouveau projet :
 ## Points d'attention
 
 - La navigation charge dynamiquement les projets depuis `portfolio.json` pour le dropdown Portfolio
+- La navigation charge dynamiquement les prestations depuis `offering.json` pour le dropdown Prestations (trigger sans lien, pas d'ancre `#offering` sur la home)
 - Les liens vers les réseaux sociaux sont centralisés dans `social_links.json`
 - La page CV est accessible via `/:lang/curriculum_vitae`
 - SEO : meta tags dans `index.html` (Open Graph, Twitter Card) + balises `hreflang` pour `/fr` et `/en`
@@ -143,18 +175,19 @@ Le site génère des fichiers HTML statiques à la compilation pour chaque route
 
 ### Routes prérendues
 
-Générées automatiquement depuis `portfolio.json` × 2 langues :
+Générées automatiquement depuis `portfolio.json` et `offering.json` × 2 langues :
 ```
 /fr, /en
 /fr/curriculum_vitae, /en/curriculum_vitae
-/fr/projet/<id>, /en/projet/<id>   (un fichier par projet dans portfolio.json)
+/fr/projet/<id>, /en/projet/<id>         (un fichier par projet dans portfolio.json)
+/fr/offering/<id>, /en/offering/<id>     (un fichier par prestation dans offering.json)
 ```
 
 ### Ajouter une route prérendue
 
-Pour les routes de projet : ajouter l'entrée dans `portfolio.json` suffit — `scripts/prerender.ts` lit les IDs dynamiquement.
+Pour les routes de projet ou de prestation : ajouter l'entrée dans `portfolio.json` (resp. `offering.json`) suffit — `scripts/prerender.ts` lit les IDs dynamiquement.
 
-Pour une nouvelle page hors-projet (ex. `/fr/about`) : ajouter la route manuellement dans le tableau `routes` de `scripts/prerender.ts`.
+Pour une nouvelle page hors-projet/hors-prestation (ex. `/fr/about`) : ajouter la route manuellement dans le tableau `routes` de `scripts/prerender.ts`.
 
 ### Contraintes SSR
 

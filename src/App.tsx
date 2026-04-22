@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Index from "./pages/Index";
 import ProjectDetail from "./pages/ProjectDetail";
+import OfferingDetail from "./pages/OfferingDetail";
 import CurriculumVitae from "./pages/CurriculumVitae";
 import NotFound from "./pages/NotFound";
 import { ThemeProvider } from "./hooks/use-theme";
@@ -53,6 +54,7 @@ const App = () => (
               <Route index element={<Index />} />
               <Route path="curriculum_vitae" element={<CurriculumVitae />} />
               <Route path="projet/:id" element={<ProjectDetail />} />
+              <Route path="offering/:id" element={<OfferingDetail />} />
             </Route>
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
