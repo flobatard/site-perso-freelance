@@ -160,16 +160,76 @@
           { "name": "SSG (prerendering)", "desc": "HTML statique généré à la compilation, excellent pour le SEO et la vitesse" },
           { "name": "i18n (optionnel)", "desc": "support multilingue FR/EN si nécessaire, avec routing et hreflang" }
         ],
-        "pricing_title": "Estimation tarifaire",
-        "pricing": [
-          { "label": "Cadrage & design UX/UI", "value": "2 j" },
-          { "label": "Intégration & développement (5-6 pages)", "value": "4 j" },
-          { "label": "Formulaire de contact & SEO de base", "value": "1 j" },
-          { "label": "Déploiement & mise en ligne", "value": "1 j" }
-        ],
-        "pricing_total_label": "Total estimé",
-        "pricing_total": "~8 j · 4 000 – 5 000 €",
-        "pricing_note": "Estimation indicative pour un site vitrine standard. Le tarif peut varier selon le nombre de pages, la complexité du design et les options (multilingue, blog, CMS, etc.)."
+        "form": {
+          "title": "Brief projet",
+          "intro": "Quelques questions pour cadrer votre projet et vous proposer un devis précis.",
+          "submit": "Envoyer le brief",
+          "success": "Merci ! Votre brief a bien été enregistré, je reviens vers vous rapidement.",
+          "error_required": "Merci de répondre aux questions obligatoires avant d'envoyer.",
+          "section_activity": {
+            "title": "Votre activité",
+            "activity_label": "Que faites-vous en une phrase ?",
+            "activity_placeholder": "ex. Coach sportif spécialisé en remise en forme post-partum",
+            "audience_label": "À qui vous adressez-vous ?",
+            "audience_placeholder": "ex. jeunesse, région lyonnaise",
+            "goal_label": "Quel est votre objectif principal avec ce site ?",
+            "goal_options": [
+              { "label": "Être trouvé sur Google", "value": "seo" },
+              { "label": "Rassurer avant un premier contact", "value": "trust" },
+              { "label": "Présenter mes offres clairement", "value": "offers" },
+              { "label": "Avoir un lien pro à partager", "value": "link" }
+            ]
+          },
+          "section_visual": {
+            "title": "L'ambiance visuelle",
+            "inspirations_label": "Choisissez 1 à 3 sites que vous trouvez beaux (peu importe le secteur)",
+            "inspirations_placeholder": "Collez les URLs, une par ligne",
+            "adjective_label": "Quel adjectif décrit le mieux l'image que vous voulez renvoyer ? (2 maximum)",
+            "adjective_options": [
+              { "label": "Moderne & épuré", "value": "modern" },
+              { "label": "Chaleureux & accessible", "value": "warm" },
+              { "label": "Premium & élégant", "value": "premium" },
+              { "label": "Audacieux & créatif", "value": "bold" },
+              { "label": "Sérieux & rassurant", "value": "serious" }
+            ]
+          },
+          "section_content": {
+            "title": "Le contenu",
+            "brand_label": "Avez-vous déjà un logo et des couleurs ?",
+            "brand_options": [
+              { "label": "Oui, j'ai tout ça", "value": "yes" },
+              { "label": "Non, je vous laisse proposer", "value": "no" },
+              { "label": "J'ai un logo mais pas de couleurs définies", "value": "logo_only" }
+            ],
+            "photos_label": "Avez-vous des photos pro de vous ou de votre activité ?",
+            "photos_options": [
+              { "label": "Oui", "value": "yes" },
+              { "label": "Non, il faudra des photos libres de droit", "value": "no" }
+            ],
+            "sections_label": "Quelles sections voulez-vous sur votre site ?",
+            "sections_hint": "À propos, Services et Contact sont pré-sélectionnés — ajustez selon votre besoin.",
+            "sections_options": [
+              { "label": "À propos", "value": "about" },
+              { "label": "Services / Offres", "value": "services" },
+              { "label": "Témoignages", "value": "testimonials" },
+              { "label": "Contact", "value": "contact" },
+              { "label": "FAQ", "value": "faq" },
+              { "label": "Galerie / Portfolio", "value": "gallery" },
+              { "label": "Tarifs", "value": "pricing" },
+              { "label": "Blog", "value": "blog" }
+            ]
+          },
+          "section_practical": {
+            "title": "Le pratique",
+            "domain_label": "Avez-vous déjà un nom de domaine ?",
+            "domain_yes": "Oui",
+            "domain_no": "Non",
+            "domain_name_label": "Lequel ?",
+            "domain_name_placeholder": "ex. mon-site.fr",
+            "notes_label": "Y a-t-il quelque chose à ne surtout pas oublier ? (optionnel)",
+            "notes_placeholder": "ex. intégration Calendly, bouton WhatsApp, newsletter…"
+          }
+        }
       }
     }
   },

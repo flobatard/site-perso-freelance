@@ -160,16 +160,76 @@
           { "name": "SSG (prerendering)", "desc": "static HTML generated at build time, excellent for SEO and speed" },
           { "name": "i18n (optional)", "desc": "multilingual FR/EN support if needed, with routing and hreflang" }
         ],
-        "pricing_title": "Price estimate",
-        "pricing": [
-          { "label": "Scoping & UX/UI design", "value": "2 d" },
-          { "label": "Integration & development (5-6 pages)", "value": "4 d" },
-          { "label": "Contact form & basic SEO", "value": "1 d" },
-          { "label": "Deployment & go-live", "value": "1 d" }
-        ],
-        "pricing_total_label": "Estimated total",
-        "pricing_total": "~8 d · €4,000 – 5,000",
-        "pricing_note": "Indicative estimate for a standard showcase website. The price may vary depending on the number of pages, design complexity and options (multilingual, blog, CMS, etc.)."
+        "form": {
+          "title": "Project brief",
+          "intro": "A few quick questions to frame your project and put together an accurate quote.",
+          "submit": "Send brief",
+          "success": "Thanks! Your brief has been received — I'll get back to you shortly.",
+          "error_required": "Please answer the required questions before sending.",
+          "section_activity": {
+            "title": "Your business",
+            "activity_label": "What do you do, in one sentence?",
+            "activity_placeholder": "e.g. Fitness coach specialised in post-partum recovery",
+            "audience_label": "Who is your audience?",
+            "audience_placeholder": "e.g. Women aged 25-45, Lyon area",
+            "goal_label": "What's your main goal with this website?",
+            "goal_options": [
+              { "label": "Get found on Google", "value": "seo" },
+              { "label": "Build trust before a first contact", "value": "trust" },
+              { "label": "Showcase my offers clearly", "value": "offers" },
+              { "label": "Have a professional link to share", "value": "link" }
+            ]
+          },
+          "section_visual": {
+            "title": "Visual tone",
+            "inspirations_label": "Pick 1 to 3 websites you find beautiful (any industry)",
+            "inspirations_placeholder": "Paste URLs, one per line",
+            "adjective_label": "Which adjective best describes the image you want to project? (2 max)",
+            "adjective_options": [
+              { "label": "Modern & minimal", "value": "modern" },
+              { "label": "Warm & approachable", "value": "warm" },
+              { "label": "Premium & elegant", "value": "premium" },
+              { "label": "Bold & creative", "value": "bold" },
+              { "label": "Serious & reassuring", "value": "serious" }
+            ]
+          },
+          "section_content": {
+            "title": "Content",
+            "brand_label": "Do you already have a logo and brand colors?",
+            "brand_options": [
+              { "label": "Yes, I have both", "value": "yes" },
+              { "label": "No, I'd like you to propose something", "value": "no" },
+              { "label": "I have a logo but no defined colors", "value": "logo_only" }
+            ],
+            "photos_label": "Do you have professional photos of yourself or your work?",
+            "photos_options": [
+              { "label": "Yes", "value": "yes" },
+              { "label": "No, we'll need royalty-free images", "value": "no" }
+            ],
+            "sections_label": "Which sections do you want on your website?",
+            "sections_hint": "About, Services and Contact are pre-selected — adjust to fit your needs.",
+            "sections_options": [
+              { "label": "About", "value": "about" },
+              { "label": "Services / Offers", "value": "services" },
+              { "label": "Testimonials", "value": "testimonials" },
+              { "label": "Contact", "value": "contact" },
+              { "label": "FAQ", "value": "faq" },
+              { "label": "Gallery / Portfolio", "value": "gallery" },
+              { "label": "Pricing", "value": "pricing" },
+              { "label": "Blog", "value": "blog" }
+            ]
+          },
+          "section_practical": {
+            "title": "Practical details",
+            "domain_label": "Do you already have a domain name?",
+            "domain_yes": "Yes",
+            "domain_no": "No",
+            "domain_name_label": "Which one?",
+            "domain_name_placeholder": "e.g. my-site.com",
+            "notes_label": "Anything we absolutely shouldn't forget? (optional)",
+            "notes_placeholder": "e.g. Calendly integration, WhatsApp button, newsletter…"
+          }
+        }
       }
     }
   },
