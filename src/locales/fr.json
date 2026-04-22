@@ -236,6 +236,19 @@
             "domain_name_placeholder": "ex. mon-site.fr",
             "notes_label": "Y a-t-il quelque chose à ne surtout pas oublier ? (optionnel)",
             "notes_placeholder": "ex. intégration Calendly, bouton WhatsApp, newsletter…"
+          },
+          "section_contact": {
+            "title": "Vos coordonnées",
+            "first_name_label": "Prénom",
+            "first_name_placeholder": "ex. Florian",
+            "last_name_label": "Nom",
+            "last_name_placeholder": "ex. Batard",
+            "email_label": "Email",
+            "email_placeholder": "votre@email.com",
+            "phone_label": "Téléphone (optionnel)",
+            "phone_placeholder": "ex. 06 12 34 56 78",
+            "project_name_label": "Nom du projet ou du site",
+            "project_name_placeholder": "ex. mon-site-pro"
           }
         }
       }

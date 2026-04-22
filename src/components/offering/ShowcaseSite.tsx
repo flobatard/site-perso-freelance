@@ -26,6 +26,11 @@ export type ShowcaseFormData = {
   hasDomain: "yes" | "no" | "";
   domainName: string;
   notes: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  projectName: string;
 };
 
 type Props = {
@@ -68,6 +73,11 @@ const INITIAL_STATE: ShowcaseFormData = {
   hasDomain: "",
   domainName: "",
   notes: "",
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  projectName: "",
 };
 
 const ShowcaseSite = ({
@@ -128,7 +138,11 @@ const ShowcaseSite = ({
       !formData.goal ||
       !formData.brandAssets ||
       !formData.photos ||
-      !formData.hasDomain
+      !formData.hasDomain ||
+      !formData.firstName.trim() ||
+      !formData.lastName.trim() ||
+      !formData.email.trim() ||
+      !formData.projectName.trim()
     ) {
       toast.error(t(`${ns}.form.error_required`));
       return;
@@ -162,6 +176,21 @@ const ShowcaseSite = ({
               <legend className="text-lg font-semibold mb-2">
                 {t(`${ns}.form.section_activity.title`)}
               </legend>
+
+              <div>
+                <label htmlFor="projectName" className="block text-sm font-medium mb-2">
+                  {t(`${ns}.form.section_contact.project_name_label`)}
+                </label>
+                <Input
+                  id="projectName"
+                  name="projectName"
+                  type="text"
+                  placeholder={t(`${ns}.form.section_contact.project_name_placeholder`)}
+                  value={formData.projectName}
+                  onChange={(e) => setFormData({ ...formData, projectName: e.target.value })}
+                  className="h-12"
+                />
+              </div>
 
               <div>
                 <label htmlFor="activity" className="block text-sm font-medium mb-2">
@@ -491,6 +520,78 @@ const ShowcaseSite = ({
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   rows={4}
+                />
+              </div>
+            </fieldset>
+
+            <fieldset className="space-y-6">
+              <legend className="text-lg font-semibold mb-2">
+                {t(`${ns}.form.section_contact.title`)}
+              </legend>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="firstName" className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_contact.first_name_label`)}
+                  </label>
+                  <Input
+                    id="firstName"
+                    name="firstName"
+                    type="text"
+                    autoComplete="given-name"
+                    placeholder={t(`${ns}.form.section_contact.first_name_placeholder`)}
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                    className="h-12"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="lastName" className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_contact.last_name_label`)}
+                  </label>
+                  <Input
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    autoComplete="family-name"
+                    placeholder={t(`${ns}.form.section_contact.last_name_placeholder`)}
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                    className="h-12"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  {t(`${ns}.form.section_contact.email_label`)}
+                </label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder={t(`${ns}.form.section_contact.email_placeholder`)}
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="h-12"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                  {t(`${ns}.form.section_contact.phone_label`)}
+                </label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autoComplete="tel"
+                  placeholder={t(`${ns}.form.section_contact.phone_placeholder`)}
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="h-12"
                 />
               </div>
             </fieldset>

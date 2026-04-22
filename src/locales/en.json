@@ -236,6 +236,19 @@
             "domain_name_placeholder": "e.g. my-site.com",
             "notes_label": "Anything we absolutely shouldn't forget? (optional)",
             "notes_placeholder": "e.g. Calendly integration, WhatsApp button, newsletter…"
+          },
+          "section_contact": {
+            "title": "Your contact details",
+            "first_name_label": "First name",
+            "first_name_placeholder": "e.g. Florian",
+            "last_name_label": "Last name",
+            "last_name_placeholder": "e.g. Batard",
+            "email_label": "Email",
+            "email_placeholder": "your@email.com",
+            "phone_label": "Phone (optional)",
+            "phone_placeholder": "e.g. +33 6 12 34 56 78",
+            "project_name_label": "Project or site name",
+            "project_name_placeholder": "e.g. my-pro-site"
           }
         }
       }
