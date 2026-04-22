@@ -37,7 +37,7 @@ type Props = {
   onFormSubmit?: (data: ShowcaseFormData) => Promise<void>;
 };
 
-const SHOWCASE_FORM_ENDPOINT = "http://localhost:3000/form/showcase-form";
+const SHOWCASE_FORM_ENDPOINT = `${import.meta.env.VITE_API_BASE_URL}/form/showcase-form`;
 
 const buildShowcaseFormData = (data: ShowcaseFormData): FormData => {
   const { logoFile, photoFiles, ...scalars } = data;

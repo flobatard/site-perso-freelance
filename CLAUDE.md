@@ -152,15 +152,15 @@ Certains composants d'offering embarquent un formulaire qui pousse vers un backe
 - **Encodage** : `multipart/form-data` (obligatoire car le formulaire contient des `File`)
 - **Scalaires + tableaux** : regroupés dans un unique champ `data` en **JSON stringifié** (`formData.append("data", JSON.stringify(scalars))`). Les tableaux (`adjectives`, `colors`, `sections`, …) restent donc dans ce JSON — pas d'entrées `name[]` répétées pour eux.
 - **Fichiers** : appendés séparément sur le `FormData`. Champ unique (ex. `logo`) ou entrées répétées (ex. `photos`) selon la cardinalité.
-- **Props du composant** : `onFormSubmit?: (data) => Promise<void>`. Le default pointe vers un submitter local (`submitShowcaseForm` pour `ShowcaseSite`) qui cible l'endpoint codé en dur `http://localhost:3000/form/<slug>`. Surchargable pour tests / environnements.
+- **Props du composant** : `onFormSubmit?: (data) => Promise<void>`. Le default pointe vers un submitter local (`submitShowcaseForm` pour `ShowcaseSite`) qui cible `${import.meta.env.VITE_API_BASE_URL}/form/<slug>`. La base URL est définie dans `.env.development` / `.env.production` (override local possible via `.env.local`, ignoré par git). Surchargable pour tests / environnements.
 - **UX** : validation côté client → toast d'erreur si champs requis manquants ; sinon `setSubmitting(true)`, `await onFormSubmit(...)`, reset + `toast.success` sur OK, `toast.error(form.error_submit)` sur échec (réseau ou statut non-2xx). Le bouton submit est désactivé pendant `submitting`.
 - **Clés i18n attendues** sous `offering.offerings.<id>.form` : `success`, `error_required`, `error_submit` (+ tout le reste du formulaire).
 
 Endpoint actuel par offering :
 
-| Offering | Endpoint |
+| Offering | Endpoint (chemin) |
 | --- | --- |
-| `showcase_site` | `POST http://localhost:3000/form/showcase-form` |
+| `showcase_site` | `POST /form/showcase-form` |
 
 Pour brancher un nouveau formulaire : suivre la même structure (scalaires dans `data` JSON, fichiers à part) et ajouter l'entrée dans le tableau ci-dessus.
 
