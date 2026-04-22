@@ -201,11 +201,18 @@
               { "label": "Non, je vous laisse proposer", "value": "no" },
               { "label": "J'ai un logo mais pas de couleurs définies", "value": "logo_only" }
             ],
+            "logo_upload_label": "Téléchargez votre logo",
+            "colors_label": "Vos couleurs de marque",
+            "colors_hint": "Ajoutez une ou plusieurs couleurs en les sélectionnant puis en cliquant sur Ajouter.",
+            "color_picker_label": "Sélectionner une couleur",
+            "color_add": "Ajouter",
+            "color_remove": "Retirer la couleur",
             "photos_label": "Avez-vous des photos pro de vous ou de votre activité ?",
             "photos_options": [
               { "label": "Oui", "value": "yes" },
               { "label": "Non, il faudra des photos libres de droit", "value": "no" }
             ],
+            "photos_upload_label": "Téléchargez vos photos",
             "sections_label": "Quelles sections voulez-vous sur votre site ?",
             "sections_hint": "À propos, Services et Contact sont pré-sélectionnés — ajustez selon votre besoin.",
             "sections_options": [

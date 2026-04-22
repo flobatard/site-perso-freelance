@@ -201,11 +201,18 @@
               { "label": "No, I'd like you to propose something", "value": "no" },
               { "label": "I have a logo but no defined colors", "value": "logo_only" }
             ],
+            "logo_upload_label": "Upload your logo",
+            "colors_label": "Your brand colors",
+            "colors_hint": "Add one or more colors by picking one and clicking Add.",
+            "color_picker_label": "Pick a color",
+            "color_add": "Add",
+            "color_remove": "Remove color",
             "photos_label": "Do you have professional photos of yourself or your work?",
             "photos_options": [
               { "label": "Yes", "value": "yes" },
               { "label": "No, we'll need royalty-free images", "value": "no" }
             ],
+            "photos_upload_label": "Upload your photos",
             "sections_label": "Which sections do you want on your website?",
             "sections_hint": "About, Services and Contact are pre-selected — adjust to fit your needs.",
             "sections_options": [

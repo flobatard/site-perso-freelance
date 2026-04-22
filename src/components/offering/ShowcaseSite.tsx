@@ -18,7 +18,10 @@ export type ShowcaseFormData = {
   inspirations: string;
   adjectives: string[];
   brandAssets: string;
+  logoFile: File | null;
+  colors: string[];
   photos: string;
+  photoFiles: File[];
   sections: string[];
   hasDomain: "yes" | "no" | "";
   domainName: string;
@@ -36,15 +39,22 @@ const INITIAL_STATE: ShowcaseFormData = {
   inspirations: "",
   adjectives: [],
   brandAssets: "",
+  logoFile: null,
+  colors: [],
   photos: "",
+  photoFiles: [],
   sections: ["about", "services", "contact"],
   hasDomain: "",
   domainName: "",
   notes: "",
 };
 
+const submit = (data) => {
+  console.log("Data: ", data)
+}
+
 const ShowcaseSite = ({
-  onFormSubmit = (data) => console.log("[ShowcaseSite] form submit", data),
+  onFormSubmit = (data) => submit(data),
 }: Props) => {
   const { t } = useTranslation();
   const ns = "offering.offerings.showcase_site";
@@ -59,6 +69,18 @@ const ShowcaseSite = ({
   const sectionsOptions = t(`${ns}.form.section_content.sections_options`, { returnObjects: true }) as Option[];
 
   const [formData, setFormData] = useState<ShowcaseFormData>(INITIAL_STATE);
+  const [colorDraft, setColorDraft] = useState("#ff6b35");
+
+  const addColor = () => {
+    setFormData((prev) => {
+      if (prev.colors.includes(colorDraft)) return prev;
+      return { ...prev, colors: [...prev.colors, colorDraft] };
+    });
+  };
+
+  const removeColor = (color: string) => {
+    setFormData((prev) => ({ ...prev, colors: prev.colors.filter((c) => c !== color) }));
+  };
 
   const toggleAdjective = (value: string) => {
     setFormData((prev) => {
@@ -222,7 +244,14 @@ const ShowcaseSite = ({
                 </span>
                 <RadioGroup
                   value={formData.brandAssets}
-                  onValueChange={(value) => setFormData({ ...formData, brandAssets: value })}
+                  onValueChange={(value) =>
+                    setFormData({
+                      ...formData,
+                      brandAssets: value,
+                      logoFile: value === "yes" || value === "logo_only" ? formData.logoFile : null,
+                      colors: value === "yes" ? formData.colors : [],
+                    })
+                  }
                   className="gap-2"
                 >
                   {brandOptions.map((opt) => (
@@ -232,6 +261,74 @@ const ShowcaseSite = ({
                     </label>
                   ))}
                 </RadioGroup>
+
+                {(formData.brandAssets === "yes" || formData.brandAssets === "logo_only") && (
+                  <div className="mt-4">
+                    <label htmlFor="logoFile" className="block text-sm font-medium mb-2">
+                      {t(`${ns}.form.section_content.logo_upload_label`)}
+                    </label>
+                    <Input
+                      id="logoFile"
+                      name="logoFile"
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) =>
+                        setFormData({ ...formData, logoFile: e.target.files?.[0] ?? null })
+                      }
+                      className="h-12"
+                    />
+                    {formData.logoFile && (
+                      <p className="text-sm text-foreground/60 mt-2">{formData.logoFile.name}</p>
+                    )}
+                  </div>
+                )}
+
+                {formData.brandAssets === "yes" && (
+                  <div className="mt-4">
+                    <span className="block text-sm font-medium mb-1">
+                      {t(`${ns}.form.section_content.colors_label`)}
+                    </span>
+                    <p className="text-sm text-foreground/60 mb-3">
+                      {t(`${ns}.form.section_content.colors_hint`)}
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="color"
+                        value={colorDraft}
+                        onChange={(e) => setColorDraft(e.target.value)}
+                        aria-label={t(`${ns}.form.section_content.color_picker_label`)}
+                        className="h-10 w-16 rounded border border-input cursor-pointer bg-transparent"
+                      />
+                      <Button type="button" variant="outline" onClick={addColor}>
+                        {t(`${ns}.form.section_content.color_add`)}
+                      </Button>
+                    </div>
+                    {formData.colors.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        {formData.colors.map((color) => (
+                          <span
+                            key={color}
+                            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-background"
+                          >
+                            <span
+                              className="inline-block w-4 h-4 rounded-full border border-border"
+                              style={{ backgroundColor: color }}
+                            />
+                            <span className="text-sm font-mono">{color}</span>
+                            <button
+                              type="button"
+                              onClick={() => removeColor(color)}
+                              aria-label={t(`${ns}.form.section_content.color_remove`)}
+                              className="text-foreground/60 hover:text-foreground text-lg leading-none"
+                            >
+                              ×
+                            </button>
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
 
               <div>
@@ -240,7 +337,13 @@ const ShowcaseSite = ({
                 </span>
                 <RadioGroup
                   value={formData.photos}
-                  onValueChange={(value) => setFormData({ ...formData, photos: value })}
+                  onValueChange={(value) =>
+                    setFormData({
+                      ...formData,
+                      photos: value,
+                      photoFiles: value === "yes" ? formData.photoFiles : [],
+                    })
+                  }
                   className="gap-2"
                 >
                   {photosOptions.map((opt) => (
@@ -250,6 +353,35 @@ const ShowcaseSite = ({
                     </label>
                   ))}
                 </RadioGroup>
+
+                {formData.photos === "yes" && (
+                  <div className="mt-4">
+                    <label htmlFor="photoFiles" className="block text-sm font-medium mb-2">
+                      {t(`${ns}.form.section_content.photos_upload_label`)}
+                    </label>
+                    <Input
+                      id="photoFiles"
+                      name="photoFiles"
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          photoFiles: Array.from(e.target.files ?? []),
+                        })
+                      }
+                      className="h-12"
+                    />
+                    {formData.photoFiles.length > 0 && (
+                      <ul className="mt-2 space-y-1 text-sm text-foreground/60">
+                        {formData.photoFiles.map((file, i) => (
+                          <li key={`${file.name}-${i}`}>{file.name}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                )}
               </div>
 
               <div>
