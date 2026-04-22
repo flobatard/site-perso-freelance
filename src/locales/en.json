@@ -166,6 +166,7 @@
           "submit": "Send brief",
           "success": "Thanks! Your brief has been received — I'll get back to you shortly.",
           "error_required": "Please answer the required questions before sending.",
+          "error_submit": "Could not send the brief right now. Please try again later.",
           "section_activity": {
             "title": "Your business",
             "activity_label": "What do you do, in one sentence?",

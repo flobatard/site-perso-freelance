@@ -29,7 +29,28 @@ export type ShowcaseFormData = {
 };
 
 type Props = {
-  onFormSubmit?: (data: ShowcaseFormData) => void;
+  onFormSubmit?: (data: ShowcaseFormData) => Promise<void>;
+};
+
+const SHOWCASE_FORM_ENDPOINT = "http://localhost:3000/form/showcase-form";
+
+const buildShowcaseFormData = (data: ShowcaseFormData): FormData => {
+  const { logoFile, photoFiles, ...scalars } = data;
+  const body = new FormData();
+  body.append("data", JSON.stringify(scalars));
+  if (logoFile) body.append("logo", logoFile);
+  photoFiles.forEach((file) => body.append("photos", file));
+  return body;
+};
+
+const submitShowcaseForm = async (data: ShowcaseFormData): Promise<void> => {
+  const response = await fetch(SHOWCASE_FORM_ENDPOINT, {
+    method: "POST",
+    body: buildShowcaseFormData(data),
+  });
+  if (!response.ok) {
+    throw new Error(`Showcase form submission failed: ${response.status}`);
+  }
 };
 
 const INITIAL_STATE: ShowcaseFormData = {
@@ -49,12 +70,8 @@ const INITIAL_STATE: ShowcaseFormData = {
   notes: "",
 };
 
-const submit = (data) => {
-  console.log("Data: ", data)
-}
-
 const ShowcaseSite = ({
-  onFormSubmit = (data) => submit(data),
+  onFormSubmit = submitShowcaseForm,
 }: Props) => {
   const { t } = useTranslation();
   const ns = "offering.offerings.showcase_site";
@@ -101,7 +118,9 @@ const ShowcaseSite = ({
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (
       !formData.activity.trim() ||
@@ -114,9 +133,16 @@ const ShowcaseSite = ({
       toast.error(t(`${ns}.form.error_required`));
       return;
     }
-    onFormSubmit(formData);
-    toast.success(t(`${ns}.form.success`));
-    setFormData(INITIAL_STATE);
+    setSubmitting(true);
+    try {
+      await onFormSubmit(formData);
+      toast.success(t(`${ns}.form.success`));
+      setFormData(INITIAL_STATE);
+    } catch {
+      toast.error(t(`${ns}.form.error_submit`));
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -472,6 +498,7 @@ const ShowcaseSite = ({
             <Button
               type="submit"
               size="lg"
+              disabled={submitting}
               className="w-full bg-gradient-warm shadow-soft hover:shadow-hover transition-all duration-300"
             >
               {t(`${ns}.form.submit`)}

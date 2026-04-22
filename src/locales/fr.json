@@ -166,6 +166,7 @@
           "submit": "Envoyer le brief",
           "success": "Merci ! Votre brief a bien été enregistré, je reviens vers vous rapidement.",
           "error_required": "Merci de répondre aux questions obligatoires avant d'envoyer.",
+          "error_submit": "Impossible d'envoyer le brief pour le moment. Merci de réessayer plus tard.",
           "section_activity": {
             "title": "Votre activité",
             "activity_label": "Que faites-vous en une phrase ?",
