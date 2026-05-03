@@ -58,7 +58,7 @@ const submitShowcaseForm = async (data: ShowcaseFormData): Promise<void> => {
   }
 };
 
-const INITIAL_STATE: ShowcaseFormData = {
+const EMPTY_STATE: ShowcaseFormData = {
   activity: "",
   audience: "",
   goal: "",
@@ -79,6 +79,30 @@ const INITIAL_STATE: ShowcaseFormData = {
   phone: "",
   projectName: "",
 };
+
+const DEV_PREFILLED_STATE: ShowcaseFormData = {
+  activity: "Boulangerie artisanale de quartier",
+  audience: "Particuliers et professionnels du quartier",
+  goal: "trust",
+  inspirations: "https://example-bakery.com — style chaleureux et photos en plein cadre",
+  adjectives: ["warm", "premium"],
+  brandAssets: "yes",
+  logoFile: null,
+  colors: ["#ff6b35", "#2d2d2d"],
+  photos: "no",
+  photoFiles: [],
+  sections: ["about", "services", "contact", "testimonials"],
+  hasDomain: "yes",
+  domainName: "ma-boulangerie.fr",
+  notes: "Préremplissage dev — à ignorer en prod.",
+  firstName: "Florian",
+  lastName: "Batard",
+  email: "fb.batard@gmail.com",
+  phone: "+33 6 00 00 00 00",
+  projectName: "Site vitrine boulangerie (DEV)",
+};
+
+const INITIAL_STATE: ShowcaseFormData = import.meta.env.DEV ? DEV_PREFILLED_STATE : EMPTY_STATE;
 
 const ShowcaseSite = ({
   onFormSubmit = submitShowcaseForm,
