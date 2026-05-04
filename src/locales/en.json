@@ -151,6 +151,7 @@
           "Contact form with secure email delivery",
           "Basic SEO optimization (meta tags, Open Graph, sitemap, hreflang if multilingual)",
           "Static prerendering for optimal load times",
+          "GDPR compliance (privacy policy, consent management)",
           "Deployment and go-live on the hosting of your choice"
         ],
         "technical_title": "Technical choices",
@@ -160,6 +161,12 @@
           { "name": "SSG (prerendering)", "desc": "static HTML generated at build time, excellent for SEO and speed" },
           { "name": "i18n (optional)", "desc": "multilingual FR/EN support if needed, with routing and hreflang" }
         ],
+        "pricing_title": "Pricing",
+        "pricing_starting_at": "Starting at €600",
+        "pricing_note": "Indicative price. Final cost depends on the number of pages, the branding work involved and any specific integrations.",
+        "example_title": "Past work",
+        "example_text": "Take a look at a showcase site recently delivered for Guillaume Galland, an independent professional in the construction industry.",
+        "example_link_label": "View the case study",
         "form": {
           "title": "Project brief",
           "intro": "A few quick questions to frame your project and put together an accurate quote.",

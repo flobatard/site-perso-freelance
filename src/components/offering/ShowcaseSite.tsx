@@ -282,6 +282,42 @@ const ShowcaseSite = ({
       </section>
 
       <section>
+        <h3 className="text-xl font-semibold mb-3">{t(`${ns}.features_title`)}</h3>
+        <ul className="list-disc list-inside space-y-2 text-foreground/80">
+          {features.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+      </section>
+
+      <section>
+        <h3 className="text-xl font-semibold mb-3">{t(`${ns}.technical_title`)}</h3>
+        <ul className="list-disc list-inside space-y-2 text-foreground/80">
+          {technical.map((item, i) => (
+            <li key={i}><strong>{item.name}</strong> — {item.desc}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h3 className="text-xl font-semibold mb-3">{t(`${ns}.pricing_title`)}</h3>
+        <div className="rounded-xl border border-primary/20 bg-primary/5 px-5 py-4">
+          <span className="font-bold text-primary text-lg">{t(`${ns}.pricing_starting_at`)}</span>
+        </div>
+        <p className="text-sm text-foreground/50 mt-2">{t(`${ns}.pricing_note`)}</p>
+      </section>
+
+      <section>
+        <h3 className="text-xl font-semibold mb-3">{t(`${ns}.example_title`)}</h3>
+        <p className="text-foreground/80 leading-relaxed mb-3">{t(`${ns}.example_text`)}</p>
+        <Link
+          to={`/${lang}/projet/guillaume_galland`}
+          className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+        >
+          {t(`${ns}.example_link_label`)}
+          <span aria-hidden="true">→</span>
+        </Link>
+      </section>
+
+      <section>
         <div className="border-t border-border pt-8">
           <h3 className="text-2xl font-bold mb-2">{t(`${ns}.form.title`)}</h3>
           <p className="text-foreground/70 mb-6">{t(`${ns}.form.intro`)}</p>
@@ -863,22 +899,6 @@ const ShowcaseSite = ({
             </div>
           </form>
         </div>
-      </section>
-
-      <section>
-        <h3 className="text-xl font-semibold mb-3">{t(`${ns}.features_title`)}</h3>
-        <ul className="list-disc list-inside space-y-2 text-foreground/80">
-          {features.map((item, i) => <li key={i}>{item}</li>)}
-        </ul>
-      </section>
-
-      <section>
-        <h3 className="text-xl font-semibold mb-3">{t(`${ns}.technical_title`)}</h3>
-        <ul className="list-disc list-inside space-y-2 text-foreground/80">
-          {technical.map((item, i) => (
-            <li key={i}><strong>{item.name}</strong> — {item.desc}</li>
-          ))}
-        </ul>
       </section>
     </div>
   );

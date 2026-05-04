@@ -151,6 +151,7 @@
           "Formulaire de contact avec envoi d'email sécurisé",
           "Optimisation SEO de base (balises meta, Open Graph, sitemap, hreflang si multilingue)",
           "Prérendering statique pour des temps de chargement optimaux",
+          "Conformité RGPD (politique de confidentialité, gestion des consentements)",
           "Déploiement et mise en ligne sur l'hébergement de votre choix"
         ],
         "technical_title": "Choix techniques",
@@ -160,6 +161,12 @@
           { "name": "SSG (prerendering)", "desc": "HTML statique généré à la compilation, excellent pour le SEO et la vitesse" },
           { "name": "i18n (optionnel)", "desc": "support multilingue FR/EN si nécessaire, avec routing et hreflang" }
         ],
+        "pricing_title": "Tarif",
+        "pricing_starting_at": "À partir de 600 €",
+        "pricing_note": "Tarif indicatif. Le prix final dépend du nombre de pages, du travail d'identité visuelle et des intégrations spécifiques.",
+        "example_title": "Exemple de réalisation",
+        "example_text": "Découvrez un site vitrine récemment livré pour Guillaume Galland, indépendant dans le secteur du bâtiment.",
+        "example_link_label": "Voir l'étude de cas",
         "form": {
           "title": "Brief projet",
           "intro": "Quelques questions pour cadrer votre projet et vous proposer un devis précis.",
