@@ -167,6 +167,9 @@
           "success": "Thanks! Your brief has been received — I'll get back to you shortly.",
           "error_required": "Please answer the required questions before sending.",
           "error_submit": "Could not send the brief right now. Please try again later.",
+          "consent_label": "I agree to my data being processed to study my project and contact me back, in accordance with the <link>privacy policy</link>.",
+          "consent_required": "You must accept the privacy policy before sending the brief.",
+          "section_consent_title": "Consent",
           "section_activity": {
             "title": "Your business",
             "activity_label": "What do you do, in one sentence?",
@@ -270,11 +273,15 @@
     "send": "Send message",
     "error_fields": "Please fill in all fields",
     "success": "Thank you for your message! We will get back to you very soon.",
-    "error_send": "An error occurred while sending your message, please try again later."
+    "error_send": "An error occurred while sending your message, please try again later.",
+    "consent_label": "I agree to my data being processed to respond to my request, in accordance with the <link>privacy policy</link>.",
+    "consent_required": "You must accept the privacy policy before sending the message."
   },
   "footer": {
     "role": "Freelance Full-Stack Developer",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "privacy": "Privacy policy",
+    "legal": "Legal notice"
   },
   "cv": {
     "download": "Download CV",
@@ -389,5 +396,152 @@
       "description": "4 participations in the French Robotics Cup through the ENSIIE student association."
     },
     "interests_list": ["Robotics", "Volleyball", "Football", "Science communication", "Board games"]
+  },
+  "cookies": {
+    "banner": {
+      "text": "This site only uses preference cookies (language, theme) — no advertising tracker or analytics tool.",
+      "learn_more": "Learn more",
+      "dismiss": "Got it"
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "last_updated": "Last updated: 04/05/2026",
+    "intro": "This policy describes how Florian Batard, acting as a self-employed micro-entrepreneur (the \"Controller\"), collects and processes personal data through this website, in accordance with Regulation (EU) 2016/679 (GDPR) and the French Data Protection Act.",
+    "sections": [
+      {
+        "title": "Data Controller",
+        "paragraphs": [
+          "Florian Batard, self-employed micro-entrepreneur — SIRET TODO_SIRET — 27 rue Léon Frot, Paris, 75011.",
+          "Contact: batard.florian.pro@gmail.com."
+        ]
+      },
+      {
+        "title": "Purposes of processing",
+        "paragraphs": [
+          "Your data is collected through the site's forms for two specific purposes:"
+        ],
+        "items": [
+          "Contact form: respond to your request and discuss a possible project with you.",
+          "\"Showcase site\" brief form: study your project, prepare a quote and get back to you."
+        ]
+      },
+      {
+        "title": "Legal bases",
+        "paragraphs": [
+          "Processing is based on two legal grounds defined by the GDPR:"
+        ],
+        "items": [
+          "Your consent (Article 6.1.a) — explicitly collected via a checkbox before sending the form.",
+          "The performance of pre-contractual measures taken at your request (Article 6.1.b) — you contact us with a view to a possible commercial relationship."
+        ]
+      },
+      {
+        "title": "Data collected",
+        "paragraphs": [
+          "Depending on the form used, the following data may be collected:"
+        ],
+        "items": [
+          "Identity: first name, last name.",
+          "Contact details: email, phone number (optional).",
+          "Content of the message or brief: project description, expectations, visual preferences, attached files (logo, photos), domain name, etc.",
+          "No special category data within the meaning of Article 9 of the GDPR is collected."
+        ]
+      },
+      {
+        "title": "Recipients",
+        "paragraphs": [
+          "Data is intended exclusively for the Controller and is neither sold nor transferred to third parties for commercial purposes. Submissions are received both by email and stored in a database hosted on the Controller's infrastructure."
+        ]
+      },
+      {
+        "title": "Hosting and processors",
+        "paragraphs": [
+          "The quick contact form is processed via Formspree (https://formspree.io), acting as a processor for message delivery. The brief form is processed by a backend hosted by the Controller. No analytics tool or advertising tracker is used."
+        ]
+      },
+      {
+        "title": "Retention period",
+        "paragraphs": [
+          "Form data is kept for the time needed to process your request, then for a maximum of 3 years from our last contact, in accordance with the CNIL's recommendations on commercial prospecting. After this period, data is deleted or anonymised."
+        ]
+      },
+      {
+        "title": "Cookies and local storage",
+        "paragraphs": [
+          "The site does not use any advertising cookie or analytics tool. Only cookies and local storage entries strictly necessary for ease of use are employed:"
+        ],
+        "items": [
+          "\"lang\" cookie and localStorage: stores the chosen language (duration: 1 year).",
+          "\"theme\" localStorage: stores your theme preference (light/dark).",
+          "\"cookie-info-dismissed\" localStorage: stores the fact that you closed the cookie information banner."
+        ]
+      },
+      {
+        "title": "Your rights",
+        "paragraphs": [
+          "Under the GDPR, you have the following rights over your data:"
+        ],
+        "items": [
+          "Right of access, rectification and erasure.",
+          "Right to restriction and to object to processing.",
+          "Right to data portability.",
+          "Right to withdraw your consent at any time.",
+          "Right to lodge a complaint with the CNIL (www.cnil.fr)."
+        ]
+      },
+      {
+        "title": "Exercising your rights",
+        "paragraphs": [
+          "To exercise any of these rights, contact the Controller by email at batard.florian.pro@gmail.com. A response will be provided within a maximum of one month."
+        ]
+      }
+    ]
+  },
+  "legal": {
+    "title": "Legal Notice",
+    "last_updated": "Last updated: 04/05/2026",
+    "sections": [
+      {
+        "title": "Site editor",
+        "paragraphs": [
+          "Florian Batard, self-employed micro-entrepreneur.",
+          "SIRET: TODO_SIRET.",
+          "Address: 27 rue Léon Frot, Paris, 75011",
+          "Email: batard.florian.pro@gmail.com."
+        ]
+      },
+      {
+        "title": "Publication director",
+        "paragraphs": [
+          "Florian Batard."
+        ]
+      },
+      {
+        "title": "Hosting",
+        "paragraphs": [
+          "Frontend: self-hosted by the editor at the subdomain fbatard.fr.",
+          "Backend (forms): self-hosted by the editor at the subdomain site-perso-back.home.fbatard.fr."
+        ]
+      },
+      {
+        "title": "Intellectual property",
+        "paragraphs": [
+          "All the content on this site (texts, images, logos, source code, design) is the exclusive property of Florian Batard, unless otherwise stated. Any reproduction, representation or distribution, in whole or in part, without prior written authorisation, is prohibited and constitutes infringement under articles L.335-2 et seq. of the French Intellectual Property Code."
+        ]
+      },
+      {
+        "title": "Personal data",
+        "paragraphs": [
+          "How personal data is collected and processed is described in the privacy policy accessible from the footer."
+        ]
+      },
+      {
+        "title": "Contact",
+        "paragraphs": [
+          "For any question about the site, contact batard.florian.pro@gmail.com."
+        ]
+      }
+    ]
   }
 }

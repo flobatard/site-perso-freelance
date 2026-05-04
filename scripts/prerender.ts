@@ -23,6 +23,8 @@ const langs = ["fr", "en"];
 const routes = [
   ...langs.map((l) => `/${l}`),
   ...langs.map((l) => `/${l}/curriculum_vitae`),
+  ...langs.map((l) => `/${l}/confidentialite`),
+  ...langs.map((l) => `/${l}/mentions-legales`),
   ...langs.flatMap((l) => projectIds.map((id) => `/${l}/projet/${id}`)),
   ...langs.flatMap((l) => offeringIds.map((id) => `/${l}/offering/${id}`)),
 ];
@@ -168,6 +170,42 @@ function getPageMeta(route: string): PageMeta {
   const parts = route.split("/").filter(Boolean);
   const lang = parts[0];
   const section = parts[1];
+
+  if (section === "confidentialite") {
+    return lang === "fr"
+      ? {
+          lang: "fr",
+          title: "Politique de confidentialité — Florian Batard",
+          description:
+            "Politique de confidentialité du site de Florian Batard, freelance Lead Developer et Consultant IA. Traitement des données conformément au RGPD.",
+          keywords: KEYWORDS_FR,
+        }
+      : {
+          lang: "en",
+          title: "Privacy Policy — Florian Batard",
+          description:
+            "Privacy policy of Florian Batard's site, freelance Lead Developer and AI Consultant. Data processing in accordance with the GDPR.",
+          keywords: KEYWORDS_EN,
+        };
+  }
+
+  if (section === "mentions-legales") {
+    return lang === "fr"
+      ? {
+          lang: "fr",
+          title: "Mentions légales — Florian Batard",
+          description:
+            "Mentions légales du site de Florian Batard, auto-entrepreneur, freelance Lead Developer et Consultant IA.",
+          keywords: KEYWORDS_FR,
+        }
+      : {
+          lang: "en",
+          title: "Legal Notice — Florian Batard",
+          description:
+            "Legal notice of Florian Batard's site, self-employed micro-entrepreneur, freelance Lead Developer and AI Consultant.",
+          keywords: KEYWORDS_EN,
+        };
+  }
 
   if (section === "curriculum_vitae") {
     return lang === "fr"

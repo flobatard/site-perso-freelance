@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Send } from "lucide-react";
-import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { Trans, useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,6 +32,7 @@ export type ShowcaseFormData = {
   email: string;
   phone: string;
   projectName: string;
+  consent: boolean;
 };
 
 type Props = {
@@ -78,6 +80,7 @@ const EMPTY_STATE: ShowcaseFormData = {
   email: "",
   phone: "",
   projectName: "",
+  consent: false,
 };
 
 const DEV_PREFILLED_STATE: ShowcaseFormData = {
@@ -100,6 +103,7 @@ const DEV_PREFILLED_STATE: ShowcaseFormData = {
   email: "fb.batard@gmail.com",
   phone: "+33 6 00 00 00 00",
   projectName: "Site vitrine boulangerie (DEV)",
+  consent: true,
 };
 
 const INITIAL_STATE: ShowcaseFormData = import.meta.env.DEV ? DEV_PREFILLED_STATE : EMPTY_STATE;
@@ -107,7 +111,8 @@ const INITIAL_STATE: ShowcaseFormData = import.meta.env.DEV ? DEV_PREFILLED_STAT
 const ShowcaseSite = ({
   onFormSubmit = submitShowcaseForm,
 }: Props) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language === "fr" ? "fr" : "en";
   const ns = "offering.offerings.showcase_site";
 
   const features = t(`${ns}.features`, { returnObjects: true }) as string[];
@@ -169,6 +174,10 @@ const ShowcaseSite = ({
       !formData.projectName.trim()
     ) {
       toast.error(t(`${ns}.form.error_required`));
+      return;
+    }
+    if (!formData.consent) {
+      toast.error(t(`${ns}.form.consent_required`));
       return;
     }
     setSubmitting(true);
@@ -620,10 +629,40 @@ const ShowcaseSite = ({
               </div>
             </fieldset>
 
+            <fieldset>
+              <legend className="text-lg font-semibold mb-2">
+                {t(`${ns}.form.section_consent_title`)}
+              </legend>
+              <div className="flex items-start gap-3">
+                <Checkbox
+                  id="showcase-consent"
+                  checked={formData.consent}
+                  onCheckedChange={(c) => setFormData({ ...formData, consent: c === true })}
+                  className="mt-0.5"
+                />
+                <label
+                  htmlFor="showcase-consent"
+                  className="text-sm text-foreground/80 leading-relaxed cursor-pointer"
+                >
+                  <Trans
+                    i18nKey={`${ns}.form.consent_label`}
+                    components={{
+                      link: (
+                        <Link
+                          to={`/${lang}/confidentialite`}
+                          className="text-primary underline hover:no-underline"
+                        />
+                      ),
+                    }}
+                  />
+                </label>
+              </div>
+            </fieldset>
+
             <Button
               type="submit"
               size="lg"
-              disabled={submitting}
+              disabled={submitting || !formData.consent}
               className="w-full bg-gradient-warm shadow-soft hover:shadow-hover transition-all duration-300"
             >
               {t(`${ns}.form.submit`)}

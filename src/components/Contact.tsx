@@ -1,33 +1,41 @@
 import { useState } from "react";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import axios from "axios";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import social_links from "@/data/social_links.json"
 
 const Contact = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language === "fr" ? "fr" : "en";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
+  const [consent, setConsent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form validation
     if (!formData.name || !formData.email || !formData.message) {
       toast.error(t("contact.error_fields"));
       return;
     }
-    const url = "https://formspree.io/f/xojkrqbe  "
+    if (!consent) {
+      toast.error(t("contact.consent_required"));
+      return;
+    }
+    const url = "https://formspree.io/f/xojkrqbe";
     axios.post(url, formData)
       .then(() => {
         toast.success(t("contact.success"));
         setFormData({ name: "", email: "", message: "" });
+        setConsent(false);
       })
       .catch(() => toast.error(t("contact.error_send")))
   };
@@ -132,9 +140,32 @@ const Contact = () => {
                   />
                 </div>
 
+                <div className="flex items-start gap-3">
+                  <Checkbox
+                    id="contact-consent"
+                    checked={consent}
+                    onCheckedChange={(c) => setConsent(c === true)}
+                    className="mt-0.5"
+                  />
+                  <label htmlFor="contact-consent" className="text-sm text-foreground/80 leading-relaxed cursor-pointer">
+                    <Trans
+                      i18nKey="contact.consent_label"
+                      components={{
+                        link: (
+                          <Link
+                            to={`/${lang}/confidentialite`}
+                            className="text-primary underline hover:no-underline"
+                          />
+                        ),
+                      }}
+                    />
+                  </label>
+                </div>
+
                 <Button
                   type="submit"
                   size="lg"
+                  disabled={!consent}
                   className="w-full bg-gradient-warm shadow-soft hover:shadow-hover transition-all duration-300"
                 >
                   {t("contact.send")}

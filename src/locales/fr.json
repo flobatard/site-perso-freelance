@@ -167,6 +167,9 @@
           "success": "Merci ! Votre brief a bien été enregistré, je reviens vers vous rapidement.",
           "error_required": "Merci de répondre aux questions obligatoires avant d'envoyer.",
           "error_submit": "Impossible d'envoyer le brief pour le moment. Merci de réessayer plus tard.",
+          "consent_label": "J'accepte que mes données soient traitées pour étudier mon projet et me recontacter, conformément à la <link>politique de confidentialité</link>.",
+          "consent_required": "Vous devez accepter la politique de confidentialité pour envoyer le brief.",
+          "section_consent_title": "Consentement",
           "section_activity": {
             "title": "Votre activité",
             "activity_label": "Que faites-vous en une phrase ?",
@@ -270,11 +273,15 @@
     "send": "Envoyer le message",
     "error_fields": "Veuillez remplir tous les champs",
     "success": "Merci pour votre message ! Nous vous recontacterons très prochainement.",
-    "error_send": "Une erreur est survenue lors de l'envoi du message, veuillez réessayer ultérieurement."
+    "error_send": "Une erreur est survenue lors de l'envoi du message, veuillez réessayer ultérieurement.",
+    "consent_label": "J'accepte que mes données soient traitées pour répondre à ma demande, conformément à la <link>politique de confidentialité</link>.",
+    "consent_required": "Vous devez accepter la politique de confidentialité pour envoyer le message."
   },
   "footer": {
     "role": "Développeur Full-Stack Freelance",
-    "rights": "Tous droits réservés."
+    "rights": "Tous droits réservés.",
+    "privacy": "Politique de confidentialité",
+    "legal": "Mentions légales"
   },
   "cv": {
     "download": "Télécharger le CV",
@@ -389,5 +396,152 @@
       "description": "4 participations à la coupe de France de robotique via l'association de l'ENSIIE."
     },
     "interests_list": ["Robotique", "Volley", "Football", "Vulgarisation scientifique", "Jeux de société"]
+  },
+  "cookies": {
+    "banner": {
+      "text": "Ce site utilise uniquement des cookies de préférence (langue, thème) — aucun traceur publicitaire ni outil d'analyse.",
+      "learn_more": "En savoir plus",
+      "dismiss": "J'ai compris"
+    }
+  },
+  "privacy": {
+    "title": "Politique de confidentialité",
+    "last_updated": "Dernière mise à jour : 04/05/2026",
+    "intro": "La présente politique décrit comment Florian Batard, en qualité d'auto-entrepreneur (ci-après « le Responsable »), collecte et traite les données personnelles via le présent site, conformément au Règlement (UE) 2016/679 (RGPD) et à la loi Informatique et Libertés.",
+    "sections": [
+      {
+        "title": "Responsable du traitement",
+        "paragraphs": [
+          "Florian Batard, auto-entrepreneur — SIRET TODO_SIRET — 27 rue Léon Frot, 75011, Paris",
+          "Contact : batard.florian.pro@gmail.com."
+        ]
+      },
+      {
+        "title": "Finalités du traitement",
+        "paragraphs": [
+          "Vos données sont collectées via les formulaires du site dans deux finalités précises :"
+        ],
+        "items": [
+          "Formulaire de contact : répondre à votre demande et échanger avec vous au sujet d'un éventuel projet.",
+          "Formulaire de brief « Site vitrine » : étudier votre projet, préparer un devis et vous recontacter."
+        ]
+      },
+      {
+        "title": "Bases légales",
+        "paragraphs": [
+          "Les traitements reposent sur deux bases légales prévues par le RGPD :"
+        ],
+        "items": [
+          "Votre consentement (Article 6.1.a) — recueilli explicitement via la case à cocher avant l'envoi du formulaire.",
+          "L'exécution de mesures précontractuelles prises à votre demande (Article 6.1.b) — vous nous sollicitez en vue d'une éventuelle relation commerciale."
+        ]
+      },
+      {
+        "title": "Données collectées",
+        "paragraphs": [
+          "Selon le formulaire utilisé, les données suivantes peuvent être collectées :"
+        ],
+        "items": [
+          "Identité : nom, prénom.",
+          "Coordonnées : email, téléphone (facultatif).",
+          "Contenu du message ou du brief : description du projet, attentes, préférences visuelles, fichiers joints (logo, photos), nom de domaine, etc.",
+          "Aucune donnée sensible au sens de l'article 9 du RGPD n'est collectée."
+        ]
+      },
+      {
+        "title": "Destinataires",
+        "paragraphs": [
+          "Les données sont destinées exclusivement au Responsable du traitement et ne sont ni vendues, ni cédées à des tiers à des fins commerciales. Les soumissions sont reçues à la fois par email et stockées dans une base de données hébergée sur l'infrastructure du Responsable."
+        ]
+      },
+      {
+        "title": "Hébergement et sous-traitants",
+        "paragraphs": [
+          "Le formulaire de contact rapide est traité via Formspree (https://formspree.io), agissant en qualité de sous-traitant pour la transmission des messages. Le formulaire de brief est traité par un backend hébergé par le Responsable. Aucun outil d'analyse statistique ou de tracking publicitaire n'est utilisé."
+        ]
+      },
+      {
+        "title": "Durée de conservation",
+        "paragraphs": [
+          "Les données issues des formulaires sont conservées pour la durée nécessaire au traitement de votre demande, puis pendant un maximum de 3 ans à compter de notre dernier contact, conformément aux recommandations de la CNIL en matière de prospection commerciale. Au-delà, elles sont supprimées ou anonymisées."
+        ]
+      },
+      {
+        "title": "Cookies et stockage local",
+        "paragraphs": [
+          "Le site n'utilise aucun cookie publicitaire ni outil d'analyse. Seuls des cookies et entrées de stockage local strictement nécessaires au confort d'utilisation sont employés :"
+        ],
+        "items": [
+          "Cookie « lang » et localStorage : mémorisation de la langue choisie (durée : 1 an).",
+          "localStorage « theme » : mémorisation de votre préférence de thème (clair/sombre).",
+          "localStorage « cookie-info-dismissed » : mémorisation du fait que vous avez fermé le bandeau d'information cookies."
+        ]
+      },
+      {
+        "title": "Vos droits",
+        "paragraphs": [
+          "Conformément au RGPD, vous disposez des droits suivants sur vos données :"
+        ],
+        "items": [
+          "Droit d'accès, de rectification et d'effacement.",
+          "Droit à la limitation et à l'opposition du traitement.",
+          "Droit à la portabilité de vos données.",
+          "Droit de retirer votre consentement à tout moment.",
+          "Droit d'introduire une réclamation auprès de la CNIL (www.cnil.fr)."
+        ]
+      },
+      {
+        "title": "Exercer vos droits",
+        "paragraphs": [
+          "Pour exercer l'un de ces droits, contactez le Responsable du traitement par email à batard.florian.pro@gmail.com. Une réponse vous sera apportée dans un délai maximal d'un mois."
+        ]
+      }
+    ]
+  },
+  "legal": {
+    "title": "Mentions légales",
+    "last_updated": "Dernière mise à jour : 04/05/2026",
+    "sections": [
+      {
+        "title": "Éditeur du site",
+        "paragraphs": [
+          "Florian Batard, auto-entrepreneur.",
+          "SIRET : TODO_SIRET.",
+          "Adresse : 27 rue Léon Frot, Paris, 75011",
+          "Email : batard.florian.pro@gmail.com."
+        ]
+      },
+      {
+        "title": "Directeur de la publication",
+        "paragraphs": [
+          "Florian Batard."
+        ]
+      },
+      {
+        "title": "Hébergement",
+        "paragraphs": [
+          "Frontend : auto-hébergé par l'éditeur via le domaine fbatard.fr.",
+          "Backend (formulaires) : auto-hébergé par l'éditeur via le sous-domaine site-perso-back.home.fbatard.fr."
+        ]
+      },
+      {
+        "title": "Propriété intellectuelle",
+        "paragraphs": [
+          "L'ensemble du contenu de ce site (textes, images, logos, code source, design) est la propriété exclusive de Florian Batard, sauf mention contraire. Toute reproduction, représentation ou diffusion, totale ou partielle, sans autorisation écrite préalable, est interdite et constitutive d'une contrefaçon au sens des articles L.335-2 et suivants du Code de la propriété intellectuelle."
+        ]
+      },
+      {
+        "title": "Données personnelles",
+        "paragraphs": [
+          "Les modalités de collecte et de traitement des données personnelles sont décrites dans la politique de confidentialité accessible depuis le pied de page."
+        ]
+      },
+      {
+        "title": "Contact",
+        "paragraphs": [
+          "Pour toute question relative au site, contactez batard.florian.pro@gmail.com."
+        ]
+      }
+    ]
   }
 }

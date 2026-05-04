@@ -1,10 +1,12 @@
 import { Github, Linkedin, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 import social_links from "@/data/social_links.json"
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const currentYear = new Date().getFullYear();
+  const lang = i18n.language === "fr" ? "fr" : "en";
 
   return (
     <footer className="bg-card border-t border-border py-12">
@@ -43,7 +45,15 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="mt-8 pt-8 border-t border-border text-center text-muted-foreground">
+          <div className="mt-8 pt-8 border-t border-border text-center text-muted-foreground space-y-3">
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+              <Link to={`/${lang}/confidentialite`} className="hover:text-primary transition-colors">
+                {t("footer.privacy")}
+              </Link>
+              <Link to={`/${lang}/mentions-legales`} className="hover:text-primary transition-colors">
+                {t("footer.legal")}
+              </Link>
+            </div>
             <p>© {currentYear} {t("footer.rights")}</p>
           </div>
         </div>
