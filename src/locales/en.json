@@ -232,6 +232,13 @@
           },
           "section_practical": {
             "title": "Practical details",
+            "deadline_label": "When would you like your site to be ready?",
+            "deadline_options": [
+              { "label": "Less than 2 weeks", "value": "lt_2_weeks" },
+              { "label": "1 month", "value": "1_month" },
+              { "label": "1 to 3 months", "value": "1_to_3_months" },
+              { "label": "3 to 6 months", "value": "3_to_6_months" }
+            ],
             "domain_label": "Do you already have a domain name?",
             "domain_yes": "Yes",
             "domain_no": "No",

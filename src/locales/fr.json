@@ -232,6 +232,13 @@
           },
           "section_practical": {
             "title": "Le pratique",
+            "deadline_label": "Pour quand souhaitez-vous votre site ?",
+            "deadline_options": [
+              { "label": "Moins de 2 semaines", "value": "lt_2_weeks" },
+              { "label": "1 mois", "value": "1_month" },
+              { "label": "1 à 3 mois", "value": "1_to_3_months" },
+              { "label": "3 à 6 mois", "value": "3_to_6_months" }
+            ],
             "domain_label": "Avez-vous déjà un nom de domaine ?",
             "domain_yes": "Oui",
             "domain_no": "Non",

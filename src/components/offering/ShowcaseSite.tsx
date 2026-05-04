@@ -24,6 +24,7 @@ export type ShowcaseFormData = {
   photos: string;
   photoFiles: File[];
   sections: string[];
+  deadline: string;
   hasDomain: "yes" | "no" | "";
   domainName: string;
   notes: string;
@@ -72,6 +73,7 @@ const EMPTY_STATE: ShowcaseFormData = {
   photos: "",
   photoFiles: [],
   sections: ["about", "services", "contact"],
+  deadline: "",
   hasDomain: "",
   domainName: "",
   notes: "",
@@ -95,6 +97,7 @@ const DEV_PREFILLED_STATE: ShowcaseFormData = {
   photos: "no",
   photoFiles: [],
   sections: ["about", "services", "contact", "testimonials"],
+  deadline: "1_to_3_months",
   hasDomain: "yes",
   domainName: "ma-boulangerie.fr",
   notes: "Préremplissage dev — à ignorer en prod.",
@@ -123,6 +126,7 @@ const ShowcaseSite = ({
   const brandOptions = t(`${ns}.form.section_content.brand_options`, { returnObjects: true }) as Option[];
   const photosOptions = t(`${ns}.form.section_content.photos_options`, { returnObjects: true }) as Option[];
   const sectionsOptions = t(`${ns}.form.section_content.sections_options`, { returnObjects: true }) as Option[];
+  const deadlineOptions = t(`${ns}.form.section_practical.deadline_options`, { returnObjects: true }) as Option[];
 
   const [formData, setFormData] = useState<ShowcaseFormData>(INITIAL_STATE);
   const [colorDraft, setColorDraft] = useState("#ff6b35");
@@ -167,6 +171,7 @@ const ShowcaseSite = ({
       !formData.goal ||
       !formData.brandAssets ||
       !formData.photos ||
+      !formData.deadline ||
       !formData.hasDomain ||
       !formData.firstName.trim() ||
       !formData.lastName.trim() ||
@@ -498,6 +503,24 @@ const ShowcaseSite = ({
               <legend className="text-lg font-semibold mb-2">
                 {t(`${ns}.form.section_practical.title`)}
               </legend>
+
+              <div>
+                <span className="block text-sm font-medium mb-2">
+                  {t(`${ns}.form.section_practical.deadline_label`)}
+                </span>
+                <RadioGroup
+                  value={formData.deadline}
+                  onValueChange={(value) => setFormData({ ...formData, deadline: value })}
+                  className="gap-2"
+                >
+                  {deadlineOptions.map((opt) => (
+                    <label key={opt.value} htmlFor={`deadline-${opt.value}`} className="flex items-center gap-3 cursor-pointer">
+                      <RadioGroupItem id={`deadline-${opt.value}`} value={opt.value} />
+                      <span className="text-foreground/80">{opt.label}</span>
+                    </label>
+                  ))}
+                </RadioGroup>
+              </div>
 
               <div>
                 <span className="block text-sm font-medium mb-2">
