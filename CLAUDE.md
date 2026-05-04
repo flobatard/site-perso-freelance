@@ -16,7 +16,7 @@ Portfolio personnel freelance de Florian Batard. React/TypeScript avec Vite et T
 
 ```bash
 npm run dev       # Serveur de développement (port 8080)
-npm run build     # Build complet : client + SSR bundle + prerendering des 10 routes
+npm run build     # Build complet : client + SSR bundle + prerendering de toutes les routes
 npm run lint      # Lint ESLint
 npm run preview   # Prévisualisation du build
 ```
@@ -38,6 +38,7 @@ src/
 │   │   └── index.ts   # Record<string, ComponentType> — map id → composant
 │   ├── offering/      # Composants de contenu riche par prestation (un fichier par offering)
 │   │   ├── ShowcaseSite.tsx
+│   │   ├── ShowcaseSite.constants.ts  # Types, constantes et helpers purs du formulaire ShowcaseSite
 │   │   └── index.tsx  # Record<string, ComponentType> — map id → composant (offeringContents)
 │   └── ui/            # Composants shadcn/ui — ne pas modifier manuellement
 ├── pages/             # Index.tsx, ProjectDetail.tsx, OfferingDetail.tsx, CurriculumVitae.tsx, NotFound.tsx
@@ -152,9 +153,14 @@ Certains composants d'offering embarquent un formulaire qui pousse vers un backe
 - **Encodage** : `multipart/form-data` (obligatoire car le formulaire contient des `File`)
 - **Scalaires + tableaux** : regroupés dans un unique champ `data` en **JSON stringifié** (`formData.append("data", JSON.stringify(scalars))`). Les tableaux (`adjectives`, `colors`, `sections`, …) restent donc dans ce JSON — pas d'entrées `name[]` répétées pour eux.
 - **Fichiers** : appendés séparément sur le `FormData`. Champ unique (ex. `logo`) ou entrées répétées (ex. `photos`) selon la cardinalité.
+- **Filtrage des champs masqués** : `buildShowcaseFormData` (et tout équivalent pour un futur formulaire) doit filtrer les champs dépendants d'une réponse "non" avant envoi (ex. ne pas inclure `colors` si `hasColors !== "yes"`, ne pas attacher `logoFile` si `hasLogo !== "yes"`). Côté UI on conserve les valeurs en state pour ne pas perdre la saisie en cas de switch radio, mais le contrat backend reste propre.
 - **Props du composant** : `onFormSubmit?: (data) => Promise<void>`. Le default pointe vers un submitter local (`submitShowcaseForm` pour `ShowcaseSite`) qui cible `${import.meta.env.VITE_API_BASE_URL}/form/<slug>`. La base URL est définie dans `.env.development` / `.env.production` (override local possible via `.env.local`, ignoré par git). Surchargable pour tests / environnements.
-- **UX** : validation côté client → toast d'erreur si champs requis manquants ; sinon `setSubmitting(true)`, `await onFormSubmit(...)`, reset + `toast.success` sur OK, `toast.error(form.error_submit)` sur échec (réseau ou statut non-2xx). Le bouton submit est désactivé pendant `submitting`.
-- **Clés i18n attendues** sous `offering.offerings.<id>.form` : `success`, `error_required`, `error_submit` (+ tout le reste du formulaire).
+- **Sidecar `.constants.ts`** : pour les formulaires non triviaux (ex. `ShowcaseSite`), extraire types, constantes (limites, clé `localStorage`, états initiaux dont `DEV_PREFILLED_STATE`) et helpers purs (`validateStep`, `validateImageFile`, `getStorageDraft`/`setStorageDraft`/`clearStorageDraft`, `buildShowcaseFormData`) dans un fichier `<Offering>.constants.ts` à côté du composant. Garde le `.tsx` lisible et facilite les tests.
+- **Validation** : un seul `validateStep(step, data)` retournant `{ ok, errors: Partial<Record<keyof Data, string>> }` est partagé entre la navigation pas-à-pas et le submit final. Au submit, si une étape est invalide, jumper sur la première étape fautive avec `setCurrentStep` + toast `error_step_jump`. Erreurs reflétées inline via `aria-invalid` + message rouge sous le champ ; effacées dès qu'on modifie le champ.
+- **Persistance localStorage (formulaires longs)** : sauvegarder les *scalaires* (pas de `File`) sous une clé dédiée (ex. `showcase_form_draft`), avec un timestamp et une TTL (actuellement 7 jours). Restauration au mount, nettoyage après envoi réussi, **désactivée en `import.meta.env.DEV`** pour ne pas écraser un éventuel `DEV_PREFILLED_STATE`. Toute nouvelle clé `localStorage` doit être ajoutée à la liste de la politique de confidentialité (clés `privacy.sections.cookies.items` dans les locales).
+- **Limites fichiers** : valider type MIME et taille avant d'accepter ; pour les uploads multiples, valider aussi le cumul. Helpers à mettre dans le sidecar `.constants.ts`.
+- **UX** : validation côté client → erreurs inline + toast `error_step_required` (suivant) ou `error_step_jump` (submit final) ; sinon `setSubmitting(true)`, `await onFormSubmit(...)`, reset + `toast.success` sur OK, `toast.error(form.error_submit)` sur échec (réseau ou statut non-2xx). Bouton submit désactivé pendant `submitting`. Pour les formulaires longs : récap repliable (`<details>`) à la dernière étape avec boutons "Modifier" qui jumpent à l'étape concernée.
+- **Clés i18n attendues** sous `offering.offerings.<id>.form` : `success`, `error_required`, `error_submit`, `error_step_required`, `error_step_jump`, `error_field_required`, `error_invalid_email`, `error_file_too_large`, `error_file_type`, `error_photos_total_too_large`, `error_max_*`, `review_title`, `review_edit`, `review_empty`, `draft_restored` (+ tout le reste du formulaire).
 
 Endpoint actuel par offering :
 
@@ -162,7 +168,7 @@ Endpoint actuel par offering :
 | --- | --- |
 | `showcase_site` | `POST /form/showcase-form` |
 
-Pour brancher un nouveau formulaire : suivre la même structure (scalaires dans `data` JSON, fichiers à part) et ajouter l'entrée dans le tableau ci-dessus.
+Pour brancher un nouveau formulaire : suivre la même structure (scalaires dans `data` JSON, fichiers à part, filtrage des champs masqués, sidecar `.constants.ts` si non trivial) et ajouter l'entrée dans le tableau ci-dessus.
 
 ## Conventions
 
