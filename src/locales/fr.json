@@ -821,7 +821,7 @@
         ],
         "items": [
           "Formulaire de contact : répondre à votre demande et échanger avec vous au sujet d'un éventuel projet.",
-          "Formulaire de brief « Site vitrine » : étudier votre projet, préparer un devis et vous recontacter."
+          "Formulaires de brief de projet (site vitrine, site e-commerce, etc.) : étudier votre projet, préparer un devis et vous recontacter."
         ]
       },
       {
@@ -842,7 +842,7 @@
         "items": [
           "Identité : nom, prénom.",
           "Coordonnées : email, téléphone (facultatif).",
-          "Contenu du message ou du brief : description du projet, attentes, préférences visuelles, fichiers joints (logo, photos), nom de domaine, etc.",
+          "Contenu du message ou du brief : description du projet, attentes, préférences visuelles, fichiers joints (logo, photos, catalogue produits, etc.), nom de domaine, etc.",
           "Aucune donnée sensible au sens de l'article 9 du RGPD n'est collectée."
         ]
       },
@@ -855,7 +855,7 @@
       {
         "title": "Hébergement et sous-traitants",
         "paragraphs": [
-          "Le formulaire de contact rapide est traité via Formspree (https://formspree.io), agissant en qualité de sous-traitant pour la transmission des messages. Le formulaire de brief est traité par un backend hébergé par le Responsable. Aucun outil d'analyse statistique ou de tracking publicitaire n'est utilisé."
+          "Le formulaire de contact rapide est traité via Formspree (https://formspree.io), agissant en qualité de sous-traitant pour la transmission des messages. Les formulaires de brief de projet (site vitrine, site e-commerce, etc.) sont traités par un backend hébergé par le Responsable. Aucun outil d'analyse statistique ou de tracking publicitaire n'est utilisé."
         ]
       },
       {

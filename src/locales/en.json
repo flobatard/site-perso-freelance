@@ -821,7 +821,7 @@
         ],
         "items": [
           "Contact form: respond to your request and discuss a possible project with you.",
-          "\"Showcase site\" brief form: study your project, prepare a quote and get back to you."
+          "Project brief forms (showcase site, e-commerce site, etc.): study your project, prepare a quote and get back to you."
         ]
       },
       {
@@ -842,7 +842,7 @@
         "items": [
           "Identity: first name, last name.",
           "Contact details: email, phone number (optional).",
-          "Content of the message or brief: project description, expectations, visual preferences, attached files (logo, photos), domain name, etc.",
+          "Content of the message or brief: project description, expectations, visual preferences, attached files (logo, photos, product catalog, etc.), domain name, etc.",
           "No special category data within the meaning of Article 9 of the GDPR is collected."
         ]
       },
@@ -855,7 +855,7 @@
       {
         "title": "Hosting and processors",
         "paragraphs": [
-          "The quick contact form is processed via Formspree (https://formspree.io), acting as a processor for message delivery. The brief form is processed by a backend hosted by the Controller. No analytics tool or advertising tracker is used."
+          "The quick contact form is processed via Formspree (https://formspree.io), acting as a processor for message delivery. Project brief forms (showcase site, e-commerce site, etc.) are processed by a backend hosted by the Controller. No analytics tool or advertising tracker is used."
         ]
       },
       {
