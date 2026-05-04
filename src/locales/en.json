@@ -228,7 +228,11 @@
               { "label": "Gallery / Portfolio", "value": "gallery" },
               { "label": "Pricing", "value": "pricing" },
               { "label": "Blog", "value": "blog" }
-            ]
+            ],
+            "custom_sections_label": "Another section in mind? Add it here",
+            "custom_sections_placeholder": "e.g. Chef's recipes, Private events…",
+            "custom_sections_add": "Add",
+            "custom_sections_remove": "Remove this section"
           },
           "section_practical": {
             "title": "Practical details",

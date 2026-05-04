@@ -24,6 +24,7 @@ export type ShowcaseFormData = {
   photos: string;
   photoFiles: File[];
   sections: string[];
+  customSections: string[];
   deadline: string;
   hasDomain: "yes" | "no" | "";
   domainName: string;
@@ -73,6 +74,7 @@ const EMPTY_STATE: ShowcaseFormData = {
   photos: "",
   photoFiles: [],
   sections: ["about", "services", "contact"],
+  customSections: [],
   deadline: "",
   hasDomain: "",
   domainName: "",
@@ -97,6 +99,7 @@ const DEV_PREFILLED_STATE: ShowcaseFormData = {
   photos: "no",
   photoFiles: [],
   sections: ["about", "services", "contact", "testimonials"],
+  customSections: ["Recettes du chef", "Événements privés"],
   deadline: "1_to_3_months",
   hasDomain: "yes",
   domainName: "ma-boulangerie.fr",
@@ -130,6 +133,7 @@ const ShowcaseSite = ({
 
   const [formData, setFormData] = useState<ShowcaseFormData>(INITIAL_STATE);
   const [colorDraft, setColorDraft] = useState("#ff6b35");
+  const [customSectionDraft, setCustomSectionDraft] = useState("");
 
   const addColor = () => {
     setFormData((prev) => {
@@ -158,6 +162,23 @@ const ShowcaseSite = ({
       sections: prev.sections.includes(value)
         ? prev.sections.filter((v) => v !== value)
         : [...prev.sections, value],
+    }));
+  };
+
+  const addCustomSection = () => {
+    const trimmed = customSectionDraft.trim();
+    if (!trimmed) return;
+    setFormData((prev) => {
+      if (prev.customSections.includes(trimmed)) return prev;
+      return { ...prev, customSections: [...prev.customSections, trimmed] };
+    });
+    setCustomSectionDraft("");
+  };
+
+  const removeCustomSection = (value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      customSections: prev.customSections.filter((v) => v !== value),
     }));
   };
 
@@ -495,6 +516,51 @@ const ShowcaseSite = ({
                       <span className="text-foreground/80">{opt.label}</span>
                     </label>
                   ))}
+                </div>
+
+                <div className="mt-4">
+                  <label htmlFor="customSection" className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_content.custom_sections_label`)}
+                  </label>
+                  <div className="flex items-center gap-2">
+                    <Input
+                      id="customSection"
+                      type="text"
+                      placeholder={t(`${ns}.form.section_content.custom_sections_placeholder`)}
+                      value={customSectionDraft}
+                      onChange={(e) => setCustomSectionDraft(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          addCustomSection();
+                        }
+                      }}
+                      className="h-12"
+                    />
+                    <Button type="button" variant="outline" onClick={addCustomSection}>
+                      {t(`${ns}.form.section_content.custom_sections_add`)}
+                    </Button>
+                  </div>
+                  {formData.customSections.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {formData.customSections.map((section) => (
+                        <span
+                          key={section}
+                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-background"
+                        >
+                          <span className="text-sm">{section}</span>
+                          <button
+                            type="button"
+                            onClick={() => removeCustomSection(section)}
+                            aria-label={t(`${ns}.form.section_content.custom_sections_remove`)}
+                            className="text-foreground/60 hover:text-foreground text-lg leading-none"
+                          >
+                            ×
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </fieldset>
