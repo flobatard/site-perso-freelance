@@ -303,20 +303,29 @@
       },
       "ecommerce_site": {
         "title": "E-commerce Site",
-        "description": "TODO short description of the e-commerce offering.",
+        "description": "Custom-built online store to sell your products or services, with a smooth checkout, secure payments, and the day-to-day integrations you actually need.",
         "context_title": "For whom & why",
-        "context_text": "TODO context for the e-commerce offering — to be filled in.",
+        "context_text": "Built for merchants, artisans, creators and freelancers who want to sell online without being locked into a rigid platform or paying a commission on every sale forever. The goal: a fast, reliable, compliant store (VAT, GDPR, T&Cs), well-indexed, and that integrates cleanly with your day-to-day tools (accounting, shipping, ERP). Whether you're launching your first store or migrating from Shopify, WooCommerce, Wix or a marketplace, we scope the project together to focus on what actually delivers value.",
         "features_title": "What's included",
         "features": [
-          "TODO — list of included features"
+          "Product catalog with variants (size, color, options) and stock management",
+          "Checkout funnel optimized for desktop & mobile, guest checkout or customer account",
+          "Secure payments (cards, Apple/Google Pay, PayPal, installment payments as needed)",
+          "Shipping management (Colissimo, Mondial Relay, Chronopost, click & collect, digital delivery)",
+          "Multi-currency, VAT handling (multiple rates, intra-EU, outside EU)",
+          "Promo codes, customer reviews, newsletter, abandoned cart recovery — based on your priorities",
+          "Accounting and shipping integrations (Sendcloud / Boxtal) and marketplace sync if needed",
+          "Migration from your current platform (products, customers, orders, SEO redirects)",
+          "Base SEO, GDPR compliance, legal notice and T&Cs",
+          "Deployment, go-live and post-launch support"
         ],
         "technical_title": "Technical choices",
         "technical": [
-          { "name": "TODO", "desc": "TODO description of the technical choice" }
+          { "name": "Stack matched to the project", "desc": "Shopify, WooCommerce, Prestashop or custom development — chosen with you based on volume, integrations and the team that will take over." }
         ],
         "pricing_title": "Pricing",
-        "pricing_starting_at": "TODO pricing",
-        "pricing_note": "TODO pricing note.",
+        "pricing_starting_at": "Starting at €3500",
+        "pricing_note": "Indicative price. The final cost depends on the chosen platform, the number of products, the integrations (accounting, shipping, ERP) and any migration from an existing platform.",
         "form": {
           "title": "Project brief",
           "intro": "A few quick questions to frame your project and put together an accurate quote.",

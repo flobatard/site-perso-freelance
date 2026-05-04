@@ -303,20 +303,29 @@
       },
       "ecommerce_site": {
         "title": "Site E-commerce",
-        "description": "TODO description courte de la prestation e-commerce.",
+        "description": "Création d'une boutique en ligne sur-mesure pour vendre vos produits ou services, avec un parcours d'achat fluide, des paiements sécurisés et les intégrations dont vous avez besoin au quotidien.",
         "context_title": "Pour qui & pourquoi",
-        "context_text": "TODO contexte de la prestation e-commerce — à compléter.",
+        "context_text": "Pensé pour les commerçants, artisans, créateurs et indépendants qui veulent vendre en ligne sans s'enfermer dans une plateforme rigide ni payer une commission sur chaque vente à vie. L'objectif : une boutique rapide, fiable, conforme (TVA, RGPD, CGV), bien référencée, et qui s'intègre proprement à vos outils de gestion (compta, expédition, ERP). Que vous lanciez votre première boutique ou que vous migriez depuis Shopify, WooCommerce, Wix ou une marketplace, on cadre ensemble le périmètre pour rester sur ce qui apporte vraiment de la valeur.",
         "features_title": "Ce qui est inclus",
         "features": [
-          "TODO — liste des fonctionnalités incluses"
+          "Catalogue produits avec variantes (taille, couleur, options) et gestion des stocks",
+          "Tunnel d'achat optimisé desktop & mobile, achat invité ou compte client",
+          "Paiement sécurisé (CB, Apple/Google Pay, PayPal, paiement en plusieurs fois selon besoin)",
+          "Gestion de la livraison (Colissimo, Mondial Relay, Chronopost, click & collect, livraison numérique)",
+          "Multi-devises, gestion TVA (taux multiples, intracom, hors UE)",
+          "Codes promo, avis clients, newsletter, relance panier abandonné — selon vos priorités",
+          "Intégrations comptabilité, expédition (Sendcloud / Boxtal) et synchro marketplaces si besoin",
+          "Migration depuis votre plateforme actuelle (produits, clients, commandes, redirections SEO)",
+          "SEO de base, conformité RGPD, mentions légales et CGV",
+          "Déploiement, mise en ligne et accompagnement post-lancement"
         ],
         "technical_title": "Choix techniques",
         "technical": [
-          { "name": "TODO", "desc": "TODO description du choix technique" }
+          { "name": "Stack adaptée au projet", "desc": "Shopify, WooCommerce, Prestashop ou développement sur-mesure — choisi avec vous selon le volume, les intégrations et l'équipe qui prendra le relais." }
         ],
         "pricing_title": "Tarif",
-        "pricing_starting_at": "TODO tarif",
-        "pricing_note": "TODO note tarifaire.",
+        "pricing_starting_at": "À partir de 3500 €",
+        "pricing_note": "Tarif indicatif. Le prix final dépend de la plateforme retenue, du nombre de produits, des intégrations (compta, expédition, ERP) et d'une éventuelle migration depuis une plateforme existante.",
         "form": {
           "title": "Brief projet",
           "intro": "Quelques questions pour cadrer votre projet et vous proposer un devis précis.",
