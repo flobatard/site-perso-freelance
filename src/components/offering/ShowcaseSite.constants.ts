@@ -1,5 +1,6 @@
 export type Goal = "" | "seo" | "trust" | "offers" | "link";
-export type BrandAssets = "" | "yes" | "no" | "logo_only";
+export type HasLogo = "" | "yes" | "no";
+export type HasColors = "" | "yes" | "no";
 export type Photos = "" | "yes" | "no";
 export type Deadline = "" | "lt_2_weeks" | "1_month" | "1_to_3_months" | "3_to_6_months";
 export type HasDomain = "" | "yes" | "no";
@@ -10,8 +11,9 @@ export type ShowcaseFormData = {
   goal: Goal;
   inspirations: string;
   adjectives: string[];
-  brandAssets: BrandAssets;
+  hasLogo: HasLogo;
   logoFile: File | null;
+  hasColors: HasColors;
   colors: string[];
   photos: Photos;
   photoFiles: File[];
@@ -58,8 +60,9 @@ export const EMPTY_STATE: ShowcaseFormData = {
   goal: "",
   inspirations: "",
   adjectives: [],
-  brandAssets: "",
+  hasLogo: "",
   logoFile: null,
+  hasColors: "",
   colors: [],
   photos: "",
   photoFiles: [],
@@ -83,8 +86,9 @@ export const DEV_PREFILLED_STATE: ShowcaseFormData = {
   goal: "trust",
   inspirations: "https://example-bakery.com — style chaleureux et photos en plein cadre",
   adjectives: ["warm", "premium"],
-  brandAssets: "yes",
+  hasLogo: "no",
   logoFile: null,
+  hasColors: "yes",
   colors: ["#ff6b35", "#2d2d2d"],
   photos: "no",
   photoFiles: [],
@@ -130,10 +134,11 @@ export const validateStep = (step: number, data: ShowcaseFormData): StepValidati
     if (!data.goal) errors.goal = "error_field_required";
   }
   if (step === 3) {
-    if (!data.brandAssets) errors.brandAssets = "error_field_required";
-    if ((data.brandAssets === "yes" || data.brandAssets === "logo_only") && !data.logoFile) {
+    if (!data.hasLogo) errors.hasLogo = "error_field_required";
+    if (data.hasLogo === "yes" && !data.logoFile) {
       errors.logoFile = "error_field_required";
     }
+    if (!data.hasColors) errors.hasColors = "error_field_required";
     if (!data.photos) errors.photos = "error_field_required";
     if (data.photos === "yes" && data.photoFiles.length === 0) {
       errors.photoFiles = "error_field_required";
@@ -218,14 +223,14 @@ export const clearStorageDraft = (): void => {
 };
 
 export const buildShowcaseFormData = (data: ShowcaseFormData): FormData => {
-  const includeLogo = data.brandAssets === "yes" || data.brandAssets === "logo_only";
+  const includeLogo = data.hasLogo === "yes";
   const includePhotos = data.photos === "yes";
   const { logoFile: _logo, photoFiles: _files, ...rest } = data;
   void _logo;
   void _files;
   const scalars: ShowcaseFormDataScalars = {
     ...rest,
-    colors: data.brandAssets === "yes" ? data.colors : [],
+    colors: data.hasColors === "yes" ? data.colors : [],
     domainName: data.hasDomain === "yes" ? data.domainName : "",
   };
   const body = new FormData();

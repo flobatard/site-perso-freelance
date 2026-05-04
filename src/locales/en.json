@@ -232,13 +232,17 @@
           },
           "section_content": {
             "title": "Content",
-            "brand_label": "Do you already have a logo and brand colors?",
-            "brand_options": [
-              { "label": "Yes, I have both", "value": "yes" },
-              { "label": "No, I'd like you to propose something", "value": "no" },
-              { "label": "I have a logo but no defined colors", "value": "logo_only" }
+            "logo_question_label": "Do you already have a logo?",
+            "logo_options": [
+              { "label": "Yes", "value": "yes" },
+              { "label": "No, I'd like you to propose something", "value": "no" }
             ],
             "logo_upload_label": "Upload your logo",
+            "colors_question_label": "Do you already have defined brand colors?",
+            "colors_options": [
+              { "label": "Yes", "value": "yes" },
+              { "label": "No, I'd like you to propose something", "value": "no" }
+            ],
             "colors_label": "Your brand colors",
             "colors_hint": "Add one or more colors by picking one and clicking Add.",
             "color_picker_label": "Pick a color",

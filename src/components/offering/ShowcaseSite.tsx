@@ -25,11 +25,12 @@ import {
   TOTAL_STEPS,
   validateImageFile,
   validateStep,
-  type BrandAssets,
   type Deadline,
   type FieldErrors,
   type Goal,
+  type HasColors,
   type HasDomain,
+  type HasLogo,
   type Photos,
   type ShowcaseFormData,
 } from "./ShowcaseSite.constants";
@@ -68,7 +69,8 @@ const hasMeaningfulContent = (data: ShowcaseFormData): boolean =>
     data.phone.trim() ||
     data.domainName.trim() ||
     data.goal ||
-    data.brandAssets ||
+    data.hasLogo ||
+    data.hasColors ||
     data.photos ||
     data.deadline ||
     data.hasDomain ||
@@ -102,8 +104,12 @@ const ShowcaseSite = ({
     () => t(`${ns}.form.section_visual.adjective_options`, { returnObjects: true }) as Option[],
     [t],
   );
-  const brandOptions = useMemo(
-    () => t(`${ns}.form.section_content.brand_options`, { returnObjects: true }) as Option[],
+  const logoOptions = useMemo(
+    () => t(`${ns}.form.section_content.logo_options`, { returnObjects: true }) as Option[],
+    [t],
+  );
+  const colorsQuestionOptions = useMemo(
+    () => t(`${ns}.form.section_content.colors_options`, { returnObjects: true }) as Option[],
     [t],
   );
   const photosOptions = useMemo(
@@ -362,12 +368,15 @@ const ShowcaseSite = ({
       ...formData.sections.map((v) => findOptionLabel(sectionsOptions, v)).filter(Boolean),
       ...formData.customSections,
     ].join(", ");
-    const colorsLabel = formData.colors.join(", ");
     const photosLabel =
       formData.photos === "yes" && formData.photoFiles.length > 0
         ? formData.photoFiles.map((f) => f.name).join(", ")
         : findOptionLabel(photosOptions, formData.photos);
-    const logoLabel = formData.logoFile?.name ?? findOptionLabel(brandOptions, formData.brandAssets);
+    const logoLabel = formData.logoFile?.name ?? findOptionLabel(logoOptions, formData.hasLogo);
+    const colorsLabel =
+      formData.hasColors === "yes" && formData.colors.length > 0
+        ? formData.colors.join(", ")
+        : findOptionLabel(colorsQuestionOptions, formData.hasColors);
     const domainLabel =
       formData.hasDomain === "yes"
         ? formData.domainName
@@ -408,12 +417,12 @@ const ShowcaseSite = ({
         step: 2,
       },
       {
-        label: t(`${ns}.form.section_content.brand_label`),
+        label: t(`${ns}.form.section_content.logo_question_label`),
         value: logoLabel,
         step: 3,
       },
       {
-        label: t(`${ns}.form.section_content.colors_label`),
+        label: t(`${ns}.form.section_content.colors_question_label`),
         value: colorsLabel,
         step: 3,
       },
@@ -683,27 +692,27 @@ const ShowcaseSite = ({
                 </legend>
 
                 <div>
-                  <span id="brand-label" className="block text-sm font-medium mb-2">
-                    {t(`${ns}.form.section_content.brand_label`)}
+                  <span id="logo-label" className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_content.logo_question_label`)}
                   </span>
                   <RadioGroup
-                    value={formData.brandAssets}
-                    onValueChange={(value) => updateField("brandAssets", value as BrandAssets)}
-                    aria-labelledby="brand-label"
-                    aria-invalid={!!fieldErrors.brandAssets}
-                    aria-describedby={ariaDesc("brandAssets", "brand")}
+                    value={formData.hasLogo}
+                    onValueChange={(value) => updateField("hasLogo", value as HasLogo)}
+                    aria-labelledby="logo-label"
+                    aria-invalid={!!fieldErrors.hasLogo}
+                    aria-describedby={ariaDesc("hasLogo", "logo")}
                     className="gap-2"
                   >
-                    {brandOptions.map((opt) => (
-                      <label key={opt.value} htmlFor={`brand-${opt.value}`} className="flex items-center gap-3 cursor-pointer">
-                        <RadioGroupItem id={`brand-${opt.value}`} value={opt.value} />
+                    {logoOptions.map((opt) => (
+                      <label key={opt.value} htmlFor={`logo-${opt.value}`} className="flex items-center gap-3 cursor-pointer">
+                        <RadioGroupItem id={`logo-${opt.value}`} value={opt.value} />
                         <span className="text-foreground/80">{opt.label}</span>
                       </label>
                     ))}
                   </RadioGroup>
-                  {renderError("brandAssets", "brand")}
+                  {renderError("hasLogo", "logo")}
 
-                  {(formData.brandAssets === "yes" || formData.brandAssets === "logo_only") && (
+                  {formData.hasLogo === "yes" && (
                     <div className="mt-4">
                       <label htmlFor="logoFile" className="block text-sm font-medium mb-2">
                         {t(`${ns}.form.section_content.logo_upload_label`)}
@@ -724,8 +733,30 @@ const ShowcaseSite = ({
                       {renderError("logoFile", "logoFile")}
                     </div>
                   )}
+                </div>
 
-                  {formData.brandAssets === "yes" && (
+                <div>
+                  <span id="colors-question-label" className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_content.colors_question_label`)}
+                  </span>
+                  <RadioGroup
+                    value={formData.hasColors}
+                    onValueChange={(value) => updateField("hasColors", value as HasColors)}
+                    aria-labelledby="colors-question-label"
+                    aria-invalid={!!fieldErrors.hasColors}
+                    aria-describedby={ariaDesc("hasColors", "colors-question")}
+                    className="gap-2"
+                  >
+                    {colorsQuestionOptions.map((opt) => (
+                      <label key={opt.value} htmlFor={`colors-${opt.value}`} className="flex items-center gap-3 cursor-pointer">
+                        <RadioGroupItem id={`colors-${opt.value}`} value={opt.value} />
+                        <span className="text-foreground/80">{opt.label}</span>
+                      </label>
+                    ))}
+                  </RadioGroup>
+                  {renderError("hasColors", "colors-question")}
+
+                  {formData.hasColors === "yes" && (
                     <div className="mt-4">
                       <span className="block text-sm font-medium mb-1">
                         {t(`${ns}.form.section_content.colors_label`)}
