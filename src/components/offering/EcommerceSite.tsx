@@ -645,6 +645,18 @@ const EcommerceSite = ({ onFormSubmit = submitEcommerceForm }: Props) => {
       </section>
 
       <section>
+        <h3 className="text-xl font-semibold mb-3">{t(`${ns}.example_title`)}</h3>
+        <p className="text-foreground/80 leading-relaxed mb-3">{t(`${ns}.example_text`)}</p>
+        <Link
+          to={`/${lang}/projet/beta_order_capture`}
+          className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+        >
+          {t(`${ns}.example_link_label`)}
+          <span aria-hidden="true">→</span>
+        </Link>
+      </section>
+
+      <section>
         <div className="border-t border-border pt-8">
           <h3 className="text-2xl font-bold mb-2">{t(`${ns}.form.title`)}</h3>
           <p className="text-foreground/70 mb-6">{t(`${ns}.form.intro`)}</p>

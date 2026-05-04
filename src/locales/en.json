@@ -326,6 +326,9 @@
         "pricing_title": "Pricing",
         "pricing_starting_at": "Starting at €3500",
         "pricing_note": "Indicative price. The final cost depends on the chosen platform, the number of products, the integrations (accounting, shipping, ERP) and any migration from an existing platform.",
+        "example_title": "Past work",
+        "example_text": "Take a look at a custom e-commerce platform recently delivered for Beta Vêtements, a specialist in custom-printed clothing.",
+        "example_link_label": "View the case study",
         "form": {
           "title": "Project brief",
           "intro": "A few quick questions to frame your project and put together an accurate quote.",

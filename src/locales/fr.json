@@ -326,6 +326,9 @@
         "pricing_title": "Tarif",
         "pricing_starting_at": "À partir de 3500 €",
         "pricing_note": "Tarif indicatif. Le prix final dépend de la plateforme retenue, du nombre de produits, des intégrations (compta, expédition, ERP) et d'une éventuelle migration depuis une plateforme existante.",
+        "example_title": "Exemple de réalisation",
+        "example_text": "Découvrez une plateforme e-commerce sur-mesure récemment livrée pour Beta Vêtements, spécialiste de la vente de vêtements personnalisés.",
+        "example_link_label": "Voir l'étude de cas",
         "form": {
           "title": "Brief projet",
           "intro": "Quelques questions pour cadrer votre projet et vous proposer un devis précis.",
