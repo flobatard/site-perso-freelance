@@ -90,4 +90,22 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Offerings -->
+  <url>
+    <loc>https://fbatard.fr/fr/offering/showcase_site</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fbatard.fr/fr/offering/showcase_site"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fbatard.fr/en/offering/showcase_site"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fbatard.fr/fr/offering/showcase_site"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fbatard.fr/en/offering/showcase_site</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fbatard.fr/fr/offering/showcase_site"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fbatard.fr/en/offering/showcase_site"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fbatard.fr/fr/offering/showcase_site"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>

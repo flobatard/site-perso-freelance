@@ -41,7 +41,7 @@ src/
 │   │   ├── ShowcaseSite.constants.ts  # Types, constantes et helpers purs du formulaire ShowcaseSite
 │   │   └── index.tsx  # Record<string, ComponentType> — map id → composant (offeringContents)
 │   └── ui/            # Composants shadcn/ui — ne pas modifier manuellement
-├── pages/             # Index.tsx, ProjectDetail.tsx, OfferingDetail.tsx, CurriculumVitae.tsx, NotFound.tsx
+├── pages/             # Index.tsx, ProjectDetail.tsx, OfferingDetail.tsx, CurriculumVitae.tsx, PrivacyPolicy.tsx, LegalNotice.tsx, NotFound.tsx
 ├── locales/
 │   ├── fr.json        # Traductions françaises (source de vérité des textes)
 │   └── en.json        # Traductions anglaises
@@ -68,11 +68,13 @@ Le site est disponible en français (`/fr`) et en anglais (`/en`).
 Toutes les routes sont préfixées par la langue :
 
 ```
-/                     → redirect automatique vers /fr ou /en (langue détectée)
-/:lang                → Index (page d'accueil)
+/                       → redirect automatique vers /fr ou /en (langue détectée)
+/:lang                  → Index (page d'accueil)
 /:lang/curriculum_vitae → CV
-/:lang/projet/:id     → Détail d'un projet
-/:lang/offering/:id   → Détail d'une prestation
+/:lang/projet/:id       → Détail d'un projet
+/:lang/offering/:id     → Détail d'une prestation
+/:lang/confidentialite  → Politique de confidentialité (RGPD)
+/:lang/mentions-legales → Mentions légales
 ```
 
 Le composant `LanguageRoute` dans `App.tsx` lit le paramètre `:lang`, appelle `i18n.changeLanguage(lang)` et valide que la langue est supportée (`fr` ou `en`). Une langue invalide redirige vers la langue détectée.
@@ -200,13 +202,17 @@ Le site génère des fichiers HTML statiques à la compilation pour chaque route
 
 ### Routes prérendues
 
-Générées automatiquement depuis `portfolio.json` et `offering.json` × 2 langues :
+Générées automatiquement depuis `portfolio.json` et `offering.json` × 2 langues, plus les pages statiques bilingues :
 ```
 /fr, /en
 /fr/curriculum_vitae, /en/curriculum_vitae
-/fr/projet/<id>, /en/projet/<id>         (un fichier par projet dans portfolio.json)
-/fr/offering/<id>, /en/offering/<id>     (un fichier par prestation dans offering.json)
+/fr/confidentialite, /en/confidentialite       (politique de confidentialité — RGPD)
+/fr/mentions-legales, /en/mentions-legales     (mentions légales — micro-entrepreneur)
+/fr/projet/<id>, /en/projet/<id>               (un fichier par projet dans portfolio.json)
+/fr/offering/<id>, /en/offering/<id>           (un fichier par prestation dans offering.json)
 ```
+
+Les pages `confidentialite` et `mentions-legales` ont des balises SEO (`title`, `description`) personnalisées injectées par [scripts/prerender.ts](scripts/prerender.ts) (voir `if (section === "confidentialite")` etc.) pour éviter d'afficher le titre générique sur ces routes.
 
 ### Ajouter une route prérendue
 
