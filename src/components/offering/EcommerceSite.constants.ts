@@ -117,7 +117,7 @@ export type Deadline =
   | "1_to_3_months"
   | "3_to_6_months"
   | "gt_6_months";
-export type Budget = "" | "lt_5k" | "5_15k" | "15_30k" | "gt_30k" | "unknown";
+export type Budget = "" | "lt_10k" | "10_30k" | "30_60k" | "60_100k" | "gt_100k" | "unknown";
 
 export type EcommerceFormData = {
   // Step 1 — Activity
@@ -311,14 +311,14 @@ export const DEV_PREFILLED_STATE: EcommerceFormData = {
   logoFile: null,
   hasColors: "yes",
   colors: ["#c97b53", "#2d2d2d"],
-  productPhotos: "to_retouch",
+  productPhotos: "to_shoot",
   photoFiles: [],
   inspirations: "https://example-ceramics.com — photos plein cadre, typo serif",
   adjectives: ["warm", "premium"],
   deadline: "1_to_3_months",
   hasDomain: "yes",
   domainName: "ma-ceramique.fr",
-  budget: "5_15k",
+  budget: "10_30k",
   notes: "Préremplissage dev — à ignorer en prod.",
 
   firstName: "Florian",
