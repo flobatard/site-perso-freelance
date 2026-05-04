@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Send } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
@@ -8,49 +8,42 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  ACCEPTED_IMAGE_ATTR,
+  buildShowcaseFormData,
+  clearStorageDraft,
+  findFirstInvalidStep,
+  getStorageDraft,
+  INITIAL_STATE,
+  INITIAL_STEP,
+  MAX_COLORS,
+  MAX_CUSTOM_SECTIONS,
+  MAX_FILE_SIZE_LABEL,
+  MAX_PHOTOS_TOTAL_BYTES,
+  MAX_PHOTOS_TOTAL_LABEL,
+  setStorageDraft,
+  TOTAL_STEPS,
+  validateImageFile,
+  validateStep,
+  type BrandAssets,
+  type Deadline,
+  type FieldErrors,
+  type Goal,
+  type HasDomain,
+  type Photos,
+  type ShowcaseFormData,
+} from "./ShowcaseSite.constants";
+
+export type { ShowcaseFormData };
 
 type TechnicalItem = { name: string; desc: string };
 type Option = { label: string; value: string };
-
-export type ShowcaseFormData = {
-  activity: string;
-  audience: string;
-  goal: string;
-  inspirations: string;
-  adjectives: string[];
-  brandAssets: string;
-  logoFile: File | null;
-  colors: string[];
-  photos: string;
-  photoFiles: File[];
-  sections: string[];
-  customSections: string[];
-  deadline: string;
-  hasDomain: "yes" | "no" | "";
-  domainName: string;
-  notes: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  projectName: string;
-  consent: boolean;
-};
 
 type Props = {
   onFormSubmit?: (data: ShowcaseFormData) => Promise<void>;
 };
 
 const SHOWCASE_FORM_ENDPOINT = `${import.meta.env.VITE_API_BASE_URL}/form/showcase-form`;
-
-const buildShowcaseFormData = (data: ShowcaseFormData): FormData => {
-  const { logoFile, photoFiles, ...scalars } = data;
-  const body = new FormData();
-  body.append("data", JSON.stringify(scalars));
-  if (logoFile) body.append("logo", logoFile);
-  photoFiles.forEach((file) => body.append("photos", file));
-  return body;
-};
 
 const submitShowcaseForm = async (data: ShowcaseFormData): Promise<void> => {
   const response = await fetch(SHOWCASE_FORM_ENDPOINT, {
@@ -62,59 +55,29 @@ const submitShowcaseForm = async (data: ShowcaseFormData): Promise<void> => {
   }
 };
 
-const EMPTY_STATE: ShowcaseFormData = {
-  activity: "",
-  audience: "",
-  goal: "",
-  inspirations: "",
-  adjectives: [],
-  brandAssets: "",
-  logoFile: null,
-  colors: [],
-  photos: "",
-  photoFiles: [],
-  sections: ["about", "services", "contact"],
-  customSections: [],
-  deadline: "",
-  hasDomain: "",
-  domainName: "",
-  notes: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  projectName: "",
-  consent: false,
-};
-
-const DEV_PREFILLED_STATE: ShowcaseFormData = {
-  activity: "Boulangerie artisanale de quartier",
-  audience: "Particuliers et professionnels du quartier",
-  goal: "trust",
-  inspirations: "https://example-bakery.com — style chaleureux et photos en plein cadre",
-  adjectives: ["warm", "premium"],
-  brandAssets: "yes",
-  logoFile: null,
-  colors: ["#ff6b35", "#2d2d2d"],
-  photos: "no",
-  photoFiles: [],
-  sections: ["about", "services", "contact", "testimonials"],
-  customSections: ["Recettes du chef", "Événements privés"],
-  deadline: "1_to_3_months",
-  hasDomain: "yes",
-  domainName: "ma-boulangerie.fr",
-  notes: "Préremplissage dev — à ignorer en prod.",
-  firstName: "Florian",
-  lastName: "Batard",
-  email: "fb.batard@gmail.com",
-  phone: "+33 6 00 00 00 00",
-  projectName: "Site vitrine boulangerie (DEV)",
-  consent: true,
-};
-
-const INITIAL_STATE: ShowcaseFormData = import.meta.env.DEV ? DEV_PREFILLED_STATE : EMPTY_STATE;
-const TOTAL_STEPS = 5;
-const INITIAL_STEP = import.meta.env.DEV ? 5 : 1;
+const hasMeaningfulContent = (data: ShowcaseFormData): boolean =>
+  !!(
+    data.projectName.trim() ||
+    data.activity.trim() ||
+    data.audience.trim() ||
+    data.inspirations.trim() ||
+    data.notes.trim() ||
+    data.firstName.trim() ||
+    data.lastName.trim() ||
+    data.email.trim() ||
+    data.phone.trim() ||
+    data.domainName.trim() ||
+    data.goal ||
+    data.brandAssets ||
+    data.photos ||
+    data.deadline ||
+    data.hasDomain ||
+    data.adjectives.length ||
+    data.colors.length ||
+    data.customSections.length ||
+    data.logoFile ||
+    data.photoFiles.length
+  );
 
 const ShowcaseSite = ({
   onFormSubmit = submitShowcaseForm,
@@ -123,23 +86,71 @@ const ShowcaseSite = ({
   const lang = i18n.language === "fr" ? "fr" : "en";
   const ns = "offering.offerings.showcase_site";
 
-  const features = t(`${ns}.features`, { returnObjects: true }) as string[];
-  const technical = t(`${ns}.technical`, { returnObjects: true }) as TechnicalItem[];
-
-  const goalOptions = t(`${ns}.form.section_activity.goal_options`, { returnObjects: true }) as Option[];
-  const adjectiveOptions = t(`${ns}.form.section_visual.adjective_options`, { returnObjects: true }) as Option[];
-  const brandOptions = t(`${ns}.form.section_content.brand_options`, { returnObjects: true }) as Option[];
-  const photosOptions = t(`${ns}.form.section_content.photos_options`, { returnObjects: true }) as Option[];
-  const sectionsOptions = t(`${ns}.form.section_content.sections_options`, { returnObjects: true }) as Option[];
-  const deadlineOptions = t(`${ns}.form.section_practical.deadline_options`, { returnObjects: true }) as Option[];
+  const features = useMemo(
+    () => t(`${ns}.features`, { returnObjects: true }) as string[],
+    [t],
+  );
+  const technical = useMemo(
+    () => t(`${ns}.technical`, { returnObjects: true }) as TechnicalItem[],
+    [t],
+  );
+  const goalOptions = useMemo(
+    () => t(`${ns}.form.section_activity.goal_options`, { returnObjects: true }) as Option[],
+    [t],
+  );
+  const adjectiveOptions = useMemo(
+    () => t(`${ns}.form.section_visual.adjective_options`, { returnObjects: true }) as Option[],
+    [t],
+  );
+  const brandOptions = useMemo(
+    () => t(`${ns}.form.section_content.brand_options`, { returnObjects: true }) as Option[],
+    [t],
+  );
+  const photosOptions = useMemo(
+    () => t(`${ns}.form.section_content.photos_options`, { returnObjects: true }) as Option[],
+    [t],
+  );
+  const sectionsOptions = useMemo(
+    () => t(`${ns}.form.section_content.sections_options`, { returnObjects: true }) as Option[],
+    [t],
+  );
+  const deadlineOptions = useMemo(
+    () => t(`${ns}.form.section_practical.deadline_options`, { returnObjects: true }) as Option[],
+    [t],
+  );
 
   const [formData, setFormData] = useState<ShowcaseFormData>(INITIAL_STATE);
-  const [colorDraft, setColorDraft] = useState("#ff6b35");
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [colorDraft, setColorDraft] = useState("#000000");
   const [customSectionDraft, setCustomSectionDraft] = useState("");
   const [currentStep, setCurrentStep] = useState(INITIAL_STEP);
   const [submitting, setSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const isFirstRender = useRef(true);
+  const draftRestoredRef = useRef(false);
+
+  // Restore draft from localStorage on mount (skipped in DEV to keep prefill intact)
+  useEffect(() => {
+    if (import.meta.env.DEV || draftRestoredRef.current) return;
+    draftRestoredRef.current = true;
+    const draft = getStorageDraft();
+    if (!draft) return;
+    setFormData((prev) => ({ ...prev, ...draft, logoFile: null, photoFiles: [] }));
+    toast(t(`${ns}.form.draft_restored`));
+  }, [t, ns]);
+
+  // Persist draft (debounced); clear when form is empty
+  useEffect(() => {
+    if (import.meta.env.DEV) return;
+    const id = window.setTimeout(() => {
+      if (hasMeaningfulContent(formData)) {
+        setStorageDraft(formData);
+      } else {
+        clearStorageDraft();
+      }
+    }, 300);
+    return () => window.clearTimeout(id);
+  }, [formData]);
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -149,7 +160,28 @@ const ShowcaseSite = ({
     formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [currentStep]);
 
+  const clearError = (key: keyof ShowcaseFormData) => {
+    setFieldErrors((prev) => {
+      if (!prev[key]) return prev;
+      const next = { ...prev };
+      delete next[key];
+      return next;
+    });
+  };
+
+  const updateField = <K extends keyof ShowcaseFormData>(
+    key: K,
+    value: ShowcaseFormData[K],
+  ) => {
+    setFormData((prev) => ({ ...prev, [key]: value }));
+    clearError(key);
+  };
+
   const addColor = () => {
+    if (formData.colors.length >= MAX_COLORS) {
+      toast.error(t(`${ns}.form.error_max_colors`, { max: MAX_COLORS }));
+      return;
+    }
     setFormData((prev) => {
       if (prev.colors.includes(colorDraft)) return prev;
       return { ...prev, colors: [...prev.colors, colorDraft] };
@@ -182,6 +214,10 @@ const ShowcaseSite = ({
   const addCustomSection = () => {
     const trimmed = customSectionDraft.trim();
     if (!trimmed) return;
+    if (formData.customSections.length >= MAX_CUSTOM_SECTIONS) {
+      toast.error(t(`${ns}.form.error_max_custom_sections`, { max: MAX_CUSTOM_SECTIONS }));
+      return;
+    }
     setFormData((prev) => {
       if (prev.customSections.includes(trimmed)) return prev;
       return { ...prev, customSections: [...prev.customSections, trimmed] };
@@ -196,27 +232,53 @@ const ShowcaseSite = ({
     }));
   };
 
-  const validateCurrentStep = (): boolean => {
-    switch (currentStep) {
-      case 1:
-        return !!(
-          formData.projectName.trim() &&
-          formData.activity.trim() &&
-          formData.audience.trim() &&
-          formData.goal
-        );
-      case 3:
-        return !!(formData.brandAssets && formData.photos);
-      case 4:
-        return !!(formData.deadline && formData.hasDomain);
-      default:
-        return true;
+  const handleLogoChange = (file: File | null) => {
+    if (!file) {
+      updateField("logoFile", null);
+      return;
     }
+    const error = validateImageFile(file);
+    if (error) {
+      toast.error(t(`${ns}.form.${error}`, { max: MAX_FILE_SIZE_LABEL }));
+      return;
+    }
+    updateField("logoFile", file);
+  };
+
+  const handlePhotosAdd = (files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    const accepted: File[] = [];
+    let totalSize = formData.photoFiles.reduce((sum, f) => sum + f.size, 0);
+    for (const file of Array.from(files)) {
+      const err = validateImageFile(file);
+      if (err) {
+        toast.error(t(`${ns}.form.${err}`, { max: MAX_FILE_SIZE_LABEL }));
+        continue;
+      }
+      if (totalSize + file.size > MAX_PHOTOS_TOTAL_BYTES) {
+        toast.error(t(`${ns}.form.error_photos_total_too_large`, { max: MAX_PHOTOS_TOTAL_LABEL }));
+        break;
+      }
+      accepted.push(file);
+      totalSize += file.size;
+    }
+    if (accepted.length > 0) {
+      updateField("photoFiles", [...formData.photoFiles, ...accepted]);
+    }
+  };
+
+  const removePhoto = (index: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      photoFiles: prev.photoFiles.filter((_, i) => i !== index),
+    }));
   };
 
   const goNext = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (!validateCurrentStep()) {
+    const result = validateStep(currentStep, formData);
+    if (!result.ok) {
+      setFieldErrors((prev) => ({ ...prev, ...result.errors }));
       toast.error(t(`${ns}.form.error_step_required`));
       return;
     }
@@ -239,39 +301,176 @@ const ShowcaseSite = ({
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log("Submit")
     e.preventDefault();
-    if (
-      !formData.activity.trim() ||
-      !formData.audience.trim() ||
-      !formData.goal ||
-      !formData.brandAssets ||
-      !formData.photos ||
-      !formData.deadline ||
-      !formData.hasDomain ||
-      !formData.firstName.trim() ||
-      !formData.lastName.trim() ||
-      !formData.email.trim() ||
-      !formData.projectName.trim()
-    ) {
-      toast.error(t(`${ns}.form.error_required`));
-      return;
-    }
-    if (!formData.consent) {
-      toast.error(t(`${ns}.form.consent_required`));
+    const failingStep = findFirstInvalidStep(formData);
+    if (failingStep !== null) {
+      const allErrors: FieldErrors = {};
+      for (let s = 1; s <= TOTAL_STEPS; s++) {
+        Object.assign(allErrors, validateStep(s, formData).errors);
+      }
+      setFieldErrors(allErrors);
+      setCurrentStep(failingStep);
+      toast.error(
+        t(`${ns}.form.error_step_jump`, {
+          step: failingStep,
+          title: t(`${ns}.form.step_titles.${failingStep}`),
+        }),
+      );
       return;
     }
     setSubmitting(true);
     try {
       await onFormSubmit(formData);
       toast.success(t(`${ns}.form.success`));
+      clearStorageDraft();
       setFormData(INITIAL_STATE);
+      setFieldErrors({});
       setCurrentStep(1);
     } catch {
       toast.error(t(`${ns}.form.error_submit`));
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const errorClass = (key: keyof ShowcaseFormData) =>
+    fieldErrors[key] ? "border-destructive focus-visible:ring-destructive" : "";
+
+  const renderError = (key: keyof ShowcaseFormData, id: string) => {
+    if (!fieldErrors[key]) return null;
+    return (
+      <p id={`${id}-error`} className="mt-1.5 text-sm text-destructive">
+        {t(`${ns}.form.${fieldErrors[key]}`)}
+      </p>
+    );
+  };
+
+  const ariaDesc = (key: keyof ShowcaseFormData, id: string) =>
+    fieldErrors[key] ? `${id}-error` : undefined;
+
+  const findOptionLabel = (options: Option[], value: string) =>
+    options.find((o) => o.value === value)?.label;
+
+  const renderReviewSummary = () => {
+    const empty = t(`${ns}.form.review_empty`);
+    const editLabel = t(`${ns}.form.review_edit`);
+    const adjectivesLabel = formData.adjectives
+      .map((v) => findOptionLabel(adjectiveOptions, v))
+      .filter(Boolean)
+      .join(", ");
+    const sectionsLabel = [
+      ...formData.sections.map((v) => findOptionLabel(sectionsOptions, v)).filter(Boolean),
+      ...formData.customSections,
+    ].join(", ");
+    const colorsLabel = formData.colors.join(", ");
+    const photosLabel =
+      formData.photos === "yes" && formData.photoFiles.length > 0
+        ? formData.photoFiles.map((f) => f.name).join(", ")
+        : findOptionLabel(photosOptions, formData.photos);
+    const logoLabel = formData.logoFile?.name ?? findOptionLabel(brandOptions, formData.brandAssets);
+    const domainLabel =
+      formData.hasDomain === "yes"
+        ? formData.domainName
+        : formData.hasDomain === "no"
+          ? t(`${ns}.form.section_practical.domain_no`)
+          : "";
+
+    type Row = { label: string; value: string | undefined; step: number };
+    const rows: Row[] = [
+      {
+        label: t(`${ns}.form.section_activity.project_name_label`),
+        value: formData.projectName,
+        step: 1,
+      },
+      {
+        label: t(`${ns}.form.section_activity.activity_label`),
+        value: formData.activity,
+        step: 1,
+      },
+      {
+        label: t(`${ns}.form.section_activity.audience_label`),
+        value: formData.audience,
+        step: 1,
+      },
+      {
+        label: t(`${ns}.form.section_activity.goal_label`),
+        value: findOptionLabel(goalOptions, formData.goal),
+        step: 1,
+      },
+      {
+        label: t(`${ns}.form.section_visual.inspirations_label`),
+        value: formData.inspirations,
+        step: 2,
+      },
+      {
+        label: t(`${ns}.form.section_visual.adjective_label`),
+        value: adjectivesLabel,
+        step: 2,
+      },
+      {
+        label: t(`${ns}.form.section_content.brand_label`),
+        value: logoLabel,
+        step: 3,
+      },
+      {
+        label: t(`${ns}.form.section_content.colors_label`),
+        value: colorsLabel,
+        step: 3,
+      },
+      {
+        label: t(`${ns}.form.section_content.photos_label`),
+        value: photosLabel,
+        step: 3,
+      },
+      {
+        label: t(`${ns}.form.section_content.sections_label`),
+        value: sectionsLabel,
+        step: 3,
+      },
+      {
+        label: t(`${ns}.form.section_practical.deadline_label`),
+        value: findOptionLabel(deadlineOptions, formData.deadline),
+        step: 4,
+      },
+      {
+        label: t(`${ns}.form.section_practical.domain_label`),
+        value: domainLabel,
+        step: 4,
+      },
+      {
+        label: t(`${ns}.form.section_practical.notes_label`),
+        value: formData.notes,
+        step: 4,
+      },
+    ];
+
+    return (
+      <details className="rounded-lg border border-border bg-muted/30 px-4 py-3">
+        <summary className="cursor-pointer font-medium select-none">
+          {t(`${ns}.form.review_title`)}
+        </summary>
+        <ul className="mt-3 space-y-2">
+          {rows.map((row, i) => (
+            <li
+              key={i}
+              className="flex items-start justify-between gap-3 border-b border-border/50 pb-2 last:border-b-0"
+            >
+              <div className="flex-1 min-w-0">
+                <span className="block text-xs text-foreground/60">{row.label}</span>
+                <span className="block text-sm break-words">{row.value || empty}</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setCurrentStep(row.step)}
+                className="shrink-0 text-sm text-primary hover:underline"
+              >
+                {editLabel}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </details>
+    );
   };
 
   return (
@@ -352,17 +551,20 @@ const ShowcaseSite = ({
 
                 <div>
                   <label htmlFor="projectName" className="block text-sm font-medium mb-2">
-                    {t(`${ns}.form.section_contact.project_name_label`)}
+                    {t(`${ns}.form.section_activity.project_name_label`)}
                   </label>
                   <Input
                     id="projectName"
                     name="projectName"
                     type="text"
-                    placeholder={t(`${ns}.form.section_contact.project_name_placeholder`)}
+                    placeholder={t(`${ns}.form.section_activity.project_name_placeholder`)}
                     value={formData.projectName}
-                    onChange={(e) => setFormData({ ...formData, projectName: e.target.value })}
-                    className="h-12"
+                    onChange={(e) => updateField("projectName", e.target.value)}
+                    aria-invalid={!!fieldErrors.projectName}
+                    aria-describedby={ariaDesc("projectName", "projectName")}
+                    className={`h-12 ${errorClass("projectName")}`}
                   />
+                  {renderError("projectName", "projectName")}
                 </div>
 
                 <div>
@@ -375,9 +577,12 @@ const ShowcaseSite = ({
                     type="text"
                     placeholder={t(`${ns}.form.section_activity.activity_placeholder`)}
                     value={formData.activity}
-                    onChange={(e) => setFormData({ ...formData, activity: e.target.value })}
-                    className="h-12"
+                    onChange={(e) => updateField("activity", e.target.value)}
+                    aria-invalid={!!fieldErrors.activity}
+                    aria-describedby={ariaDesc("activity", "activity")}
+                    className={`h-12 ${errorClass("activity")}`}
                   />
+                  {renderError("activity", "activity")}
                 </div>
 
                 <div>
@@ -390,18 +595,24 @@ const ShowcaseSite = ({
                     type="text"
                     placeholder={t(`${ns}.form.section_activity.audience_placeholder`)}
                     value={formData.audience}
-                    onChange={(e) => setFormData({ ...formData, audience: e.target.value })}
-                    className="h-12"
+                    onChange={(e) => updateField("audience", e.target.value)}
+                    aria-invalid={!!fieldErrors.audience}
+                    aria-describedby={ariaDesc("audience", "audience")}
+                    className={`h-12 ${errorClass("audience")}`}
                   />
+                  {renderError("audience", "audience")}
                 </div>
 
                 <div>
-                  <span className="block text-sm font-medium mb-2">
+                  <span id="goal-label" className="block text-sm font-medium mb-2">
                     {t(`${ns}.form.section_activity.goal_label`)}
                   </span>
                   <RadioGroup
                     value={formData.goal}
-                    onValueChange={(value) => setFormData({ ...formData, goal: value })}
+                    onValueChange={(value) => updateField("goal", value as Goal)}
+                    aria-labelledby="goal-label"
+                    aria-invalid={!!fieldErrors.goal}
+                    aria-describedby={ariaDesc("goal", "goal")}
                     className="gap-2"
                   >
                     {goalOptions.map((opt) => (
@@ -411,6 +622,7 @@ const ShowcaseSite = ({
                       </label>
                     ))}
                   </RadioGroup>
+                  {renderError("goal", "goal")}
                 </div>
               </fieldset>
             )}
@@ -430,7 +642,7 @@ const ShowcaseSite = ({
                     name="inspirations"
                     placeholder={t(`${ns}.form.section_visual.inspirations_placeholder`)}
                     value={formData.inspirations}
-                    onChange={(e) => setFormData({ ...formData, inspirations: e.target.value })}
+                    onChange={(e) => updateField("inspirations", e.target.value)}
                     rows={4}
                   />
                 </div>
@@ -471,19 +683,15 @@ const ShowcaseSite = ({
                 </legend>
 
                 <div>
-                  <span className="block text-sm font-medium mb-2">
+                  <span id="brand-label" className="block text-sm font-medium mb-2">
                     {t(`${ns}.form.section_content.brand_label`)}
                   </span>
                   <RadioGroup
                     value={formData.brandAssets}
-                    onValueChange={(value) =>
-                      setFormData({
-                        ...formData,
-                        brandAssets: value,
-                        logoFile: value === "yes" || value === "logo_only" ? formData.logoFile : null,
-                        colors: value === "yes" ? formData.colors : [],
-                      })
-                    }
+                    onValueChange={(value) => updateField("brandAssets", value as BrandAssets)}
+                    aria-labelledby="brand-label"
+                    aria-invalid={!!fieldErrors.brandAssets}
+                    aria-describedby={ariaDesc("brandAssets", "brand")}
                     className="gap-2"
                   >
                     {brandOptions.map((opt) => (
@@ -493,6 +701,7 @@ const ShowcaseSite = ({
                       </label>
                     ))}
                   </RadioGroup>
+                  {renderError("brandAssets", "brand")}
 
                   {(formData.brandAssets === "yes" || formData.brandAssets === "logo_only") && (
                     <div className="mt-4">
@@ -503,15 +712,16 @@ const ShowcaseSite = ({
                         id="logoFile"
                         name="logoFile"
                         type="file"
-                        accept="image/*"
-                        onChange={(e) =>
-                          setFormData({ ...formData, logoFile: e.target.files?.[0] ?? null })
-                        }
-                        className="h-12"
+                        accept={ACCEPTED_IMAGE_ATTR}
+                        onChange={(e) => handleLogoChange(e.target.files?.[0] ?? null)}
+                        aria-invalid={!!fieldErrors.logoFile}
+                        aria-describedby={ariaDesc("logoFile", "logoFile")}
+                        className={`h-12 ${errorClass("logoFile")}`}
                       />
                       {formData.logoFile && (
                         <p className="text-sm text-foreground/60 mt-2">{formData.logoFile.name}</p>
                       )}
+                      {renderError("logoFile", "logoFile")}
                     </div>
                   )}
 
@@ -531,7 +741,12 @@ const ShowcaseSite = ({
                           aria-label={t(`${ns}.form.section_content.color_picker_label`)}
                           className="h-10 w-16 rounded border border-input cursor-pointer bg-transparent"
                         />
-                        <Button type="button" variant="outline" onClick={addColor}>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          onClick={addColor}
+                          disabled={formData.colors.length >= MAX_COLORS}
+                        >
                           {t(`${ns}.form.section_content.color_add`)}
                         </Button>
                       </div>
@@ -564,18 +779,15 @@ const ShowcaseSite = ({
                 </div>
 
                 <div>
-                  <span className="block text-sm font-medium mb-2">
+                  <span id="photos-label" className="block text-sm font-medium mb-2">
                     {t(`${ns}.form.section_content.photos_label`)}
                   </span>
                   <RadioGroup
                     value={formData.photos}
-                    onValueChange={(value) =>
-                      setFormData({
-                        ...formData,
-                        photos: value,
-                        photoFiles: value === "yes" ? formData.photoFiles : [],
-                      })
-                    }
+                    onValueChange={(value) => updateField("photos", value as Photos)}
+                    aria-labelledby="photos-label"
+                    aria-invalid={!!fieldErrors.photos}
+                    aria-describedby={ariaDesc("photos", "photos")}
                     className="gap-2"
                   >
                     {photosOptions.map((opt) => (
@@ -585,6 +797,7 @@ const ShowcaseSite = ({
                       </label>
                     ))}
                   </RadioGroup>
+                  {renderError("photos", "photos")}
 
                   {formData.photos === "yes" && (
                     <div className="mt-4">
@@ -595,23 +808,37 @@ const ShowcaseSite = ({
                         id="photoFiles"
                         name="photoFiles"
                         type="file"
-                        accept="image/*"
+                        accept={ACCEPTED_IMAGE_ATTR}
                         multiple
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            photoFiles: Array.from(e.target.files ?? []),
-                          })
-                        }
-                        className="h-12"
+                        onChange={(e) => {
+                          handlePhotosAdd(e.target.files);
+                          e.target.value = "";
+                        }}
+                        aria-invalid={!!fieldErrors.photoFiles}
+                        aria-describedby={ariaDesc("photoFiles", "photoFiles")}
+                        className={`h-12 ${errorClass("photoFiles")}`}
                       />
                       {formData.photoFiles.length > 0 && (
                         <ul className="mt-2 space-y-1 text-sm text-foreground/60">
                           {formData.photoFiles.map((file, i) => (
-                            <li key={`${file.name}-${i}`}>{file.name}</li>
+                            <li
+                              key={`${file.name}-${file.size}-${i}`}
+                              className="flex items-center justify-between gap-2"
+                            >
+                              <span className="truncate">{file.name}</span>
+                              <button
+                                type="button"
+                                onClick={() => removePhoto(i)}
+                                aria-label={t(`${ns}.form.photo_remove`)}
+                                className="text-foreground/60 hover:text-foreground text-lg leading-none px-2"
+                              >
+                                ×
+                              </button>
+                            </li>
                           ))}
                         </ul>
                       )}
+                      {renderError("photoFiles", "photoFiles")}
                     </div>
                   )}
                 </div>
@@ -655,7 +882,12 @@ const ShowcaseSite = ({
                         }}
                         className="h-12"
                       />
-                      <Button type="button" variant="outline" onClick={addCustomSection}>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={addCustomSection}
+                        disabled={formData.customSections.length >= MAX_CUSTOM_SECTIONS}
+                      >
                         {t(`${ns}.form.section_content.custom_sections_add`)}
                       </Button>
                     </div>
@@ -691,12 +923,15 @@ const ShowcaseSite = ({
                 </legend>
 
                 <div>
-                  <span className="block text-sm font-medium mb-2">
+                  <span id="deadline-label" className="block text-sm font-medium mb-2">
                     {t(`${ns}.form.section_practical.deadline_label`)}
                   </span>
                   <RadioGroup
                     value={formData.deadline}
-                    onValueChange={(value) => setFormData({ ...formData, deadline: value })}
+                    onValueChange={(value) => updateField("deadline", value as Deadline)}
+                    aria-labelledby="deadline-label"
+                    aria-invalid={!!fieldErrors.deadline}
+                    aria-describedby={ariaDesc("deadline", "deadline")}
                     className="gap-2"
                   >
                     {deadlineOptions.map((opt) => (
@@ -706,21 +941,19 @@ const ShowcaseSite = ({
                       </label>
                     ))}
                   </RadioGroup>
+                  {renderError("deadline", "deadline")}
                 </div>
 
                 <div>
-                  <span className="block text-sm font-medium mb-2">
+                  <span id="domain-label" className="block text-sm font-medium mb-2">
                     {t(`${ns}.form.section_practical.domain_label`)}
                   </span>
                   <RadioGroup
                     value={formData.hasDomain}
-                    onValueChange={(value) =>
-                      setFormData({
-                        ...formData,
-                        hasDomain: value as "yes" | "no",
-                        domainName: value === "yes" ? formData.domainName : "",
-                      })
-                    }
+                    onValueChange={(value) => updateField("hasDomain", value as HasDomain)}
+                    aria-labelledby="domain-label"
+                    aria-invalid={!!fieldErrors.hasDomain}
+                    aria-describedby={ariaDesc("hasDomain", "domain")}
                     className="gap-2"
                   >
                     <label htmlFor="domain-yes" className="flex items-center gap-3 cursor-pointer">
@@ -732,6 +965,7 @@ const ShowcaseSite = ({
                       <span className="text-foreground/80">{t(`${ns}.form.section_practical.domain_no`)}</span>
                     </label>
                   </RadioGroup>
+                  {renderError("hasDomain", "domain")}
 
                   {formData.hasDomain === "yes" && (
                     <div className="mt-4">
@@ -744,9 +978,12 @@ const ShowcaseSite = ({
                         type="text"
                         placeholder={t(`${ns}.form.section_practical.domain_name_placeholder`)}
                         value={formData.domainName}
-                        onChange={(e) => setFormData({ ...formData, domainName: e.target.value })}
-                        className="h-12"
+                        onChange={(e) => updateField("domainName", e.target.value)}
+                        aria-invalid={!!fieldErrors.domainName}
+                        aria-describedby={ariaDesc("domainName", "domainName")}
+                        className={`h-12 ${errorClass("domainName")}`}
                       />
+                      {renderError("domainName", "domainName")}
                     </div>
                   )}
                 </div>
@@ -760,7 +997,7 @@ const ShowcaseSite = ({
                     name="notes"
                     placeholder={t(`${ns}.form.section_practical.notes_placeholder`)}
                     value={formData.notes}
-                    onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                    onChange={(e) => updateField("notes", e.target.value)}
                     rows={4}
                   />
                 </div>
@@ -769,6 +1006,8 @@ const ShowcaseSite = ({
 
             {currentStep === 5 && (
               <>
+                {renderReviewSummary()}
+
                 <fieldset className="space-y-6">
                   <legend className="text-lg font-semibold mb-2">
                     {t(`${ns}.form.section_contact.title`)}
@@ -786,9 +1025,12 @@ const ShowcaseSite = ({
                         autoComplete="given-name"
                         placeholder={t(`${ns}.form.section_contact.first_name_placeholder`)}
                         value={formData.firstName}
-                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                        className="h-12"
+                        onChange={(e) => updateField("firstName", e.target.value)}
+                        aria-invalid={!!fieldErrors.firstName}
+                        aria-describedby={ariaDesc("firstName", "firstName")}
+                        className={`h-12 ${errorClass("firstName")}`}
                       />
+                      {renderError("firstName", "firstName")}
                     </div>
 
                     <div>
@@ -802,9 +1044,12 @@ const ShowcaseSite = ({
                         autoComplete="family-name"
                         placeholder={t(`${ns}.form.section_contact.last_name_placeholder`)}
                         value={formData.lastName}
-                        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                        className="h-12"
+                        onChange={(e) => updateField("lastName", e.target.value)}
+                        aria-invalid={!!fieldErrors.lastName}
+                        aria-describedby={ariaDesc("lastName", "lastName")}
+                        className={`h-12 ${errorClass("lastName")}`}
                       />
+                      {renderError("lastName", "lastName")}
                     </div>
                   </div>
 
@@ -819,9 +1064,12 @@ const ShowcaseSite = ({
                       autoComplete="email"
                       placeholder={t(`${ns}.form.section_contact.email_placeholder`)}
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="h-12"
+                      onChange={(e) => updateField("email", e.target.value)}
+                      aria-invalid={!!fieldErrors.email}
+                      aria-describedby={ariaDesc("email", "email")}
+                      className={`h-12 ${errorClass("email")}`}
                     />
+                    {renderError("email", "email")}
                   </div>
 
                   <div>
@@ -835,7 +1083,7 @@ const ShowcaseSite = ({
                       autoComplete="tel"
                       placeholder={t(`${ns}.form.section_contact.phone_placeholder`)}
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={(e) => updateField("phone", e.target.value)}
                       className="h-12"
                     />
                   </div>
@@ -849,7 +1097,9 @@ const ShowcaseSite = ({
                     <Checkbox
                       id="showcase-consent"
                       checked={formData.consent}
-                      onCheckedChange={(c) => setFormData({ ...formData, consent: c === true })}
+                      onCheckedChange={(c) => updateField("consent", c === true)}
+                      aria-invalid={!!fieldErrors.consent}
+                      aria-describedby={ariaDesc("consent", "consent")}
                       className="mt-0.5"
                     />
                     <label
@@ -869,6 +1119,7 @@ const ShowcaseSite = ({
                       />
                     </label>
                   </div>
+                  {renderError("consent", "consent")}
                 </fieldset>
               </>
             )}

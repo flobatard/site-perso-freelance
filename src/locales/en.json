@@ -175,6 +175,19 @@
           "error_required": "Please answer the required questions before sending.",
           "error_submit": "Could not send the brief right now. Please try again later.",
           "error_step_required": "Please fill in the required fields before continuing.",
+          "error_field_required": "This field is required.",
+          "error_invalid_email": "Invalid email address.",
+          "error_step_jump": "Missing fields at step {{step}} ({{title}}).",
+          "error_file_too_large": "File too large (max {{max}}).",
+          "error_file_type": "Unsupported image format. Accepted: PNG, JPEG, WebP, SVG.",
+          "error_photos_total_too_large": "Total photo size exceeds {{max}}.",
+          "error_max_colors": "You reached the {{max}} colors maximum.",
+          "error_max_custom_sections": "Maximum {{max}} custom sections.",
+          "review_title": "Review my answers",
+          "review_edit": "Edit",
+          "review_empty": "Not provided",
+          "photo_remove": "Remove this photo",
+          "draft_restored": "Draft restored.",
           "step_label": "Step {{current}}/{{total}}",
           "step_titles": {
             "1": "Your business",
@@ -190,6 +203,8 @@
           "section_consent_title": "Consent",
           "section_activity": {
             "title": "Your business",
+            "project_name_label": "Project or site name",
+            "project_name_placeholder": "e.g. my-pro-site",
             "activity_label": "What do you do, in one sentence?",
             "activity_placeholder": "e.g. Fitness coach specialised in post-partum recovery",
             "audience_label": "Who is your audience?",
@@ -278,9 +293,7 @@
             "email_label": "Email",
             "email_placeholder": "your@email.com",
             "phone_label": "Phone (optional)",
-            "phone_placeholder": "e.g. +33 6 12 34 56 78",
-            "project_name_label": "Project or site name",
-            "project_name_placeholder": "e.g. my-pro-site"
+            "phone_placeholder": "e.g. +33 6 12 34 56 78"
           }
         }
       }
@@ -503,7 +516,8 @@
         "items": [
           "\"lang\" cookie and localStorage: stores the chosen language (duration: 1 year).",
           "\"theme\" localStorage: stores your theme preference (light/dark).",
-          "\"cookie-info-dismissed\" localStorage: stores the fact that you closed the cookie information banner."
+          "\"cookie-info-dismissed\" localStorage: stores the fact that you closed the cookie information banner.",
+          "\"showcase_form_draft\" localStorage: temporary save (7 days) of your showcase brief draft, automatically removed after submission."
         ]
       },
       {

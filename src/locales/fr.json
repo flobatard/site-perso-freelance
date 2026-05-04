@@ -175,6 +175,19 @@
           "error_required": "Merci de répondre aux questions obligatoires avant d'envoyer.",
           "error_submit": "Impossible d'envoyer le brief pour le moment. Merci de réessayer plus tard.",
           "error_step_required": "Merci de remplir les champs requis avant de continuer.",
+          "error_field_required": "Ce champ est obligatoire.",
+          "error_invalid_email": "Adresse email invalide.",
+          "error_step_jump": "Champs manquants à l'étape {{step}} ({{title}}).",
+          "error_file_too_large": "Fichier trop volumineux (max {{max}}).",
+          "error_file_type": "Format d'image non supporté. Formats acceptés : PNG, JPEG, WebP, SVG.",
+          "error_photos_total_too_large": "Le total des photos dépasse {{max}}.",
+          "error_max_colors": "Vous avez atteint le maximum de {{max}} couleurs.",
+          "error_max_custom_sections": "Maximum {{max}} sections personnalisées.",
+          "review_title": "Vérifier mes réponses",
+          "review_edit": "Modifier",
+          "review_empty": "Non renseigné",
+          "photo_remove": "Retirer cette photo",
+          "draft_restored": "Brouillon restauré.",
           "step_label": "Étape {{current}}/{{total}}",
           "step_titles": {
             "1": "Votre activité",
@@ -190,6 +203,8 @@
           "section_consent_title": "Consentement",
           "section_activity": {
             "title": "Votre activité",
+            "project_name_label": "Nom du projet ou du site",
+            "project_name_placeholder": "ex. mon-site-pro",
             "activity_label": "Que faites-vous en une phrase ?",
             "activity_placeholder": "ex. Coach sportif spécialisé en remise en forme post-partum",
             "audience_label": "À qui vous adressez-vous ?",
@@ -278,9 +293,7 @@
             "email_label": "Email",
             "email_placeholder": "votre@email.com",
             "phone_label": "Téléphone (optionnel)",
-            "phone_placeholder": "ex. 06 12 34 56 78",
-            "project_name_label": "Nom du projet ou du site",
-            "project_name_placeholder": "ex. mon-site-pro"
+            "phone_placeholder": "ex. 06 12 34 56 78"
           }
         }
       }
@@ -503,7 +516,8 @@
         "items": [
           "Cookie « lang » et localStorage : mémorisation de la langue choisie (durée : 1 an).",
           "localStorage « theme » : mémorisation de votre préférence de thème (clair/sombre).",
-          "localStorage « cookie-info-dismissed » : mémorisation du fait que vous avez fermé le bandeau d'information cookies."
+          "localStorage « cookie-info-dismissed » : mémorisation du fait que vous avez fermé le bandeau d'information cookies.",
+          "localStorage « showcase_form_draft » : sauvegarde temporaire (7 jours) du brouillon de votre brief de site vitrine, supprimée automatiquement après envoi."
         ]
       },
       {
