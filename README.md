@@ -48,3 +48,24 @@ UX :
 - Récap repliable à l'étape 5 (`<details>`) listant les réponses des étapes 1 à 4 avec boutons "Modifier" qui rouvrent l'étape concernée.
 - Erreurs inline (`aria-invalid` + message rouge sous le champ) en complément des toasts.
 - Reset + `toast.success` après réponse HTTP OK ; `toast.error(form.error_submit)` sur échec réseau ou statut non-2xx ; bouton submit désactivé pendant l'envoi.
+
+### Ecommerce Site (`/offering/ecommerce_site`)
+
+- **Endpoint** : `POST ${VITE_API_BASE_URL}/form/ecommerce-form`
+- **Encodage** : `multipart/form-data`
+- **Champs** :
+  - `data` — JSON stringifié contenant tous les scalaires du formulaire. Couvre l'activité (`projectName`, `pitch`, `productTypes[]`, `businessModel`, `currentSales`, `currentPlatform`, `audience`, `targetPlatform`), le catalogue (`launchVolume`, `yearVolume`, `variants`, `stockManagement`, `productSheetsReady`), le paiement / livraison / fiscalité (`paymentMethods[]`, `transactionType`, `currencies`, `shippingZones[]`, `shippingMethods[]`, `freeShipping`, `vat`), le marketing (`guestCheckout`, `features[]`, `seoStrategy`), les intégrations (`accounting`, `accountingOther`, `erpCrm`, `shippingTool`, `shippingToolOther`, `marketplaceSync[]`, `migration`, `adminCount`, `adminRoles`), l'identité et le pratique (`hasLogo`, `hasColors`, `colors[]`, `productPhotos`, `inspirations`, `adjectives[]`, `deadline`, `hasDomain`, `domainName`, `budget`, `notes`), et le contact (`firstName`, `lastName`, `email`, `phone`, `consent`).
+  - `logo` — fichier unique (présent uniquement si `hasLogo === "yes"` et qu'un fichier a été téléversé)
+  - `photos` — fichiers multiples, entrées répétées (présent uniquement si `productPhotos === "pro"` ou `"to_retouch"`)
+
+`buildEcommerceFormData` filtre les champs masqués avant envoi : `currentPlatform` n'est inclus que si `currentSales === "other_site"`, `accountingOther` que si `accounting === "other"`, `shippingToolOther` que si `shippingTool === "other"`, `colors` que si `hasColors === "yes"`, `domainName` que si `hasDomain === "yes"`. La logique réseau (`submitEcommerceForm`) reste dans [src/components/offering/EcommerceSite.tsx](src/components/offering/EcommerceSite.tsx) ; les types, constantes et helpers purs (validation, persistance, sérialisation) sont dans [src/components/offering/EcommerceSite.constants.ts](src/components/offering/EcommerceSite.constants.ts). Le composant expose une prop `onFormSubmit?: (data) => Promise<void>` surchargable pour tests / environnements alternatifs.
+
+UX :
+- Formulaire en 7 étapes (Activité, Catalogue & stocks, Paiement & livraison, Expérience & marketing, Intégrations & migration, Identité & pratique, Coordonnées) avec validation par étape et jump-to-step sur erreur au submit final.
+- Validation email (regex), avec champs requis conditionnels : `currentPlatform` si `currentSales === "other_site"`, `accountingOther` si `accounting === "other"`, `shippingToolOther` si `shippingTool === "other"`, `domainName` si `hasDomain === "yes"`, `logoFile` si `hasLogo === "yes"`, `photoFiles` (≥1) si `productPhotos === "pro"` ou `"to_retouch"`.
+- Limites fichiers : 10 Mo / fichier, 50 Mo cumulés sur les photos, types `image/png|jpeg|webp|svg+xml`.
+- Caps souples : 6 couleurs max, 2 adjectifs max.
+- Persistance `localStorage` (clé `ecommerce_form_draft`, expiration 7 jours, fichiers exclus) — restauration au mount avec toast `draft_restored`, nettoyée après envoi réussi. Désactivée en `import.meta.env.DEV` pour préserver le préremplissage de dev.
+- Récap repliable à l'étape 7 (`<details>`) listant les réponses des étapes 1 à 6 avec boutons "Modifier" qui rouvrent l'étape concernée.
+- Erreurs inline (`aria-invalid` + message rouge sous le champ) en complément des toasts.
+- Reset + `toast.success` après réponse HTTP OK ; `toast.error(form.error_submit)` sur échec réseau ou statut non-2xx ; bouton submit désactivé pendant l'envoi.

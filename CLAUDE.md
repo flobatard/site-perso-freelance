@@ -38,7 +38,9 @@ src/
 │   │   └── index.ts   # Record<string, ComponentType> — map id → composant
 │   ├── offering/      # Composants de contenu riche par prestation (un fichier par offering)
 │   │   ├── ShowcaseSite.tsx
-│   │   ├── ShowcaseSite.constants.ts  # Types, constantes et helpers purs du formulaire ShowcaseSite
+│   │   ├── ShowcaseSite.constants.ts   # Types, constantes et helpers purs du formulaire ShowcaseSite
+│   │   ├── EcommerceSite.tsx
+│   │   ├── EcommerceSite.constants.ts  # Types, constantes et helpers purs du formulaire EcommerceSite
 │   │   └── index.tsx  # Record<string, ComponentType> — map id → composant (offeringContents)
 │   └── ui/            # Composants shadcn/ui — ne pas modifier manuellement
 ├── pages/             # Index.tsx, ProjectDetail.tsx, OfferingDetail.tsx, CurriculumVitae.tsx, PrivacyPolicy.tsx, LegalNotice.tsx, NotFound.tsx
@@ -169,6 +171,7 @@ Endpoint actuel par offering :
 | Offering | Endpoint (chemin) |
 | --- | --- |
 | `showcase_site` | `POST /form/showcase-form` |
+| `ecommerce_site` | `POST /form/ecommerce-form` |
 
 Pour brancher un nouveau formulaire : suivre la même structure (scalaires dans `data` JSON, fichiers à part, filtrage des champs masqués, sidecar `.constants.ts` si non trivial) et ajouter l'entrée dans le tableau ci-dessus.
 
