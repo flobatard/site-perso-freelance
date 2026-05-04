@@ -167,6 +167,17 @@
           "success": "Thanks! Your brief has been received — I'll get back to you shortly.",
           "error_required": "Please answer the required questions before sending.",
           "error_submit": "Could not send the brief right now. Please try again later.",
+          "error_step_required": "Please fill in the required fields before continuing.",
+          "step_label": "Step {{current}}/{{total}}",
+          "step_titles": {
+            "1": "Your business",
+            "2": "Visual tone",
+            "3": "Content",
+            "4": "Practical details",
+            "5": "Your contact details"
+          },
+          "prev": "Previous",
+          "next": "Next",
           "consent_label": "I agree to my data being processed to study my project and contact me back, in accordance with the <link>privacy policy</link>.",
           "consent_required": "You must accept the privacy policy before sending the brief.",
           "section_consent_title": "Consent",

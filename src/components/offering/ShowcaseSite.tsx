@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Send } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
@@ -113,6 +113,8 @@ const DEV_PREFILLED_STATE: ShowcaseFormData = {
 };
 
 const INITIAL_STATE: ShowcaseFormData = import.meta.env.DEV ? DEV_PREFILLED_STATE : EMPTY_STATE;
+const TOTAL_STEPS = 5;
+const INITIAL_STEP = import.meta.env.DEV ? 5 : 1;
 
 const ShowcaseSite = ({
   onFormSubmit = submitShowcaseForm,
@@ -134,6 +136,18 @@ const ShowcaseSite = ({
   const [formData, setFormData] = useState<ShowcaseFormData>(INITIAL_STATE);
   const [colorDraft, setColorDraft] = useState("#ff6b35");
   const [customSectionDraft, setCustomSectionDraft] = useState("");
+  const [currentStep, setCurrentStep] = useState(INITIAL_STEP);
+  const [submitting, setSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [currentStep]);
 
   const addColor = () => {
     setFormData((prev) => {
@@ -182,9 +196,50 @@ const ShowcaseSite = ({
     }));
   };
 
-  const [submitting, setSubmitting] = useState(false);
+  const validateCurrentStep = (): boolean => {
+    switch (currentStep) {
+      case 1:
+        return !!(
+          formData.projectName.trim() &&
+          formData.activity.trim() &&
+          formData.audience.trim() &&
+          formData.goal
+        );
+      case 3:
+        return !!(formData.brandAssets && formData.photos);
+      case 4:
+        return !!(formData.deadline && formData.hasDomain);
+      default:
+        return true;
+    }
+  };
+
+  const goNext = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (!validateCurrentStep()) {
+      toast.error(t(`${ns}.form.error_step_required`));
+      return;
+    }
+    setCurrentStep((s) => Math.min(s + 1, TOTAL_STEPS));
+  };
+
+  const goPrev = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setCurrentStep((s) => Math.max(s - 1, 1));
+  };
+
+  const handleFormKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if (
+      e.key === "Enter" &&
+      currentStep < TOTAL_STEPS &&
+      e.target instanceof HTMLInputElement
+    ) {
+      e.preventDefault();
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log("Submit")
     e.preventDefault();
     if (
       !formData.activity.trim() ||
@@ -211,6 +266,7 @@ const ShowcaseSite = ({
       await onFormSubmit(formData);
       toast.success(t(`${ns}.form.success`));
       setFormData(INITIAL_STATE);
+      setCurrentStep(1);
     } catch {
       toast.error(t(`${ns}.form.error_submit`));
     } finally {
@@ -230,209 +286,355 @@ const ShowcaseSite = ({
           <h3 className="text-2xl font-bold mb-2">{t(`${ns}.form.title`)}</h3>
           <p className="text-foreground/70 mb-6">{t(`${ns}.form.intro`)}</p>
 
-          <form onSubmit={handleSubmit} className="space-y-10">
-            <fieldset className="space-y-6">
-              <legend className="text-lg font-semibold mb-2">
-                {t(`${ns}.form.section_activity.title`)}
-              </legend>
-
-              <div>
-                <label htmlFor="projectName" className="block text-sm font-medium mb-2">
-                  {t(`${ns}.form.section_contact.project_name_label`)}
-                </label>
-                <Input
-                  id="projectName"
-                  name="projectName"
-                  type="text"
-                  placeholder={t(`${ns}.form.section_contact.project_name_placeholder`)}
-                  value={formData.projectName}
-                  onChange={(e) => setFormData({ ...formData, projectName: e.target.value })}
-                  className="h-12"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="activity" className="block text-sm font-medium mb-2">
-                  {t(`${ns}.form.section_activity.activity_label`)}
-                </label>
-                <Input
-                  id="activity"
-                  name="activity"
-                  type="text"
-                  placeholder={t(`${ns}.form.section_activity.activity_placeholder`)}
-                  value={formData.activity}
-                  onChange={(e) => setFormData({ ...formData, activity: e.target.value })}
-                  className="h-12"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="audience" className="block text-sm font-medium mb-2">
-                  {t(`${ns}.form.section_activity.audience_label`)}
-                </label>
-                <Input
-                  id="audience"
-                  name="audience"
-                  type="text"
-                  placeholder={t(`${ns}.form.section_activity.audience_placeholder`)}
-                  value={formData.audience}
-                  onChange={(e) => setFormData({ ...formData, audience: e.target.value })}
-                  className="h-12"
-                />
-              </div>
-
-              <div>
-                <span className="block text-sm font-medium mb-2">
-                  {t(`${ns}.form.section_activity.goal_label`)}
+          <form ref={formRef} onSubmit={handleSubmit} onKeyDown={handleFormKeyDown} className="space-y-10">
+            <div className="mb-2">
+              <div className="flex justify-between text-sm text-foreground/70 mb-2">
+                <span aria-live="polite">
+                  {t(`${ns}.form.step_label`, { current: currentStep, total: TOTAL_STEPS })}
                 </span>
-                <RadioGroup
-                  value={formData.goal}
-                  onValueChange={(value) => setFormData({ ...formData, goal: value })}
-                  className="gap-2"
-                >
-                  {goalOptions.map((opt) => (
-                    <label key={opt.value} htmlFor={`goal-${opt.value}`} className="flex items-center gap-3 cursor-pointer">
-                      <RadioGroupItem id={`goal-${opt.value}`} value={opt.value} />
-                      <span className="text-foreground/80">{opt.label}</span>
-                    </label>
-                  ))}
-                </RadioGroup>
+                <span className="font-medium">
+                  {t(`${ns}.form.step_titles.${currentStep}`)}
+                </span>
               </div>
-            </fieldset>
-
-            <fieldset className="space-y-6">
-              <legend className="text-lg font-semibold mb-2">
-                {t(`${ns}.form.section_visual.title`)}
-              </legend>
-
-              <div>
-                <label htmlFor="inspirations" className="block text-sm font-medium mb-2">
-                  {t(`${ns}.form.section_visual.inspirations_label`)}
-                </label>
-                <Textarea
-                  id="inspirations"
-                  name="inspirations"
-                  placeholder={t(`${ns}.form.section_visual.inspirations_placeholder`)}
-                  value={formData.inspirations}
-                  onChange={(e) => setFormData({ ...formData, inspirations: e.target.value })}
-                  rows={4}
+              <div className="h-2 bg-muted rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gradient-warm transition-all duration-300"
+                  style={{ width: `${(currentStep / TOTAL_STEPS) * 100}%` }}
+                  role="progressbar"
+                  aria-valuenow={currentStep}
+                  aria-valuemin={1}
+                  aria-valuemax={TOTAL_STEPS}
                 />
               </div>
+            </div>
 
-              <div>
-                <span className="block text-sm font-medium mb-2">
-                  {t(`${ns}.form.section_visual.adjective_label`)}
-                </span>
-                <div className="space-y-2">
-                  {adjectiveOptions.map((opt) => {
-                    const checked = formData.adjectives.includes(opt.value);
-                    const disabled = !checked && formData.adjectives.length >= 2;
-                    return (
-                      <label
-                        key={opt.value}
-                        htmlFor={`adj-${opt.value}`}
-                        className={`flex items-center gap-3 ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
-                      >
+            {currentStep === 1 && (
+              <fieldset className="space-y-6">
+                <legend className="text-lg font-semibold mb-2">
+                  {t(`${ns}.form.section_activity.title`)}
+                </legend>
+
+                <div>
+                  <label htmlFor="projectName" className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_contact.project_name_label`)}
+                  </label>
+                  <Input
+                    id="projectName"
+                    name="projectName"
+                    type="text"
+                    placeholder={t(`${ns}.form.section_contact.project_name_placeholder`)}
+                    value={formData.projectName}
+                    onChange={(e) => setFormData({ ...formData, projectName: e.target.value })}
+                    className="h-12"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="activity" className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_activity.activity_label`)}
+                  </label>
+                  <Input
+                    id="activity"
+                    name="activity"
+                    type="text"
+                    placeholder={t(`${ns}.form.section_activity.activity_placeholder`)}
+                    value={formData.activity}
+                    onChange={(e) => setFormData({ ...formData, activity: e.target.value })}
+                    className="h-12"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="audience" className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_activity.audience_label`)}
+                  </label>
+                  <Input
+                    id="audience"
+                    name="audience"
+                    type="text"
+                    placeholder={t(`${ns}.form.section_activity.audience_placeholder`)}
+                    value={formData.audience}
+                    onChange={(e) => setFormData({ ...formData, audience: e.target.value })}
+                    className="h-12"
+                  />
+                </div>
+
+                <div>
+                  <span className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_activity.goal_label`)}
+                  </span>
+                  <RadioGroup
+                    value={formData.goal}
+                    onValueChange={(value) => setFormData({ ...formData, goal: value })}
+                    className="gap-2"
+                  >
+                    {goalOptions.map((opt) => (
+                      <label key={opt.value} htmlFor={`goal-${opt.value}`} className="flex items-center gap-3 cursor-pointer">
+                        <RadioGroupItem id={`goal-${opt.value}`} value={opt.value} />
+                        <span className="text-foreground/80">{opt.label}</span>
+                      </label>
+                    ))}
+                  </RadioGroup>
+                </div>
+              </fieldset>
+            )}
+
+            {currentStep === 2 && (
+              <fieldset className="space-y-6">
+                <legend className="text-lg font-semibold mb-2">
+                  {t(`${ns}.form.section_visual.title`)}
+                </legend>
+
+                <div>
+                  <label htmlFor="inspirations" className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_visual.inspirations_label`)}
+                  </label>
+                  <Textarea
+                    id="inspirations"
+                    name="inspirations"
+                    placeholder={t(`${ns}.form.section_visual.inspirations_placeholder`)}
+                    value={formData.inspirations}
+                    onChange={(e) => setFormData({ ...formData, inspirations: e.target.value })}
+                    rows={4}
+                  />
+                </div>
+
+                <div>
+                  <span className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_visual.adjective_label`)}
+                  </span>
+                  <div className="space-y-2">
+                    {adjectiveOptions.map((opt) => {
+                      const checked = formData.adjectives.includes(opt.value);
+                      const disabled = !checked && formData.adjectives.length >= 2;
+                      return (
+                        <label
+                          key={opt.value}
+                          htmlFor={`adj-${opt.value}`}
+                          className={`flex items-center gap-3 ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
+                        >
+                          <Checkbox
+                            id={`adj-${opt.value}`}
+                            checked={checked}
+                            disabled={disabled}
+                            onCheckedChange={() => toggleAdjective(opt.value)}
+                          />
+                          <span className="text-foreground/80">{opt.label}</span>
+                        </label>
+                      );
+                    })}
+                  </div>
+                </div>
+              </fieldset>
+            )}
+
+            {currentStep === 3 && (
+              <fieldset className="space-y-6">
+                <legend className="text-lg font-semibold mb-2">
+                  {t(`${ns}.form.section_content.title`)}
+                </legend>
+
+                <div>
+                  <span className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_content.brand_label`)}
+                  </span>
+                  <RadioGroup
+                    value={formData.brandAssets}
+                    onValueChange={(value) =>
+                      setFormData({
+                        ...formData,
+                        brandAssets: value,
+                        logoFile: value === "yes" || value === "logo_only" ? formData.logoFile : null,
+                        colors: value === "yes" ? formData.colors : [],
+                      })
+                    }
+                    className="gap-2"
+                  >
+                    {brandOptions.map((opt) => (
+                      <label key={opt.value} htmlFor={`brand-${opt.value}`} className="flex items-center gap-3 cursor-pointer">
+                        <RadioGroupItem id={`brand-${opt.value}`} value={opt.value} />
+                        <span className="text-foreground/80">{opt.label}</span>
+                      </label>
+                    ))}
+                  </RadioGroup>
+
+                  {(formData.brandAssets === "yes" || formData.brandAssets === "logo_only") && (
+                    <div className="mt-4">
+                      <label htmlFor="logoFile" className="block text-sm font-medium mb-2">
+                        {t(`${ns}.form.section_content.logo_upload_label`)}
+                      </label>
+                      <Input
+                        id="logoFile"
+                        name="logoFile"
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) =>
+                          setFormData({ ...formData, logoFile: e.target.files?.[0] ?? null })
+                        }
+                        className="h-12"
+                      />
+                      {formData.logoFile && (
+                        <p className="text-sm text-foreground/60 mt-2">{formData.logoFile.name}</p>
+                      )}
+                    </div>
+                  )}
+
+                  {formData.brandAssets === "yes" && (
+                    <div className="mt-4">
+                      <span className="block text-sm font-medium mb-1">
+                        {t(`${ns}.form.section_content.colors_label`)}
+                      </span>
+                      <p className="text-sm text-foreground/60 mb-3">
+                        {t(`${ns}.form.section_content.colors_hint`)}
+                      </p>
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="color"
+                          value={colorDraft}
+                          onChange={(e) => setColorDraft(e.target.value)}
+                          aria-label={t(`${ns}.form.section_content.color_picker_label`)}
+                          className="h-10 w-16 rounded border border-input cursor-pointer bg-transparent"
+                        />
+                        <Button type="button" variant="outline" onClick={addColor}>
+                          {t(`${ns}.form.section_content.color_add`)}
+                        </Button>
+                      </div>
+                      {formData.colors.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mt-3">
+                          {formData.colors.map((color) => (
+                            <span
+                              key={color}
+                              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-background"
+                            >
+                              <span
+                                className="inline-block w-4 h-4 rounded-full border border-border"
+                                style={{ backgroundColor: color }}
+                              />
+                              <span className="text-sm font-mono">{color}</span>
+                              <button
+                                type="button"
+                                onClick={() => removeColor(color)}
+                                aria-label={t(`${ns}.form.section_content.color_remove`)}
+                                className="text-foreground/60 hover:text-foreground text-lg leading-none"
+                              >
+                                ×
+                              </button>
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <span className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_content.photos_label`)}
+                  </span>
+                  <RadioGroup
+                    value={formData.photos}
+                    onValueChange={(value) =>
+                      setFormData({
+                        ...formData,
+                        photos: value,
+                        photoFiles: value === "yes" ? formData.photoFiles : [],
+                      })
+                    }
+                    className="gap-2"
+                  >
+                    {photosOptions.map((opt) => (
+                      <label key={opt.value} htmlFor={`photos-${opt.value}`} className="flex items-center gap-3 cursor-pointer">
+                        <RadioGroupItem id={`photos-${opt.value}`} value={opt.value} />
+                        <span className="text-foreground/80">{opt.label}</span>
+                      </label>
+                    ))}
+                  </RadioGroup>
+
+                  {formData.photos === "yes" && (
+                    <div className="mt-4">
+                      <label htmlFor="photoFiles" className="block text-sm font-medium mb-2">
+                        {t(`${ns}.form.section_content.photos_upload_label`)}
+                      </label>
+                      <Input
+                        id="photoFiles"
+                        name="photoFiles"
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            photoFiles: Array.from(e.target.files ?? []),
+                          })
+                        }
+                        className="h-12"
+                      />
+                      {formData.photoFiles.length > 0 && (
+                        <ul className="mt-2 space-y-1 text-sm text-foreground/60">
+                          {formData.photoFiles.map((file, i) => (
+                            <li key={`${file.name}-${i}`}>{file.name}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <span className="block text-sm font-medium mb-1">
+                    {t(`${ns}.form.section_content.sections_label`)}
+                  </span>
+                  <p className="text-sm text-foreground/60 mb-3">
+                    {t(`${ns}.form.section_content.sections_hint`)}
+                  </p>
+                  <div className="grid sm:grid-cols-2 gap-2">
+                    {sectionsOptions.map((opt) => (
+                      <label key={opt.value} htmlFor={`section-${opt.value}`} className="flex items-center gap-3 cursor-pointer">
                         <Checkbox
-                          id={`adj-${opt.value}`}
-                          checked={checked}
-                          disabled={disabled}
-                          onCheckedChange={() => toggleAdjective(opt.value)}
+                          id={`section-${opt.value}`}
+                          checked={formData.sections.includes(opt.value)}
+                          onCheckedChange={() => toggleSection(opt.value)}
                         />
                         <span className="text-foreground/80">{opt.label}</span>
                       </label>
-                    );
-                  })}
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset className="space-y-6">
-              <legend className="text-lg font-semibold mb-2">
-                {t(`${ns}.form.section_content.title`)}
-              </legend>
-
-              <div>
-                <span className="block text-sm font-medium mb-2">
-                  {t(`${ns}.form.section_content.brand_label`)}
-                </span>
-                <RadioGroup
-                  value={formData.brandAssets}
-                  onValueChange={(value) =>
-                    setFormData({
-                      ...formData,
-                      brandAssets: value,
-                      logoFile: value === "yes" || value === "logo_only" ? formData.logoFile : null,
-                      colors: value === "yes" ? formData.colors : [],
-                    })
-                  }
-                  className="gap-2"
-                >
-                  {brandOptions.map((opt) => (
-                    <label key={opt.value} htmlFor={`brand-${opt.value}`} className="flex items-center gap-3 cursor-pointer">
-                      <RadioGroupItem id={`brand-${opt.value}`} value={opt.value} />
-                      <span className="text-foreground/80">{opt.label}</span>
-                    </label>
-                  ))}
-                </RadioGroup>
-
-                {(formData.brandAssets === "yes" || formData.brandAssets === "logo_only") && (
-                  <div className="mt-4">
-                    <label htmlFor="logoFile" className="block text-sm font-medium mb-2">
-                      {t(`${ns}.form.section_content.logo_upload_label`)}
-                    </label>
-                    <Input
-                      id="logoFile"
-                      name="logoFile"
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) =>
-                        setFormData({ ...formData, logoFile: e.target.files?.[0] ?? null })
-                      }
-                      className="h-12"
-                    />
-                    {formData.logoFile && (
-                      <p className="text-sm text-foreground/60 mt-2">{formData.logoFile.name}</p>
-                    )}
+                    ))}
                   </div>
-                )}
 
-                {formData.brandAssets === "yes" && (
                   <div className="mt-4">
-                    <span className="block text-sm font-medium mb-1">
-                      {t(`${ns}.form.section_content.colors_label`)}
-                    </span>
-                    <p className="text-sm text-foreground/60 mb-3">
-                      {t(`${ns}.form.section_content.colors_hint`)}
-                    </p>
+                    <label htmlFor="customSection" className="block text-sm font-medium mb-2">
+                      {t(`${ns}.form.section_content.custom_sections_label`)}
+                    </label>
                     <div className="flex items-center gap-2">
-                      <input
-                        type="color"
-                        value={colorDraft}
-                        onChange={(e) => setColorDraft(e.target.value)}
-                        aria-label={t(`${ns}.form.section_content.color_picker_label`)}
-                        className="h-10 w-16 rounded border border-input cursor-pointer bg-transparent"
+                      <Input
+                        id="customSection"
+                        type="text"
+                        placeholder={t(`${ns}.form.section_content.custom_sections_placeholder`)}
+                        value={customSectionDraft}
+                        onChange={(e) => setCustomSectionDraft(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            addCustomSection();
+                          }
+                        }}
+                        className="h-12"
                       />
-                      <Button type="button" variant="outline" onClick={addColor}>
-                        {t(`${ns}.form.section_content.color_add`)}
+                      <Button type="button" variant="outline" onClick={addCustomSection}>
+                        {t(`${ns}.form.section_content.custom_sections_add`)}
                       </Button>
                     </div>
-                    {formData.colors.length > 0 && (
+                    {formData.customSections.length > 0 && (
                       <div className="flex flex-wrap gap-2 mt-3">
-                        {formData.colors.map((color) => (
+                        {formData.customSections.map((section) => (
                           <span
-                            key={color}
+                            key={section}
                             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-background"
                           >
-                            <span
-                              className="inline-block w-4 h-4 rounded-full border border-border"
-                              style={{ backgroundColor: color }}
-                            />
-                            <span className="text-sm font-mono">{color}</span>
+                            <span className="text-sm">{section}</span>
                             <button
                               type="button"
-                              onClick={() => removeColor(color)}
-                              aria-label={t(`${ns}.form.section_content.color_remove`)}
+                              onClick={() => removeCustomSection(section)}
+                              aria-label={t(`${ns}.form.section_content.custom_sections_remove`)}
                               className="text-foreground/60 hover:text-foreground text-lg leading-none"
                             >
                               ×
@@ -442,321 +644,223 @@ const ShowcaseSite = ({
                       </div>
                     )}
                   </div>
-                )}
-              </div>
+                </div>
+              </fieldset>
+            )}
 
-              <div>
-                <span className="block text-sm font-medium mb-2">
-                  {t(`${ns}.form.section_content.photos_label`)}
-                </span>
-                <RadioGroup
-                  value={formData.photos}
-                  onValueChange={(value) =>
-                    setFormData({
-                      ...formData,
-                      photos: value,
-                      photoFiles: value === "yes" ? formData.photoFiles : [],
-                    })
-                  }
-                  className="gap-2"
-                >
-                  {photosOptions.map((opt) => (
-                    <label key={opt.value} htmlFor={`photos-${opt.value}`} className="flex items-center gap-3 cursor-pointer">
-                      <RadioGroupItem id={`photos-${opt.value}`} value={opt.value} />
-                      <span className="text-foreground/80">{opt.label}</span>
-                    </label>
-                  ))}
-                </RadioGroup>
+            {currentStep === 4 && (
+              <fieldset className="space-y-6">
+                <legend className="text-lg font-semibold mb-2">
+                  {t(`${ns}.form.section_practical.title`)}
+                </legend>
 
-                {formData.photos === "yes" && (
-                  <div className="mt-4">
-                    <label htmlFor="photoFiles" className="block text-sm font-medium mb-2">
-                      {t(`${ns}.form.section_content.photos_upload_label`)}
-                    </label>
-                    <Input
-                      id="photoFiles"
-                      name="photoFiles"
-                      type="file"
-                      accept="image/*"
-                      multiple
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          photoFiles: Array.from(e.target.files ?? []),
-                        })
-                      }
-                      className="h-12"
-                    />
-                    {formData.photoFiles.length > 0 && (
-                      <ul className="mt-2 space-y-1 text-sm text-foreground/60">
-                        {formData.photoFiles.map((file, i) => (
-                          <li key={`${file.name}-${i}`}>{file.name}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <span className="block text-sm font-medium mb-1">
-                  {t(`${ns}.form.section_content.sections_label`)}
-                </span>
-                <p className="text-sm text-foreground/60 mb-3">
-                  {t(`${ns}.form.section_content.sections_hint`)}
-                </p>
-                <div className="grid sm:grid-cols-2 gap-2">
-                  {sectionsOptions.map((opt) => (
-                    <label key={opt.value} htmlFor={`section-${opt.value}`} className="flex items-center gap-3 cursor-pointer">
-                      <Checkbox
-                        id={`section-${opt.value}`}
-                        checked={formData.sections.includes(opt.value)}
-                        onCheckedChange={() => toggleSection(opt.value)}
-                      />
-                      <span className="text-foreground/80">{opt.label}</span>
-                    </label>
-                  ))}
+                <div>
+                  <span className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_practical.deadline_label`)}
+                  </span>
+                  <RadioGroup
+                    value={formData.deadline}
+                    onValueChange={(value) => setFormData({ ...formData, deadline: value })}
+                    className="gap-2"
+                  >
+                    {deadlineOptions.map((opt) => (
+                      <label key={opt.value} htmlFor={`deadline-${opt.value}`} className="flex items-center gap-3 cursor-pointer">
+                        <RadioGroupItem id={`deadline-${opt.value}`} value={opt.value} />
+                        <span className="text-foreground/80">{opt.label}</span>
+                      </label>
+                    ))}
+                  </RadioGroup>
                 </div>
 
-                <div className="mt-4">
-                  <label htmlFor="customSection" className="block text-sm font-medium mb-2">
-                    {t(`${ns}.form.section_content.custom_sections_label`)}
-                  </label>
-                  <div className="flex items-center gap-2">
-                    <Input
-                      id="customSection"
-                      type="text"
-                      placeholder={t(`${ns}.form.section_content.custom_sections_placeholder`)}
-                      value={customSectionDraft}
-                      onChange={(e) => setCustomSectionDraft(e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                          e.preventDefault();
-                          addCustomSection();
-                        }
-                      }}
-                      className="h-12"
-                    />
-                    <Button type="button" variant="outline" onClick={addCustomSection}>
-                      {t(`${ns}.form.section_content.custom_sections_add`)}
-                    </Button>
-                  </div>
-                  {formData.customSections.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {formData.customSections.map((section) => (
-                        <span
-                          key={section}
-                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-background"
-                        >
-                          <span className="text-sm">{section}</span>
-                          <button
-                            type="button"
-                            onClick={() => removeCustomSection(section)}
-                            aria-label={t(`${ns}.form.section_content.custom_sections_remove`)}
-                            className="text-foreground/60 hover:text-foreground text-lg leading-none"
-                          >
-                            ×
-                          </button>
-                        </span>
-                      ))}
+                <div>
+                  <span className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_practical.domain_label`)}
+                  </span>
+                  <RadioGroup
+                    value={formData.hasDomain}
+                    onValueChange={(value) =>
+                      setFormData({
+                        ...formData,
+                        hasDomain: value as "yes" | "no",
+                        domainName: value === "yes" ? formData.domainName : "",
+                      })
+                    }
+                    className="gap-2"
+                  >
+                    <label htmlFor="domain-yes" className="flex items-center gap-3 cursor-pointer">
+                      <RadioGroupItem id="domain-yes" value="yes" />
+                      <span className="text-foreground/80">{t(`${ns}.form.section_practical.domain_yes`)}</span>
+                    </label>
+                    <label htmlFor="domain-no" className="flex items-center gap-3 cursor-pointer">
+                      <RadioGroupItem id="domain-no" value="no" />
+                      <span className="text-foreground/80">{t(`${ns}.form.section_practical.domain_no`)}</span>
+                    </label>
+                  </RadioGroup>
+
+                  {formData.hasDomain === "yes" && (
+                    <div className="mt-4">
+                      <label htmlFor="domainName" className="block text-sm font-medium mb-2">
+                        {t(`${ns}.form.section_practical.domain_name_label`)}
+                      </label>
+                      <Input
+                        id="domainName"
+                        name="domainName"
+                        type="text"
+                        placeholder={t(`${ns}.form.section_practical.domain_name_placeholder`)}
+                        value={formData.domainName}
+                        onChange={(e) => setFormData({ ...formData, domainName: e.target.value })}
+                        className="h-12"
+                      />
                     </div>
                   )}
                 </div>
-              </div>
-            </fieldset>
 
-            <fieldset className="space-y-6">
-              <legend className="text-lg font-semibold mb-2">
-                {t(`${ns}.form.section_practical.title`)}
-              </legend>
-
-              <div>
-                <span className="block text-sm font-medium mb-2">
-                  {t(`${ns}.form.section_practical.deadline_label`)}
-                </span>
-                <RadioGroup
-                  value={formData.deadline}
-                  onValueChange={(value) => setFormData({ ...formData, deadline: value })}
-                  className="gap-2"
-                >
-                  {deadlineOptions.map((opt) => (
-                    <label key={opt.value} htmlFor={`deadline-${opt.value}`} className="flex items-center gap-3 cursor-pointer">
-                      <RadioGroupItem id={`deadline-${opt.value}`} value={opt.value} />
-                      <span className="text-foreground/80">{opt.label}</span>
-                    </label>
-                  ))}
-                </RadioGroup>
-              </div>
-
-              <div>
-                <span className="block text-sm font-medium mb-2">
-                  {t(`${ns}.form.section_practical.domain_label`)}
-                </span>
-                <RadioGroup
-                  value={formData.hasDomain}
-                  onValueChange={(value) =>
-                    setFormData({
-                      ...formData,
-                      hasDomain: value as "yes" | "no",
-                      domainName: value === "yes" ? formData.domainName : "",
-                    })
-                  }
-                  className="gap-2"
-                >
-                  <label htmlFor="domain-yes" className="flex items-center gap-3 cursor-pointer">
-                    <RadioGroupItem id="domain-yes" value="yes" />
-                    <span className="text-foreground/80">{t(`${ns}.form.section_practical.domain_yes`)}</span>
+                <div>
+                  <label htmlFor="notes" className="block text-sm font-medium mb-2">
+                    {t(`${ns}.form.section_practical.notes_label`)}
                   </label>
-                  <label htmlFor="domain-no" className="flex items-center gap-3 cursor-pointer">
-                    <RadioGroupItem id="domain-no" value="no" />
-                    <span className="text-foreground/80">{t(`${ns}.form.section_practical.domain_no`)}</span>
-                  </label>
-                </RadioGroup>
+                  <Textarea
+                    id="notes"
+                    name="notes"
+                    placeholder={t(`${ns}.form.section_practical.notes_placeholder`)}
+                    value={formData.notes}
+                    onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                    rows={4}
+                  />
+                </div>
+              </fieldset>
+            )}
 
-                {formData.hasDomain === "yes" && (
-                  <div className="mt-4">
-                    <label htmlFor="domainName" className="block text-sm font-medium mb-2">
-                      {t(`${ns}.form.section_practical.domain_name_label`)}
+            {currentStep === 5 && (
+              <>
+                <fieldset className="space-y-6">
+                  <legend className="text-lg font-semibold mb-2">
+                    {t(`${ns}.form.section_contact.title`)}
+                  </legend>
+
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="firstName" className="block text-sm font-medium mb-2">
+                        {t(`${ns}.form.section_contact.first_name_label`)}
+                      </label>
+                      <Input
+                        id="firstName"
+                        name="firstName"
+                        type="text"
+                        autoComplete="given-name"
+                        placeholder={t(`${ns}.form.section_contact.first_name_placeholder`)}
+                        value={formData.firstName}
+                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                        className="h-12"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="lastName" className="block text-sm font-medium mb-2">
+                        {t(`${ns}.form.section_contact.last_name_label`)}
+                      </label>
+                      <Input
+                        id="lastName"
+                        name="lastName"
+                        type="text"
+                        autoComplete="family-name"
+                        placeholder={t(`${ns}.form.section_contact.last_name_placeholder`)}
+                        value={formData.lastName}
+                        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                        className="h-12"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium mb-2">
+                      {t(`${ns}.form.section_contact.email_label`)}
                     </label>
                     <Input
-                      id="domainName"
-                      name="domainName"
-                      type="text"
-                      placeholder={t(`${ns}.form.section_practical.domain_name_placeholder`)}
-                      value={formData.domainName}
-                      onChange={(e) => setFormData({ ...formData, domainName: e.target.value })}
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      placeholder={t(`${ns}.form.section_contact.email_placeholder`)}
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="h-12"
                     />
                   </div>
-                )}
-              </div>
 
-              <div>
-                <label htmlFor="notes" className="block text-sm font-medium mb-2">
-                  {t(`${ns}.form.section_practical.notes_label`)}
-                </label>
-                <Textarea
-                  id="notes"
-                  name="notes"
-                  placeholder={t(`${ns}.form.section_practical.notes_placeholder`)}
-                  value={formData.notes}
-                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  rows={4}
-                />
-              </div>
-            </fieldset>
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                      {t(`${ns}.form.section_contact.phone_label`)}
+                    </label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      autoComplete="tel"
+                      placeholder={t(`${ns}.form.section_contact.phone_placeholder`)}
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="h-12"
+                    />
+                  </div>
+                </fieldset>
 
-            <fieldset className="space-y-6">
-              <legend className="text-lg font-semibold mb-2">
-                {t(`${ns}.form.section_contact.title`)}
-              </legend>
+                <fieldset>
+                  <legend className="text-lg font-semibold mb-2">
+                    {t(`${ns}.form.section_consent_title`)}
+                  </legend>
+                  <div className="flex items-start gap-3">
+                    <Checkbox
+                      id="showcase-consent"
+                      checked={formData.consent}
+                      onCheckedChange={(c) => setFormData({ ...formData, consent: c === true })}
+                      className="mt-0.5"
+                    />
+                    <label
+                      htmlFor="showcase-consent"
+                      className="text-sm text-foreground/80 leading-relaxed cursor-pointer"
+                    >
+                      <Trans
+                        i18nKey={`${ns}.form.consent_label`}
+                        components={{
+                          link: (
+                            <Link
+                              to={`/${lang}/confidentialite`}
+                              className="text-primary underline hover:no-underline"
+                            />
+                          ),
+                        }}
+                      />
+                    </label>
+                  </div>
+                </fieldset>
+              </>
+            )}
 
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium mb-2">
-                    {t(`${ns}.form.section_contact.first_name_label`)}
-                  </label>
-                  <Input
-                    id="firstName"
-                    name="firstName"
-                    type="text"
-                    autoComplete="given-name"
-                    placeholder={t(`${ns}.form.section_contact.first_name_placeholder`)}
-                    value={formData.firstName}
-                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                    className="h-12"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium mb-2">
-                    {t(`${ns}.form.section_contact.last_name_label`)}
-                  </label>
-                  <Input
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    autoComplete="family-name"
-                    placeholder={t(`${ns}.form.section_contact.last_name_placeholder`)}
-                    value={formData.lastName}
-                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                    className="h-12"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  {t(`${ns}.form.section_contact.email_label`)}
-                </label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  placeholder={t(`${ns}.form.section_contact.email_placeholder`)}
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="h-12"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                  {t(`${ns}.form.section_contact.phone_label`)}
-                </label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  autoComplete="tel"
-                  placeholder={t(`${ns}.form.section_contact.phone_placeholder`)}
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="h-12"
-                />
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend className="text-lg font-semibold mb-2">
-                {t(`${ns}.form.section_consent_title`)}
-              </legend>
-              <div className="flex items-start gap-3">
-                <Checkbox
-                  id="showcase-consent"
-                  checked={formData.consent}
-                  onCheckedChange={(c) => setFormData({ ...formData, consent: c === true })}
-                  className="mt-0.5"
-                />
-                <label
-                  htmlFor="showcase-consent"
-                  className="text-sm text-foreground/80 leading-relaxed cursor-pointer"
+            <div className="flex gap-3 justify-between pt-2">
+              {currentStep > 1 ? (
+                <Button type="button" variant="outline" size="lg" onClick={goPrev}>
+                  {t(`${ns}.form.prev`)}
+                </Button>
+              ) : (
+                <span />
+              )}
+              {currentStep < TOTAL_STEPS ? (
+                <Button type="button" size="lg" onClick={goNext} className="ml-auto">
+                  {t(`${ns}.form.next`)}
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={submitting || !formData.consent}
+                  className="ml-auto bg-gradient-warm shadow-soft hover:shadow-hover transition-all duration-300"
                 >
-                  <Trans
-                    i18nKey={`${ns}.form.consent_label`}
-                    components={{
-                      link: (
-                        <Link
-                          to={`/${lang}/confidentialite`}
-                          className="text-primary underline hover:no-underline"
-                        />
-                      ),
-                    }}
-                  />
-                </label>
-              </div>
-            </fieldset>
-
-            <Button
-              type="submit"
-              size="lg"
-              disabled={submitting || !formData.consent}
-              className="w-full bg-gradient-warm shadow-soft hover:shadow-hover transition-all duration-300"
-            >
-              {t(`${ns}.form.submit`)}
-              <Send className="ml-2" size={18} />
-            </Button>
+                  {t(`${ns}.form.submit`)}
+                  <Send className="ml-2" size={18} />
+                </Button>
+              )}
+            </div>
           </form>
         </div>
       </section>

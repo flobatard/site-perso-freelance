@@ -167,6 +167,17 @@
           "success": "Merci ! Votre brief a bien été enregistré, je reviens vers vous rapidement.",
           "error_required": "Merci de répondre aux questions obligatoires avant d'envoyer.",
           "error_submit": "Impossible d'envoyer le brief pour le moment. Merci de réessayer plus tard.",
+          "error_step_required": "Merci de remplir les champs requis avant de continuer.",
+          "step_label": "Étape {{current}}/{{total}}",
+          "step_titles": {
+            "1": "Votre activité",
+            "2": "L'ambiance visuelle",
+            "3": "Le contenu",
+            "4": "Le pratique",
+            "5": "Vos coordonnées"
+          },
+          "prev": "Précédent",
+          "next": "Suivant",
           "consent_label": "J'accepte que mes données soient traitées pour étudier mon projet et me recontacter, conformément à la <link>politique de confidentialité</link>.",
           "consent_required": "Vous devez accepter la politique de confidentialité pour envoyer le brief.",
           "section_consent_title": "Consentement",
