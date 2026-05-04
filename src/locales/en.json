@@ -300,6 +300,346 @@
             "phone_placeholder": "e.g. +33 6 12 34 56 78"
           }
         }
+      },
+      "ecommerce_site": {
+        "title": "E-commerce Site",
+        "description": "TODO short description of the e-commerce offering.",
+        "context_title": "For whom & why",
+        "context_text": "TODO context for the e-commerce offering — to be filled in.",
+        "features_title": "What's included",
+        "features": [
+          "TODO — list of included features"
+        ],
+        "technical_title": "Technical choices",
+        "technical": [
+          { "name": "TODO", "desc": "TODO description of the technical choice" }
+        ],
+        "pricing_title": "Pricing",
+        "pricing_starting_at": "TODO pricing",
+        "pricing_note": "TODO pricing note.",
+        "form": {
+          "title": "Project brief",
+          "intro": "A few quick questions to frame your project and put together an accurate quote.",
+          "submit": "Send brief",
+          "success": "Thanks! Your brief has been received — I'll get back to you shortly.",
+          "error_required": "Please answer the required questions before sending.",
+          "error_submit": "Could not send the brief right now. Please try again later.",
+          "error_step_required": "Please fill in the required fields before continuing.",
+          "error_field_required": "This field is required.",
+          "error_invalid_email": "Invalid email address.",
+          "error_step_jump": "Missing fields at step {{step}} ({{title}}).",
+          "error_file_too_large": "File too large (max {{max}}).",
+          "error_file_type": "Unsupported image format. Accepted: PNG, JPEG, WebP, SVG.",
+          "error_photos_total_too_large": "Total photo size exceeds {{max}}.",
+          "error_max_colors": "You reached the {{max}} colors maximum.",
+          "review_title": "Review my answers",
+          "review_edit": "Edit",
+          "review_empty": "Not provided",
+          "photo_remove": "Remove this photo",
+          "draft_restored": "Draft restored.",
+          "step_label": "Step {{current}}/{{total}}",
+          "step_titles": {
+            "1": "Your business",
+            "2": "Catalog & inventory",
+            "3": "Payment & shipping",
+            "4": "UX & marketing",
+            "5": "Integrations & migration",
+            "6": "Branding & logistics",
+            "7": "Your contact details"
+          },
+          "prev": "Previous",
+          "next": "Next",
+          "consent_label": "I agree to my data being processed to study my project and contact me back, in accordance with the <link>privacy policy</link>.",
+          "consent_required": "You must accept the privacy policy before sending the brief.",
+          "section_consent_title": "Consent",
+          "section_activity": {
+            "title": "Your business",
+            "project_name_label": "Project or store name",
+            "project_name_placeholder": "e.g. my-store",
+            "pitch_label": "What do you sell, in one sentence?",
+            "pitch_placeholder": "e.g. Handmade ceramics by French artisans",
+            "product_types_label": "What kind of products do you sell? (multiple allowed)",
+            "product_types_options": [
+              { "label": "Physical products", "value": "physical" },
+              { "label": "Digital products (ebooks, files, courses)", "value": "digital" },
+              { "label": "Services", "value": "services" },
+              { "label": "Subscriptions", "value": "subscriptions" },
+              { "label": "Mix of several", "value": "mix" }
+            ],
+            "business_model_label": "Who do you mainly sell to?",
+            "business_model_options": [
+              { "label": "Consumers (B2C)", "value": "b2c" },
+              { "label": "Businesses (B2B)", "value": "b2b" },
+              { "label": "Both", "value": "both" }
+            ],
+            "current_sales_label": "Are you already selling?",
+            "current_sales_options": [
+              { "label": "Not yet", "value": "not_yet" },
+              { "label": "In a physical store", "value": "physical_store" },
+              { "label": "On another website", "value": "other_site" },
+              { "label": "On a marketplace (Amazon, Etsy…)", "value": "marketplace" }
+            ],
+            "current_platform_label": "On which platform currently?",
+            "current_platform_options": [
+              { "label": "Shopify", "value": "shopify" },
+              { "label": "WooCommerce", "value": "woocommerce" },
+              { "label": "Prestashop", "value": "prestashop" },
+              { "label": "Wix", "value": "wix" },
+              { "label": "Other", "value": "other" }
+            ],
+            "audience_label": "Who is your audience?",
+            "audience_placeholder": "e.g. Women aged 25-45, craft lovers",
+            "target_platform_label": "Do you have a target platform in mind?",
+            "target_platform_options": [
+              { "label": "Shopify", "value": "shopify" },
+              { "label": "WooCommerce", "value": "woocommerce" },
+              { "label": "Prestashop", "value": "prestashop" },
+              { "label": "Custom build", "value": "custom" },
+              { "label": "I'd like advice", "value": "advice" }
+            ]
+          },
+          "section_catalog": {
+            "title": "Catalog & inventory",
+            "launch_volume_label": "How many products at launch?",
+            "launch_volume_options": [
+              { "label": "Less than 10", "value": "lt_10" },
+              { "label": "10 to 50", "value": "10_50" },
+              { "label": "50 to 200", "value": "50_200" },
+              { "label": "200 to 1000", "value": "200_1000" },
+              { "label": "More than 1000", "value": "gt_1000" }
+            ],
+            "year_volume_label": "Estimated volume in 1 year?",
+            "year_volume_options": [
+              { "label": "Less than 10", "value": "lt_10" },
+              { "label": "10 to 50", "value": "10_50" },
+              { "label": "50 to 200", "value": "50_200" },
+              { "label": "200 to 1000", "value": "200_1000" },
+              { "label": "More than 1000", "value": "gt_1000" }
+            ],
+            "variants_label": "Do your products have variants?",
+            "variants_options": [
+              { "label": "No", "value": "no" },
+              { "label": "Yes, simple ones (size, color)", "value": "simple" },
+              { "label": "Yes, complex ones (customisation, configuration)", "value": "complex" }
+            ],
+            "stock_management_label": "Inventory management",
+            "stock_management_options": [
+              { "label": "No stock (services / digital)", "value": "none" },
+              { "label": "Simple stock", "value": "simple" },
+              { "label": "Real-time", "value": "realtime" },
+              { "label": "Multi-warehouse", "value": "multi_warehouse" }
+            ],
+            "product_sheets_label": "Are your product sheets ready?",
+            "product_sheets_options": [
+              { "label": "Yes, copy and photos ready", "value": "ready" },
+              { "label": "Copy only", "value": "text_only" },
+              { "label": "Nothing yet", "value": "nothing" },
+              { "label": "To be imported from another site", "value": "import" }
+            ]
+          },
+          "section_payment": {
+            "title": "Payment, shipping & tax",
+            "payment_methods_label": "Desired payment methods (multiple allowed)",
+            "payment_methods_options": [
+              { "label": "Credit card", "value": "card" },
+              { "label": "Apple Pay / Google Pay", "value": "apple_google_pay" },
+              { "label": "PayPal", "value": "paypal" },
+              { "label": "Bank transfer", "value": "bank_transfer" },
+              { "label": "SEPA direct debit", "value": "sepa" },
+              { "label": "Pay in instalments (Alma, Klarna)", "value": "installments" }
+            ],
+            "transaction_type_label": "Transaction type",
+            "transaction_type_options": [
+              { "label": "One-off payment", "value": "one_time" },
+              { "label": "Recurring subscription", "value": "subscription" },
+              { "label": "Both", "value": "both" }
+            ],
+            "currencies_label": "Currencies",
+            "currencies_options": [
+              { "label": "EUR only", "value": "eur_only" },
+              { "label": "Multi-currency", "value": "multi" }
+            ],
+            "shipping_zones_label": "Shipping zones (multiple allowed)",
+            "shipping_zones_options": [
+              { "label": "Mainland France", "value": "metro_fr" },
+              { "label": "French overseas territories", "value": "dom_tom" },
+              { "label": "European Union", "value": "eu" },
+              { "label": "Worldwide", "value": "world" }
+            ],
+            "shipping_methods_label": "Shipping methods (multiple allowed)",
+            "shipping_methods_options": [
+              { "label": "Colissimo", "value": "colissimo" },
+              { "label": "Mondial Relay (pickup points)", "value": "mondial_relay" },
+              { "label": "Chronopost", "value": "chronopost" },
+              { "label": "Custom carrier", "value": "custom_carrier" },
+              { "label": "Click & collect", "value": "click_collect" },
+              { "label": "Store pickup", "value": "store_pickup" },
+              { "label": "Digital delivery", "value": "digital_delivery" }
+            ],
+            "free_shipping_label": "Free shipping?",
+            "free_shipping_options": [
+              { "label": "Never", "value": "never" },
+              { "label": "Above a cart threshold", "value": "above_threshold" },
+              { "label": "Always", "value": "always" }
+            ],
+            "vat_label": "Tax specifics",
+            "vat_options": [
+              { "label": "Standard French VAT", "value": "standard_fr" },
+              { "label": "Multiple rates (5.5% / 10% / 20%)", "value": "multi_rates" },
+              { "label": "Intra-EU sales", "value": "intra_eu" },
+              { "label": "Outside-EU sales", "value": "outside_eu" },
+              { "label": "I'm not sure", "value": "unknown" }
+            ]
+          },
+          "section_marketing": {
+            "title": "UX & marketing",
+            "guest_checkout_label": "Guest checkout or account required?",
+            "guest_checkout_options": [
+              { "label": "Guest checkout allowed", "value": "guest_allowed" },
+              { "label": "Account required", "value": "account_required" }
+            ],
+            "features_label": "Desired features (optional)",
+            "features_hint": "Pick the ones you're interested in — we'll refine together.",
+            "features_options": [
+              { "label": "Wishlist", "value": "wishlist" },
+              { "label": "Loyalty / points programme", "value": "loyalty" },
+              { "label": "Promo codes and discounts", "value": "promo_codes" },
+              { "label": "Customer reviews", "value": "reviews" },
+              { "label": "Recommendations / related products", "value": "recommendations" },
+              { "label": "Newsletter signup", "value": "newsletter" },
+              { "label": "Abandoned cart recovery", "value": "abandoned_cart" },
+              { "label": "Blog / editorial content", "value": "blog" },
+              { "label": "Live chat / support", "value": "chat" }
+            ],
+            "seo_strategy_label": "Do you have an SEO / SEA strategy in mind?",
+            "seo_strategy_options": [
+              { "label": "Yes, I'll handle it", "value": "self_managed" },
+              { "label": "I'd like advice", "value": "needs_advice" },
+              { "label": "Not thought about it yet", "value": "not_yet" }
+            ]
+          },
+          "section_integrations": {
+            "title": "Integrations & migration",
+            "accounting_label": "Accounting software used",
+            "accounting_options": [
+              { "label": "Pennylane", "value": "pennylane" },
+              { "label": "Sage", "value": "sage" },
+              { "label": "Quickbooks", "value": "quickbooks" },
+              { "label": "None", "value": "none" },
+              { "label": "Other", "value": "other" }
+            ],
+            "accounting_other_label": "Which one?",
+            "accounting_other_placeholder": "e.g. Indy, Tiime…",
+            "erp_crm_label": "ERP or CRM in use? (optional)",
+            "erp_crm_placeholder": "e.g. Odoo, HubSpot, Salesforce…",
+            "shipping_tool_label": "Shipping / label-printing tool",
+            "shipping_tool_options": [
+              { "label": "Sendcloud", "value": "sendcloud" },
+              { "label": "Boxtal", "value": "boxtal" },
+              { "label": "None", "value": "none" },
+              { "label": "Other", "value": "other" }
+            ],
+            "shipping_tool_other_label": "Which one?",
+            "shipping_tool_other_placeholder": "e.g. Shippingbo, EasyPost…",
+            "marketplace_sync_label": "Marketplace synchronisation? (optional)",
+            "marketplace_sync_options": [
+              { "label": "Amazon", "value": "amazon" },
+              { "label": "Etsy", "value": "etsy" },
+              { "label": "Cdiscount", "value": "cdiscount" },
+              { "label": "None", "value": "none" }
+            ],
+            "migration_label": "Migration from an existing platform?",
+            "migration_options": [
+              { "label": "No", "value": "no" },
+              { "label": "Yes, products only", "value": "products_only" },
+              { "label": "Yes, products + customers", "value": "products_customers" },
+              { "label": "Yes, products + customers + orders", "value": "full" }
+            ],
+            "admin_count_label": "How many admins will use the back-office?",
+            "admin_count_options": [
+              { "label": "Just one", "value": "1" },
+              { "label": "2 to 3", "value": "2_3" },
+              { "label": "4 or more", "value": "4_plus" }
+            ],
+            "admin_roles_label": "With different roles?",
+            "admin_roles_options": [
+              { "label": "Yes", "value": "yes" },
+              { "label": "No", "value": "no" }
+            ]
+          },
+          "section_identity": {
+            "title": "Branding & logistics",
+            "logo_question_label": "Do you already have a logo?",
+            "logo_options": [
+              { "label": "Yes", "value": "yes" },
+              { "label": "No, I'd like you to propose something", "value": "no" }
+            ],
+            "logo_upload_label": "Upload your logo",
+            "colors_question_label": "Do you already have defined brand colors?",
+            "colors_options": [
+              { "label": "Yes", "value": "yes" },
+              { "label": "No, I'd like you to propose something", "value": "no" }
+            ],
+            "colors_label": "Your brand colors",
+            "colors_hint": "Add one or more colors by picking one and clicking Add.",
+            "color_picker_label": "Pick a color",
+            "color_add": "Add",
+            "color_remove": "Remove color",
+            "product_photos_label": "Product photos",
+            "product_photos_options": [
+              { "label": "Yes, professional photos ready", "value": "pro" },
+              { "label": "Yes, but they need retouching", "value": "to_retouch" },
+              { "label": "No, to be shot", "value": "to_shoot" },
+              { "label": "No, supplier photos (to be integrated dynamically)", "value": "supplier_dynamic" }
+            ],
+            "photos_upload_label": "Upload your photos",
+            "inspirations_label": "Pick 1 to 3 e-commerce sites that inspire you",
+            "inspirations_placeholder": "Paste URLs, one per line",
+            "adjective_label": "Which adjective best describes the image you want to project? (2 max)",
+            "adjective_options": [
+              { "label": "Modern & minimal", "value": "modern" },
+              { "label": "Warm & approachable", "value": "warm" },
+              { "label": "Premium & elegant", "value": "premium" },
+              { "label": "Bold & creative", "value": "bold" },
+              { "label": "Serious & reassuring", "value": "serious" }
+            ],
+            "deadline_label": "When would you like your site to be ready?",
+            "deadline_options": [
+              { "label": "Less than 2 weeks", "value": "lt_2_weeks" },
+              { "label": "1 month", "value": "1_month" },
+              { "label": "1 to 3 months", "value": "1_to_3_months" },
+              { "label": "3 to 6 months", "value": "3_to_6_months" },
+              { "label": "6 months or more", "value": "gt_6_months" }
+            ],
+            "domain_label": "Do you already have a domain name?",
+            "domain_yes": "Yes",
+            "domain_no": "No",
+            "domain_name_label": "Which one?",
+            "domain_name_placeholder": "e.g. my-store.com",
+            "budget_label": "Approximate budget",
+            "budget_options": [
+              { "label": "Less than €10,000", "value": "lt_10k" },
+              { "label": "€10,000 to €30,000", "value": "10_30k" },
+              { "label": "€30,000 to €60,000", "value": "30_60k" },
+              { "label": "€60,000 to €100,000", "value": "60_100k" },
+              { "label": "More than €100,000", "value": "gt_100k" },
+              { "label": "Not sure, to be discussed", "value": "unknown" }
+            ],
+            "notes_label": "Anything we absolutely shouldn't forget? (optional)",
+            "notes_placeholder": "e.g. ERP integration, accounting export, priority marketplace…"
+          },
+          "section_contact": {
+            "title": "Your contact details",
+            "first_name_label": "First name",
+            "first_name_placeholder": "e.g. Florian",
+            "last_name_label": "Last name",
+            "last_name_placeholder": "e.g. Batard",
+            "email_label": "Email",
+            "email_placeholder": "your@email.com",
+            "phone_label": "Phone (optional)",
+            "phone_placeholder": "e.g. +33 6 12 34 56 78"
+          }
+        }
       }
     }
   },
@@ -521,7 +861,8 @@
           "\"lang\" cookie and localStorage: stores the chosen language (duration: 1 year).",
           "\"theme\" localStorage: stores your theme preference (light/dark).",
           "\"cookie-info-dismissed\" localStorage: stores the fact that you closed the cookie information banner.",
-          "\"showcase_form_draft\" localStorage: temporary save (7 days) of your showcase brief draft, automatically removed after submission."
+          "\"showcase_form_draft\" localStorage: temporary save (7 days) of your showcase brief draft, automatically removed after submission.",
+          "\"ecommerce_form_draft\" localStorage: temporary save (7 days) of your e-commerce brief draft, automatically removed after submission."
         ]
       },
       {

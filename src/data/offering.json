@@ -3,6 +3,10 @@
     {
       "id": "showcase_site",
       "title": "Site Vitrine"
+    },
+    {
+      "id": "ecommerce_site",
+      "title": "Site E-commerce"
     }
   ]
 }
