@@ -82,6 +82,7 @@ const CurriculumVitae = () => {
   const freelanceProjects = t("cv.freelance_projects", { returnObjects: true }) as Experience[];
   const education = t("cv.education", { returnObjects: true }) as Education[];
   const languagesList = t("cv.languages_list", { returnObjects: true }) as { lang: string; level: string }[];
+  const personalProjects = t("cv.personal_projects", { returnObjects: true }) as { title: string; period: string; description: string; stack?: string[] }[];
   const interestsList = t("cv.interests_list", { returnObjects: true }) as string[];
   const softSkillsItems = t("cv.skills_section.soft_skills_items", { returnObjects: true }) as string[];
 
@@ -208,20 +209,24 @@ const CurriculumVitae = () => {
             {/* Personal projects */}
             <section>
               <SectionTitle>{t("cv.sections.personal_projects")}</SectionTitle>
-              <div className="mb-2">
-                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-                  <h3 className="font-bold text-lg">{t("cv.personal_project.title")}</h3>
-                  <span className="text-muted-foreground text-sm shrink-0">{t("cv.personal_project.period")}</span>
+              {personalProjects.map((project) => (
+                <div key={`${project.title}-${project.period}`} className="mb-6 last:mb-0">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
+                    <h3 className="font-bold text-lg">{project.title}</h3>
+                    <span className="text-muted-foreground text-sm shrink-0">{project.period}</span>
+                  </div>
+                  <p className="text-foreground/80 text-sm leading-relaxed mb-3">
+                    {project.description}
+                  </p>
+                  {project.stack && project.stack.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {project.stack.map((tech) => (
+                        <Tag key={tech} label={tech} />
+                      ))}
+                    </div>
+                  )}
                 </div>
-                <p className="text-foreground/80 text-sm leading-relaxed mb-3">
-                  {t("cv.personal_project.description")}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {["Python", "C++", "Arduino", "Raspberry Pi", "SLAM", "ICP", "Fusion360", "Lidar"].map((tech) => (
-                    <Tag key={tech} label={tech} />
-                  ))}
-                </div>
-              </div>
+              ))}
             </section>
 
             {/* Interests */}

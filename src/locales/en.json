@@ -131,6 +131,30 @@
         "pricing_total_label": "Estimated total",
         "pricing_total": "~2 d · €1,200",
         "pricing_note": "This is an indicative estimate, it might not be applicable to your project due to technical details."
+      },
+      "writing_assistant": {
+        "description": "A creative Markdown writing environment supercharged by AI: a RAG assistant that understands an entire manuscript and suggests edits that are always validated by the author (human-in-the-loop).",
+        "context_title": "Context & goal",
+        "context_text": "Writing AIssistant is a writing companion for authors that pairs the comfort of Markdown with the power of generative AI. Unlike a classic chatbot that forgets the start of the book as writing progresses, the app semantically indexes every paragraph so it can reason over the whole story. The project's core conviction: AI must be powerful but never autonomous over the author's text — every suggestion goes through human validation.",
+        "features_title": "Features",
+        "features": [
+          "Professional Markdown editor powered by Monaco (the engine behind VS Code), with preview, 11 self-hosted serif fonts and a live word count",
+          "Tool-equipped AI assistant: it searches the manuscript, reads chapters and consults the world \"bible\" to answer questions about plot, characters or narrative consistency",
+          "Human-in-the-loop: every AI-suggested edit goes through an approval interface before touching the text (strict or copilot mode, configurable per book)",
+          "RAG-native: every paragraph is semantically indexed and the index refreshes automatically after writing",
+          "World bible (characters, places, aliases) available to the AI and wired into spell/grammar checking (LanguageTool)",
+          "Bring Your Own Model: choose your provider (OpenAI, Mistral, Anthropic, Google, Hugging Face…), with API keys encrypted using a key unique to each browser",
+          "Snapshots, SSE streaming of the agent's steps, dark/light theme and a bilingual EN/FR interface"
+        ],
+        "technical_title": "Technical choices",
+        "technical": [
+          { "name": "FastAPI", "desc": "fully asynchronous Python API, Pydantic schemas, RAG chains and agent tools via LangChain, Alembic migrations" },
+          { "name": "Angular 21", "desc": "latest-generation client, 100% standalone components and Signals, SSR to pre-render public pages for SEO (EN/FR)" },
+          { "name": "Hybrid storage", "desc": "PostgreSQL (async SQLAlchemy) for the text, ChromaDB as a local vector database, one isolated collection per book and per embedding model" },
+          { "name": "Structured manuscript", "desc": "a tree of nodes (parts, chapters, scenes) with stable anchors; on save, only modified nodes are sent to the API (minimal client-side diff)" },
+          { "name": "OpenID Connect SSO", "desc": "Authorization Code + PKCE flow, generic implementation (Zitadel in production, Keycloak locally); API keys never stored in clear text" },
+          { "name": "Docker", "desc": "full containerized ecosystem (Postgres, ChromaDB, API) for simplified development and deployment" }
+        ]
       }
     }
   },
@@ -788,11 +812,20 @@
       { "lang": "English", "level": "C1 (BULATS)" },
       { "lang": "Spanish", "level": "C1" }
     ],
-    "personal_project": {
-      "title": "French Robotics Cup",
-      "period": "09/2017 – 05/2022",
-      "description": "4 participations in the French Robotics Cup through the ENSIIE student association."
-    },
+    "personal_projects": [
+      {
+        "title": "Writing AIssistant",
+        "period": "2025 – present",
+        "description": "A creative writing environment supercharged by AI: a human-in-the-loop RAG assistant that understands an entire manuscript and suggests edits validated by the author. Full-async FastAPI / Angular 21 architecture, hybrid PostgreSQL + ChromaDB storage and OpenID Connect SSO.",
+        "stack": ["Angular 21", "FastAPI", "Python", "LangChain", "PostgreSQL", "ChromaDB", "Docker", "OIDC"]
+      },
+      {
+        "title": "French Robotics Cup",
+        "period": "09/2017 – 05/2022",
+        "description": "4 participations in the French Robotics Cup through the ENSIIE student association.",
+        "stack": ["Python", "C++", "Arduino", "Raspberry Pi", "SLAM", "ICP", "Fusion360", "Lidar"]
+      }
+    ],
     "interests_list": ["Robotics", "Volleyball", "Football", "Science communication", "Board games"]
   },
   "cookies": {

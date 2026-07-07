@@ -23,6 +23,14 @@
       "stack": ["React"],
       "link": "https://guillaumegalland.com/",
       "category": "web"
+    },
+    {
+      "id": "writing_assistant",
+      "title": "Writing AIssistant",
+      "description": "Environnement d'écriture créative en Markdown augmenté par l'IA, avec un assistant RAG sous contrôle humain",
+      "stack": ["Angular", "FastAPI", "LangChain", "PostgreSQL", "ChromaDB", "Docker"],
+      "link": "https://writing-aissistant.com",
+      "category": "web"
     }
   ]
 }

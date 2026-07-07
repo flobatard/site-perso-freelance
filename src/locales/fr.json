@@ -131,6 +131,30 @@
         "pricing_total_label": "Total estimé",
         "pricing_total": "~2 j · 1 200 €",
         "pricing_note": "Estimation indicative, peut ne pas s'appliquer à votre projet selon les détails techniques."
+      },
+      "writing_assistant": {
+        "description": "Environnement d'écriture créative en Markdown augmenté par l'IA : un assistant RAG qui comprend l'intégralité d'un manuscrit et propose des modifications toujours validées par l'auteur (human-in-the-loop).",
+        "context_title": "Contexte & objectif",
+        "context_text": "Writing AIssistant est un compagnon d'écriture pour les auteurs, qui allie le confort du Markdown à la puissance de l'IA générative. Contrairement à un chatbot classique qui oublie le début du livre au fil de l'écriture, l'application indexe sémantiquement chaque paragraphe pour raisonner sur l'intégralité du récit. La conviction centrale du projet : l'IA doit être puissante mais jamais autonome sur le texte de l'auteur — chaque proposition passe par une validation humaine.",
+        "features_title": "Fonctionnalités",
+        "features": [
+          "Éditeur Markdown professionnel basé sur Monaco (le moteur de VS Code), avec aperçu, 11 polices serif auto-hébergées et compteur de mots en direct",
+          "Assistant IA outillé : il cherche dans le manuscrit, lit les chapitres et consulte la « bible » de l'univers pour répondre sur l'intrigue, les personnages ou la cohérence du récit",
+          "Human-in-the-loop : chaque modification proposée par l'IA passe par une interface d'approbation avant de toucher le texte (mode strict ou copilot réglable par livre)",
+          "RAG-native : chaque paragraphe est indexé sémantiquement et l'index se rafraîchit automatiquement après l'écriture",
+          "Bible de l'univers (personnages, lieux, alias) consultable par l'IA et branchée sur la correction orthographique/grammaticale (LanguageTool)",
+          "Bring Your Own Model : choix du fournisseur (OpenAI, Mistral, Anthropic, Google, Hugging Face…), clés API chiffrées avec une clé propre à chaque navigateur",
+          "Instantanés (snapshots), streaming SSE des étapes de l'agent, thème sombre/clair et interface bilingue FR/EN"
+        ],
+        "technical_title": "Choix techniques",
+        "technical": [
+          { "name": "FastAPI", "desc": "API 100 % asynchrone en Python, schémas Pydantic, chaînes RAG et outils d'agent via LangChain, migrations Alembic" },
+          { "name": "Angular 21", "desc": "client de dernière génération, 100 % composants standalone et Signals, SSR pour le pré-rendu SEO des pages publiques (FR/EN)" },
+          { "name": "Stockage hybride", "desc": "PostgreSQL (SQLAlchemy async) pour les textes, ChromaDB comme base vectorielle locale, une collection isolée par livre et par modèle d'embedding" },
+          { "name": "Manuscrit structuré", "desc": "arbre de nœuds (parties, chapitres, scènes) à ancres stables ; à la sauvegarde, seuls les nœuds modifiés transitent vers l'API (diff minimal côté client)" },
+          { "name": "SSO OpenID Connect", "desc": "flux Authorization Code + PKCE, implémentation générique (Zitadel en prod, Keycloak en local) ; clés API jamais stockées en clair" },
+          { "name": "Docker", "desc": "écosystème conteneurisé complet (Postgres, ChromaDB, API) pour un dev et un déploiement simplifiés" }
+        ]
       }
     }
   },
@@ -788,11 +812,20 @@
       { "lang": "English", "level": "C1 (BULATS)" },
       { "lang": "Espagnol", "level": "C1" }
     ],
-    "personal_project": {
-      "title": "Coupe de robotique",
-      "period": "09/2017 – 05/2022",
-      "description": "4 participations à la coupe de France de robotique via l'association de l'ENSIIE."
-    },
+    "personal_projects": [
+      {
+        "title": "Writing AIssistant",
+        "period": "2025 – présent",
+        "description": "Environnement d'écriture créative augmenté par l'IA : un assistant RAG sous contrôle humain (human-in-the-loop) capable de comprendre l'intégralité d'un manuscrit et de proposer des modifications validées par l'auteur. Architecture full-async FastAPI / Angular 21, stockage hybride PostgreSQL + ChromaDB et SSO OpenID Connect.",
+        "stack": ["Angular 21", "FastAPI", "Python", "LangChain", "PostgreSQL", "ChromaDB", "Docker", "OIDC"]
+      },
+      {
+        "title": "Coupe de robotique",
+        "period": "09/2017 – 05/2022",
+        "description": "4 participations à la coupe de France de robotique via l'association de l'ENSIIE.",
+        "stack": ["Python", "C++", "Arduino", "Raspberry Pi", "SLAM", "ICP", "Fusion360", "Lidar"]
+      }
+    ],
     "interests_list": ["Robotique", "Volley", "Football", "Vulgarisation scientifique", "Jeux de société"]
   },
   "cookies": {
