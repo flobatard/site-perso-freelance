@@ -717,22 +717,30 @@
       "personal_projects": "Projets personnels",
       "interests": "Centres d'intérêt"
     },
-    "profile_text": "Je suis une personne curieuse, toujours à la recherche de nouvelles choses à apprendre et à explorer. J'ai l'esprit d'initiative et j'aime comprendre les choses dans leur globalité, ce qui me permet de faire évoluer des compétences dans des domaines plus variés que ma formation initiale. Je recherche des missions en freelance.",
+    "profile_text": "Ingénieur ENSIIE spécialisé en Intelligence Artificielle, avec 5 ans d'expérience en ingénierie logicielle, dont 3 comme Lead Développeur sur des systèmes critiques en production. J'accompagne aujourd'hui les entreprises dans l'intégration de solutions IA : architectures RAG, orchestration LLM (LangChain, LangGraph), audit et mise en production. Fullstack Python/FastAPI et Angular, avec une forte culture DevOps et self-hosting.",
     "experiences": [
       {
-        "title": "Lead Développeur",
+        "title": "Lead Développeur Elixir/React",
         "company": "KBRW",
         "period": "05/2023 – 03/2026",
         "location": "Paris, France",
-        "description": "Développement d'un logiciel de prise et de gestion de commande pour Michelin.",
+        "description": "Développement d'un site de prise et de gestion de commandes pour Michelin.",
+        "bullets": [
+          "Encadrement technique d'une équipe de 5 développeurs sur une application critique traitant 10 000 commandes/jour.",
+          "Conception et développement backend Elixir et frontend React sur une architecture distribuée (Riak, LXC)."
+        ],
         "stack": ["Elixir", "React", "Riak", "LXC"]
       },
       {
         "title": "Ingénieur en développement C++",
         "company": "Viveris",
         "period": "05/2021 – 05/2023",
-        "location": "Évry, France",
-        "description": "Différentes missions pour des grandes entreprises : SNCF — traitement de données Lidar pour la détection des rails dans le cadre du projet train autonome ; MBDA — développement logiciel de la partie applicative d'un projet pour MBDA Software Engineering.",
+        "location": "Rungis, France",
+        "description": "Différentes missions pour des grands comptes :",
+        "bullets": [
+          "SNCF : traitement de données Lidar (nuages de points 3D) pour la détection automatique des rails (train autonome).",
+          "MBDA : développement logiciel applicatif en C++. Forte exigence de qualité et de sécurité ; projet soumis à confidentialité."
+        ],
         "stack": ["C++"]
       },
       {
@@ -762,11 +770,22 @@
     ],
     "freelance_projects": [
       {
-        "title": "Développeur Freelance",
+        "title": "Ingénieur / Consultant IA — Freelance",
+        "company": "Writing AIssistant",
+        "period": "03/2026 – présent",
+        "location": "",
+        "description": "Développement et mise en production de solutions LLM.",
+        "bullets": [
+          "Conception et déploiement de Writing AIssistant (writing-aissistant.com), plateforme d'assistance à l'écriture créative à architecture RAG native — orchestration LLM via LangGraph, recherche augmentée, observabilité LangFuse."
+        ],
+        "stack": ["Python/FastAPI", "Angular 21", "PostgreSQL", "ChromaDB", "OIDC"]
+      },
+      {
+        "title": "Développeur Fullstack / Architecte technique",
         "company": "BETA Vêtements",
         "period": "06/2024 – présent",
-        "location": "Remote",
-        "description": "Architecture, spécification et développement du site web order.betavetements.com, site de prise de commande de vêtements et accessoires personnalisés.",
+        "location": "",
+        "description": "Architecture, spécification et développement du site web order.betavetements.com, site de prise de commande de vêtements et accessoires personnalisés. Projet mené en parallèle de mon poste chez KBRW puis en freelance.",
         "stack": ["Docker", "Angular", "Node.js", "MongoDB", "Redis"]
       }
     ],
@@ -780,10 +799,10 @@
       },
       {
         "degree": "Master ANDROID",
-        "school": "Université Pierre-et-Marie-Curie",
+        "school": "Sorbonne Université (Ex Université Pierre-et-Marie-Curie)",
         "period": "09/2019 – 12/2020",
         "location": "Paris, France",
-        "detail": "Agents Distribués, Robotique, Recherche Opérationnelle, Interaction, Décision"
+        "detail": "Agents Distribués, Robotique, Recherche Opérationnelle, Interaction, Décision (double cursus école d'ingénieur)"
       },
       {
         "degree": "Licence en Mathématiques appliquées",
@@ -801,11 +820,14 @@
       }
     ],
     "skills_section": {
-      "programming_label": "Langages informatiques",
-      "tools_label": "Environnement & Outils",
-      "software_label": "Logiciels",
-      "soft_skills_label": "Soft Skills",
-      "soft_skills_items": ["Patient", "À l'écoute", "Réactif", "Moteur"]
+      "groups": [
+        { "label": "IA / LLM", "items": ["RAG", "LangChain", "LangGraph", "LangFuse", "Orchestration d'agents", "ChromaDB"] },
+        { "label": "Données & Infra", "items": ["PostgreSQL", "MongoDB", "Redis", "Docker", "Linux", "Git", "CI/CD", "OIDC", "Ansible"] },
+        { "label": "Développement", "items": ["Python/FastAPI", "Elixir", "Node.js", "Angular", "React", "TypeScript/JavaScript", "C++"] },
+        { "label": "Domaines d'intervention", "items": ["Audit de solutions IA", "POC → mise en production", "Architecture RAG", "Conseil technique", "Infra souveraine"] },
+        { "label": "Logiciels", "items": ["Fusion360", "FLStudio", "Gimp", "Suite Adobe"] },
+        { "label": "Soft Skills", "items": ["Patient", "À l'écoute", "Réactif", "Moteur"] }
+      ]
     },
     "languages_list": [
       { "lang": "Français", "level": "Langue maternelle" },
@@ -813,12 +835,6 @@
       { "lang": "Espagnol", "level": "C1" }
     ],
     "personal_projects": [
-      {
-        "title": "Writing AIssistant",
-        "period": "2025 – présent",
-        "description": "Environnement d'écriture créative augmenté par l'IA : un assistant RAG sous contrôle humain (human-in-the-loop) capable de comprendre l'intégralité d'un manuscrit et de proposer des modifications validées par l'auteur. Architecture full-async FastAPI / Angular 21, stockage hybride PostgreSQL + ChromaDB et SSO OpenID Connect.",
-        "stack": ["Angular 21", "FastAPI", "Python", "LangChain", "PostgreSQL", "ChromaDB", "Docker", "OIDC"]
-      },
       {
         "title": "Coupe de robotique",
         "period": "09/2017 – 05/2022",

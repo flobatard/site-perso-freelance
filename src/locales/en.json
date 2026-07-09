@@ -717,22 +717,30 @@
       "personal_projects": "Personal Projects",
       "interests": "Interests"
     },
-    "profile_text": "I am a curious person, always looking for new things to learn and explore. I have a proactive mindset and enjoy understanding things holistically, which allows me to develop skills in fields beyond my initial training. I am looking for freelance missions.",
+    "profile_text": "ENSIIE-trained engineer specialised in Artificial Intelligence, with 5 years of software engineering experience, including 3 as Lead Developer on business-critical production systems. I now help companies integrate AI solutions: RAG architectures, LLM orchestration (LangChain, LangGraph), audits and production deployment. Fullstack Python/FastAPI and Angular, with a strong DevOps and self-hosting culture.",
     "experiences": [
       {
-        "title": "Lead Developer",
+        "title": "Lead Elixir/React Developer",
         "company": "KBRW",
         "period": "05/2023 – 03/2026",
         "location": "Paris, France",
-        "description": "Development of an order management software for Michelin.",
+        "description": "Development of an order intake and management platform for Michelin.",
+        "bullets": [
+          "Technical leadership of a team of 5 developers on a business-critical application handling 10,000 orders/day.",
+          "Design and development of the Elixir backend and React frontend on a distributed architecture (Riak, LXC)."
+        ],
         "stack": ["Elixir", "React", "Riak", "LXC"]
       },
       {
         "title": "C++ Development Engineer",
         "company": "Viveris",
         "period": "05/2021 – 05/2023",
-        "location": "Évry, France",
-        "description": "Various missions for large companies: SNCF — Lidar data processing for rail detection as part of the autonomous train project; MBDA — software development of the application layer for a project at MBDA Software Engineering.",
+        "location": "Rungis, France",
+        "description": "Various missions for major accounts:",
+        "bullets": [
+          "SNCF: Lidar data processing (3D point clouds) for automatic rail detection (autonomous train).",
+          "MBDA: application software development in C++. High quality and security requirements; project subject to confidentiality."
+        ],
         "stack": ["C++"]
       },
       {
@@ -762,11 +770,22 @@
     ],
     "freelance_projects": [
       {
-        "title": "Freelance Developer",
+        "title": "AI Engineer / Consultant — Freelance",
+        "company": "Writing AIssistant",
+        "period": "03/2026 – present",
+        "location": "",
+        "description": "Development and production deployment of LLM solutions.",
+        "bullets": [
+          "Design and deployment of Writing AIssistant (writing-aissistant.com), a creative-writing assistance platform with a native RAG architecture — LLM orchestration via LangGraph, augmented retrieval, LangFuse observability."
+        ],
+        "stack": ["Python/FastAPI", "Angular 21", "PostgreSQL", "ChromaDB", "OIDC"]
+      },
+      {
+        "title": "Fullstack Developer / Technical Architect",
         "company": "BETA Vêtements",
         "period": "06/2024 – present",
-        "location": "Remote",
-        "description": "Architecture, specification and development of order.betavetements.com, an order management site for custom clothing and accessories.",
+        "location": "",
+        "description": "Architecture, specification and development of order.betavetements.com, an order management site for custom clothing and accessories. Carried out alongside my role at KBRW and then as a freelancer.",
         "stack": ["Docker", "Angular", "Node.js", "MongoDB", "Redis"]
       }
     ],
@@ -780,10 +799,10 @@
       },
       {
         "degree": "Master ANDROID",
-        "school": "Université Pierre-et-Marie-Curie",
+        "school": "Sorbonne University (formerly Université Pierre-et-Marie-Curie)",
         "period": "09/2019 – 12/2020",
         "location": "Paris, France",
-        "detail": "Distributed Agents, Robotics, Operations Research, Interaction, Decision"
+        "detail": "Distributed Agents, Robotics, Operations Research, Interaction, Decision (dual degree with the engineering school)"
       },
       {
         "degree": "Bachelor in Applied Mathematics",
@@ -801,11 +820,14 @@
       }
     ],
     "skills_section": {
-      "programming_label": "Programming Languages",
-      "tools_label": "Environment & Tools",
-      "software_label": "Software",
-      "soft_skills_label": "Soft Skills",
-      "soft_skills_items": ["Patient", "Good listener", "Reactive", "Driven"]
+      "groups": [
+        { "label": "AI / LLM", "items": ["RAG", "LangChain", "LangGraph", "LangFuse", "Agent orchestration", "ChromaDB"] },
+        { "label": "Data & Infra", "items": ["PostgreSQL", "MongoDB", "Redis", "Docker", "Linux", "Git", "CI/CD", "OIDC", "Ansible"] },
+        { "label": "Development", "items": ["Python/FastAPI", "Elixir", "Node.js", "Angular", "React", "TypeScript/JavaScript", "C++"] },
+        { "label": "Areas of expertise", "items": ["AI solution audits", "POC → production", "RAG architecture", "Technical consulting", "Sovereign infrastructure"] },
+        { "label": "Software", "items": ["Fusion360", "FLStudio", "Gimp", "Adobe Suite"] },
+        { "label": "Soft Skills", "items": ["Patient", "Good listener", "Reactive", "Driven"] }
+      ]
     },
     "languages_list": [
       { "lang": "French", "level": "Native" },
@@ -813,12 +835,6 @@
       { "lang": "Spanish", "level": "C1" }
     ],
     "personal_projects": [
-      {
-        "title": "Writing AIssistant",
-        "period": "2025 – present",
-        "description": "A creative writing environment supercharged by AI: a human-in-the-loop RAG assistant that understands an entire manuscript and suggests edits validated by the author. Full-async FastAPI / Angular 21 architecture, hybrid PostgreSQL + ChromaDB storage and OpenID Connect SSO.",
-        "stack": ["Angular 21", "FastAPI", "Python", "LangChain", "PostgreSQL", "ChromaDB", "Docker", "OIDC"]
-      },
       {
         "title": "French Robotics Cup",
         "period": "09/2017 – 05/2022",

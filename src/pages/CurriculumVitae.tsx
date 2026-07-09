@@ -1,8 +1,8 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Download, MapPin, Mail, Phone, Calendar } from "lucide-react";
-import essentialCvPdf from "@/assets/CV_Florian_BATARD.pdf";
+import { Download, MapPin, Mail, Globe } from "lucide-react";
+import essentialCvPdf from "@/assets/Florian_BATARD_CV.pdf";
 import { useTranslation } from "react-i18next";
 import social_links from "@/data/social_links.json"
 
@@ -14,6 +14,7 @@ interface Experience {
   period: string;
   location: string;
   description: string;
+  bullets?: string[];
   stack?: string[];
 }
 
@@ -45,11 +46,20 @@ const ExperienceCard = ({ exp }: { exp: Experience }) => (
     <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
       <h3 className="font-bold text-lg">{exp.title}</h3>
       <span className="text-muted-foreground text-sm shrink-0">
-        {exp.period} | {exp.location}
+        {exp.period}{exp.location ? ` | ${exp.location}` : ""}
       </span>
     </div>
-    <p className="text-primary font-medium italic mb-2">{exp.company}</p>
-    <p className="text-foreground/80 text-sm leading-relaxed mb-3">{exp.description}</p>
+    {exp.company && <p className="text-primary font-medium italic mb-2">{exp.company}</p>}
+    {exp.description && (
+      <p className="text-foreground/80 text-sm leading-relaxed mb-2">{exp.description}</p>
+    )}
+    {exp.bullets && exp.bullets.length > 0 && (
+      <ul className="list-disc pl-5 space-y-1 text-foreground/80 text-sm leading-relaxed mb-3">
+        {exp.bullets.map((bullet) => (
+          <li key={bullet}>{bullet}</li>
+        ))}
+      </ul>
+    )}
     {exp.stack && exp.stack.length > 0 && (
       <div className="flex flex-wrap gap-2">
         {exp.stack.map((tech) => (
@@ -84,7 +94,7 @@ const CurriculumVitae = () => {
   const languagesList = t("cv.languages_list", { returnObjects: true }) as { lang: string; level: string }[];
   const personalProjects = t("cv.personal_projects", { returnObjects: true }) as { title: string; period: string; description: string; stack?: string[] }[];
   const interestsList = t("cv.interests_list", { returnObjects: true }) as string[];
-  const softSkillsItems = t("cv.skills_section.soft_skills_items", { returnObjects: true }) as string[];
+  const skillGroups = t("cv.skills_section.groups", { returnObjects: true }) as { label: string; items: string[] }[];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -106,10 +116,15 @@ const CurriculumVitae = () => {
                   <MapPin size={14} className="text-primary shrink-0" />
                   Paris
                 </span>
-                <span className="flex items-center gap-2">
-                  <Calendar size={14} className="text-primary shrink-0" />
-                  29/01/1998
-                </span>
+                <a
+                  href="https://fbatard.fr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-primary transition-colors"
+                >
+                  <Globe size={14} className="text-primary shrink-0" />
+                  fbatard.fr
+                </a>
               </div>
             </div>
             <a href={essentialCvPdf} download="CV_Florian_Batard.pdf">
@@ -158,38 +173,16 @@ const CurriculumVitae = () => {
             <section>
               <SectionTitle>{t("cv.sections.skills")}</SectionTitle>
               <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-semibold mb-3">{t("cv.skills_section.programming_label")}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {["Elixir", "C/C++", "Python", "JavaScript", "Java", "C#", "Caml", "R", "Matlab"].map((lang) => (
-                      <Tag key={lang} label={lang} />
-                    ))}
+                {skillGroups.map((group) => (
+                  <div key={group.label}>
+                    <h3 className="font-semibold mb-3">{group.label}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {group.items.map((item) => (
+                        <Tag key={item} label={item} />
+                      ))}
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-3">{t("cv.skills_section.tools_label")}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {["Linux", "Git", "Jenkins", "Docker", "Méthode Agile", "Suite Office", "LaTeX"].map((tool) => (
-                      <Tag key={tool} label={tool} />
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-3">{t("cv.skills_section.software_label")}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {["Fusion360", "FLStudio", "Gimp", "Suite Adobe"].map((soft) => (
-                      <Tag key={soft} label={soft} />
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-3">{t("cv.skills_section.soft_skills_label")}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {softSkillsItems.map((skill) => (
-                      <Tag key={skill} label={skill} />
-                    ))}
-                  </div>
-                </div>
+                ))}
               </div>
             </section>
 
