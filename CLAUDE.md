@@ -43,7 +43,7 @@ src/
 │   │   ├── EcommerceSite.constants.ts  # Types, constantes et helpers purs du formulaire EcommerceSite
 │   │   └── index.tsx  # Record<string, ComponentType> — map id → composant (offeringContents)
 │   └── ui/            # Composants shadcn/ui — ne pas modifier manuellement
-├── pages/             # Index.tsx, ProjectDetail.tsx, OfferingDetail.tsx, CurriculumVitae.tsx, PrivacyPolicy.tsx, LegalNotice.tsx, TermsOfSale.tsx, NotFound.tsx
+├── pages/             # Index.tsx, ProjectDetail.tsx, OfferingDetail.tsx, CurriculumVitae.tsx, PrivacyPolicy.tsx, LegalNotice.tsx, TermsOfSale.tsx, Services.tsx, NotFound.tsx
 ├── locales/
 │   ├── fr.json        # Traductions françaises (source de vérité des textes)
 │   └── en.json        # Traductions anglaises
@@ -76,6 +76,7 @@ Toutes les routes sont préfixées par la langue :
 /:lang/curriculum_vitae → CV
 /:lang/projet/:id       → Détail d'un projet
 /:lang/offering/:id     → Détail d'une prestation
+/:lang/services         → Services IA (diagnostic, pilote, mise en production)
 /:lang/confidentialite  → Politique de confidentialité (RGPD)
 /:lang/mentions-legales → Mentions légales
 /:lang/conditions-generales-de-vente → CGV (texte français dans les deux langues, la version française fait foi)
@@ -95,7 +96,8 @@ Le toggle de langue dans la Navigation remplace le préfixe dans l'URL courante 
 ### Structure des clés de traduction
 
 ```
-nav.*           — Navigation (liens, bouton contact)
+nav.*           — Navigation (liens, bouton contact ; nav.services = onglet « Services IA »)
+services.*      — Page Services IA (title, intro, offers[] {title, duration?, text}, domains_title, domains[], cta_text, cta_button, terms_link)
 hero.*          — Section Hero (badge, titre, description, CTA)
 about.*         — Section À propos (textes, cartes)
 skills.*        — Section Compétences (titre, descriptions par catégorie)
@@ -197,6 +199,8 @@ Pour brancher un nouveau formulaire : suivre la même structure (scalaires dans 
 
 - La navigation charge dynamiquement les projets depuis `portfolio.json` pour le dropdown Portfolio
 - La navigation charge dynamiquement les prestations depuis `offering.json` pour le dropdown Prestations (trigger sans lien, pas d'ancre `#offering` sur la home)
+- L'onglet « Services IA » (`/:lang/services`, offres IA) est distinct du dropdown Prestations (sites vitrine / e-commerce) et placé juste avant lui. En anglais, le dropdown s'appelle « Services » et l'onglet « AI services »
+- La barre de navigation complète s'affiche à partir de `lg` (1024 px, `whitespace-nowrap`, `gap-6 xl:gap-8`) ; en dessous, menu mobile. À 768 px la barre ne tenait déjà plus avant l'ajout de l'onglet Services IA
 - Les liens vers les réseaux sociaux sont centralisés dans `social_links.json`
 - L'URL de prise de rendez-vous (page Nextcloud externe) est uniquement dans `social_links.json` (`booking.link`) ; elle s'ouvre dans un nouvel onglet (`target="_blank" rel="noopener noreferrer"`), jamais en iframe. Utilisée dans `Contact.tsx` et `Footer.tsx`
 - La page CV est accessible via `/:lang/curriculum_vitae`
@@ -218,6 +222,7 @@ Générées automatiquement depuis `portfolio.json` et `offering.json` × 2 lang
 /fr/conditions-generales-de-vente, /en/conditions-generales-de-vente  (CGV)
 /fr/projet/<id>, /en/projet/<id>               (un fichier par projet dans portfolio.json)
 /fr/offering/<id>, /en/offering/<id>           (un fichier par prestation dans offering.json)
+/fr/services, /en/services                     (Services IA)
 ```
 
 Les pages `confidentialite`, `mentions-legales` et `conditions-generales-de-vente` ont des balises SEO (`title`, `description`) personnalisées injectées par [scripts/prerender.ts](scripts/prerender.ts) (voir `if (section === "confidentialite")` etc.) pour éviter d'afficher le titre générique sur ces routes.

@@ -23,6 +23,7 @@ const langs = ["fr", "en"];
 const routes = [
   ...langs.map((l) => `/${l}`),
   ...langs.map((l) => `/${l}/curriculum_vitae`),
+  ...langs.map((l) => `/${l}/services`),
   ...langs.map((l) => `/${l}/confidentialite`),
   ...langs.map((l) => `/${l}/mentions-legales`),
   ...langs.map((l) => `/${l}/conditions-generales-de-vente`),
@@ -208,6 +209,24 @@ function getPageMeta(route: string): PageMeta {
         };
   }
 
+  if (section === "services") {
+    return lang === "fr"
+      ? {
+          lang: "fr",
+          title: "Services IA — Florian Batard | Projets IA au forfait",
+          description:
+            "Diagnostic IA de 3 jours, pilote de 4 à 6 semaines, mise en production et suivi : des projets IA courts, au forfait, pour PME, ETI et organisations publiques.",
+          keywords: `Services IA, Diagnostic IA, Pilote IA, IA générative, RAG, ${KEYWORDS_FR}`,
+        }
+      : {
+          lang: "en",
+          title: "AI Services — Florian Batard | Fixed-price AI projects",
+          description:
+            "3-day AI diagnostic, 4 to 6-week pilot, production rollout and support: short, fixed-price AI projects for SMEs, mid-sized companies and public organisations.",
+          keywords: `AI services, AI diagnostic, AI pilot, generative AI, RAG, ${KEYWORDS_EN}`,
+        };
+  }
+
   if (section === "conditions-generales-de-vente") {
     return lang === "fr"
       ? {
@@ -327,6 +346,9 @@ function buildSeoBlock(route: string, meta: PageMeta): string {
     const title = meta.title.split(" | ")[0];
     const desc = meta.description;
     jsonLd = buildOfferingJsonLd(title, desc, canonical, meta.lang);
+  } else if (section === "services") {
+    const title = meta.title.split(" — ")[0];
+    jsonLd = buildOfferingJsonLd(title, meta.description, canonical, meta.lang);
   } else {
     jsonLd = buildPersonJsonLd(meta.lang);
   }

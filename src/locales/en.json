@@ -4,6 +4,7 @@
     "skills": "Skills",
     "cv": "CV",
     "portfolio": "Portfolio",
+    "services": "AI services",
     "offering": "Services",
     "contact": "Contact me"
   },
@@ -950,6 +951,36 @@
         ]
       }
     ]
+  },
+  "services": {
+    "title": "Short, fixed-price AI projects that go all the way to production.",
+    "intro": "I work with SMEs, mid-sized companies and public organisations that want a concrete gain from generative AI, without a long-running project. Each engagement starts from a specific pain point — documents to process, information that is hard to find, repetitive data-entry tasks — and ends with a solution used by your teams, with a measured gain.",
+    "offers": [
+      {
+        "title": "AI Diagnostic",
+        "duration": "3 days",
+        "text": "I analyse your processes and data, assess two to three use cases and provide you with a costed roadmap."
+      },
+      {
+        "title": "AI Pilot",
+        "duration": "4 to 6 weeks",
+        "text": "I build a first use case on your real data and measure the result with a pilot team."
+      },
+      {
+        "title": "Production rollout and support",
+        "text": "I industrialise the solution (security, GDPR, hosting in France as an option) and provide maintenance and further development."
+      }
+    ],
+    "domains_title": "Areas",
+    "domains": [
+      "Document assistants (RAG)",
+      "Automatic extraction and classification",
+      "Automation agents connected to your tools",
+      "Document generation"
+    ],
+    "cta_text": "An initial 30-minute call lets us check whether an AI project makes sense for your organisation. Available slots are here:",
+    "cta_button": "Book a 30-minute call",
+    "terms_link": "Terms and conditions of sale (French)"
   },
   "terms": {
     "title": "Terms and Conditions of Sale",

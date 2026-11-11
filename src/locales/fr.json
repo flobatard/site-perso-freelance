@@ -4,6 +4,7 @@
     "skills": "Compétences",
     "cv": "CV",
     "portfolio": "Portfolio",
+    "services": "Services IA",
     "offering": "Prestations",
     "contact": "Me contacter"
   },
@@ -950,6 +951,36 @@
         ]
       }
     ]
+  },
+  "services": {
+    "title": "Des projets IA courts, au forfait, qui vont jusqu'à la production.",
+    "intro": "J'accompagne les PME, ETI et organisations publiques qui veulent tirer un gain concret de l'IA générative, sans projet au long cours. Chaque mission part d'un irritant précis — documents à traiter, information difficile à retrouver, tâches de saisie répétitives — et se termine par une solution utilisée par vos équipes, avec un gain mesuré.",
+    "offers": [
+      {
+        "title": "Diagnostic IA",
+        "duration": "3 jours",
+        "text": "J'analyse vos processus et vos données, j'évalue deux à trois cas d'usage et je vous remets une feuille de route chiffrée."
+      },
+      {
+        "title": "Pilote IA",
+        "duration": "4 à 6 semaines",
+        "text": "Je développe un premier cas d'usage sur vos données réelles et je mesure le résultat avec une équipe pilote."
+      },
+      {
+        "title": "Mise en production et suivi",
+        "text": "J'industrialise la solution (sécurité, RGPD, hébergement en France possible) et j'assure la maintenance et les évolutions."
+      }
+    ],
+    "domains_title": "Domaines",
+    "domains": [
+      "Assistants documentaires (RAG)",
+      "Extraction et classement automatiques",
+      "Agents d'automatisation connectés à vos outils",
+      "Génération de documents"
+    ],
+    "cta_text": "Un premier échange de 30 minutes permet de vérifier si un projet IA a du sens chez vous. Les créneaux disponibles sont ici :",
+    "cta_button": "Réserver un échange de 30 minutes",
+    "terms_link": "Conditions générales de vente"
   },
   "terms": {
     "title": "Conditions générales de vente",

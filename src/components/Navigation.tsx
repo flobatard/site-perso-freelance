@@ -56,8 +56,8 @@ const Navigation = () => {
             </a>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation (lg+) — en dessous de 1024 px, la barre ne tient pas : menu mobile */}
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8 whitespace-nowrap">
             {navLinks.map((link) =>
               link.href ? (
                 <a
@@ -96,6 +96,13 @@ const Navigation = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+
+            <Link
+              to={`/${lang}/services`}
+              className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
+            >
+              {t("nav.services")}
+            </Link>
 
             {/* Offering Dropdown */}
             <DropdownMenu>
@@ -146,7 +153,7 @@ const Navigation = () => {
           </div>
 
           {/* Mobile right buttons */}
-          <div className="md:hidden flex items-center gap-3">
+          <div className="lg:hidden flex items-center gap-3">
             <select
               value={lang}
               onChange={(e) => {
@@ -179,7 +186,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 py-4 border-t border-border animate-fade-in">
+          <div className="lg:hidden mt-4 py-4 border-t border-border animate-fade-in">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) =>
                 link.href ? (
@@ -221,6 +228,14 @@ const Navigation = () => {
                   ))}
                 </div>
               </div>
+
+              <Link
+                to={`/${lang}/services`}
+                className="text-foreground hover:text-primary transition-colors duration-300 font-medium py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("nav.services")}
+              </Link>
 
               {/* Mobile Offering Links */}
               <div className="py-2">
