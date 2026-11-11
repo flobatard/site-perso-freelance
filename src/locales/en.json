@@ -703,7 +703,8 @@
     "role": "Freelance Full-Stack Developer",
     "rights": "All rights reserved.",
     "privacy": "Privacy policy",
-    "legal": "Legal notice"
+    "legal": "Legal notice",
+    "terms": "Terms of sale"
   },
   "cv": {
     "download": "Download CV",
@@ -946,6 +947,11 @@
         ]
       }
     ]
+  },
+  "terms": {
+    "title": "Terms and Conditions of Sale",
+    "download": "Download the terms of sale (PDF, French)",
+    "french_only": "These terms and conditions of sale are published in French only. Only the French version applies."
   },
   "legal": {
     "title": "Legal Notice",

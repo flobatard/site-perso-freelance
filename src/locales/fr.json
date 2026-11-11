@@ -703,7 +703,8 @@
     "role": "Développeur Full-Stack Freelance",
     "rights": "Tous droits réservés.",
     "privacy": "Politique de confidentialité",
-    "legal": "Mentions légales"
+    "legal": "Mentions légales",
+    "terms": "CGV"
   },
   "cv": {
     "download": "Télécharger le CV",
@@ -946,6 +947,10 @@
         ]
       }
     ]
+  },
+  "terms": {
+    "title": "Conditions générales de vente",
+    "download": "Télécharger les CGV (PDF)"
   },
   "legal": {
     "title": "Mentions légales",

@@ -1,0 +1,363 @@
+{
+  "title": "Conditions générales de vente",
+  "version": "Version du 11 novembre 2026",
+  "header": [
+    {
+      "strong": "Florian Batard EI",
+      "text": " — Entrepreneur individuel · SIREN 104 885 090 · SIRET 104 885 090 00019 · APE 62.02A"
+    },
+    {
+      "text": "27 rue Léon Frot, appartement 4F, 75011 Paris · batard.florian.pro@gmail.com · fbatard.fr"
+    }
+  ],
+  "articles": [
+    {
+      "title": "Article 1 — Objet et champ d'application",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Les présentes conditions générales de vente (CGV) s'appliquent à toutes les prestations de conseil, de développement logiciel et d'intégration de solutions d'intelligence artificielle réalisées par Florian Batard EI (le « Prestataire ») pour des clients professionnels (le « Client »)."
+        },
+        {
+          "type": "p",
+          "text": "Elles constituent le socle de la négociation commerciale au sens de l'article L441-1 du Code de commerce et sont communiquées à tout client professionnel qui en fait la demande. Toute commande vaut acceptation des CGV."
+        },
+        {
+          "type": "p",
+          "text": "Les conditions particulières d'un devis, d'une proposition commerciale ou d'un contrat signé par les deux parties prévalent sur les CGV. Les conditions générales d'achat du Client ne s'appliquent que si le Prestataire les a acceptées par écrit."
+        }
+      ]
+    },
+    {
+      "title": "Article 2 — Commande",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Toute prestation fait l'objet d'un devis ou d'une proposition commerciale précisant le périmètre, les livrables, le planning, le prix et les modalités de facturation. Sauf mention contraire, le devis est valable 30 jours."
+        },
+        {
+          "type": "p",
+          "text": "La commande est ferme à réception du devis signé avec la mention « bon pour accord », ou d'un bon de commande du Client faisant référence au devis. Les travaux démarrent à cette réception et, le cas échéant, à l'encaissement de l'acompte."
+        },
+        {
+          "type": "p",
+          "text": "Toute modification du périmètre fait l'objet d'un avenant ou d'un devis complémentaire accepté par écrit."
+        }
+      ]
+    },
+    {
+      "title": "Article 3 — Prix",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Les prix sont exprimés en euros hors taxes. La TVA au taux en vigueur s'y ajoute."
+        },
+        {
+          "type": "p",
+          "text": "Deux modes de tarification sont proposés :"
+        },
+        {
+          "type": "ul",
+          "items": [
+            {
+              "strong": "Forfait",
+              "text": " : prix global et ferme pour un périmètre et des livrables définis au devis."
+            },
+            {
+              "strong": "Régie",
+              "text": " : taux journalier multiplié par le nombre de jours réalisés, sur la base d'un compte rendu d'activité (CRA) mensuel validé par le Client."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Les frais de déplacement hors Île-de-France sont refacturés sur justificatifs, après accord préalable du Client. Les coûts de services tiers (API de modèles d'IA, hébergement, licences) sont soit souscrits directement par le Client, soit refacturés au réel, selon ce que prévoit le devis."
+        },
+        {
+          "type": "p",
+          "text": "Pour une mission en régie de plus de 12 mois, le taux journalier peut être révisé à chaque date anniversaire, avec un préavis de deux mois."
+        }
+      ]
+    },
+    {
+      "title": "Article 4 — Facturation et paiement",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Sauf disposition contraire du devis, la facturation suit le mode de tarification :"
+        },
+        {
+          "type": "ul",
+          "items": [
+            {
+              "strong": "Forfait",
+              "text": " : acompte de 30 % à la commande, solde à la recette. Pour un projet de plus de deux mois, des factures intermédiaires sont émises aux jalons prévus au devis."
+            },
+            {
+              "strong": "Régie",
+              "text": " : facture mensuelle sur la base du CRA validé."
+            },
+            {
+              "strong": "Maintenance et évolutions par abonnement",
+              "text": " : facture mensuelle, à terme à échoir."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Les factures sont payables par virement bancaire à 30 jours à compter de leur date d'émission, sauf délai différent prévu au devis, dans la limite légale de 60 jours à compter de la date d'émission (article L441-10 du Code de commerce). Aucun escompte n'est accordé en cas de paiement anticipé."
+        },
+        {
+          "type": "p",
+          "text": "Les factures sont transmises par voie électronique. Lorsque le Client émet un bon de commande, son numéro est reporté sur la facture."
+        }
+      ]
+    },
+    {
+      "title": "Article 5 — Retard de paiement",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Tout retard de paiement entraîne de plein droit, dès le lendemain de la date d'échéance et sans mise en demeure préalable :"
+        },
+        {
+          "type": "ul",
+          "items": [
+            {
+              "text": "des pénalités de retard au taux d'intérêt appliqué par la Banque centrale européenne à son opération de refinancement la plus récente, majoré de 10 points de pourcentage ;"
+            },
+            {
+              "text": "une indemnité forfaitaire pour frais de recouvrement de 40 euros (article D441-5 du Code de commerce). Une indemnisation complémentaire peut être demandée, sur justificatifs, lorsque les frais engagés dépassent ce montant."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Après une mise en demeure restée sans effet pendant 8 jours, le Prestataire peut suspendre l'exécution des prestations jusqu'au paiement complet. Cette suspension ne constitue pas un manquement du Prestataire ; le planning est décalé d'autant."
+        }
+      ]
+    },
+    {
+      "title": "Article 6 — Exécution des prestations et collaboration",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Le Prestataire exécute les prestations selon les règles de l'art, dans le cadre d'une obligation de moyens. Il organise librement son travail. Les prestations sont réalisées principalement à distance ; les interventions sur site sont prévues au devis."
+        },
+        {
+          "type": "p",
+          "text": "Le Client s'engage à :"
+        },
+        {
+          "type": "ul",
+          "items": [
+            {
+              "text": "désigner un interlocuteur disposant du pouvoir de décision ;"
+            },
+            {
+              "text": "fournir dans les délais convenus les accès, données, documents et environnements nécessaires ;"
+            },
+            {
+              "text": "répondre aux sollicitations du Prestataire et valider les étapes prévues au planning ;"
+            },
+            {
+              "text": "garantir qu'il dispose des droits nécessaires sur les données et contenus qu'il transmet."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Les délais sont indicatifs, sauf engagement exprès au devis. Un retard imputable au Client décale le planning d'autant."
+        }
+      ]
+    },
+    {
+      "title": "Article 7 — Recette des livrables",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "A la livraison d'un livrable, le Client dispose de 10 jours ouvrés pour procéder à la recette et signaler par écrit toute non-conformité au périmètre du devis. Le Prestataire corrige les anomalies signalées dans un délai raisonnable ; une nouvelle période de recette de 5 jours ouvrés, limitée aux corrections, s'ouvre alors."
+        },
+        {
+          "type": "p",
+          "text": "A défaut de réserve écrite dans ces délais, ou dès l'utilisation du livrable en production, la recette est réputée prononcée sans réserve."
+        },
+        {
+          "type": "p",
+          "text": "Pendant 30 jours après la recette, le Prestataire corrige sans frais les anomalies reproductibles par rapport aux spécifications du devis. Les évolutions et demandes hors périmètre font l'objet d'un devis complémentaire."
+        }
+      ]
+    },
+    {
+      "title": "Article 8 — Propriété intellectuelle",
+      "blocks": [
+        {
+          "type": "p",
+          "strong": "Eléments préexistants.",
+          "text": " Le savoir-faire, les méthodes, outils, bibliothèques, composants génériques et modèles de prompts développés par le Prestataire en dehors de la commande restent sa propriété. Lorsqu'ils sont intégrés aux livrables, le Client reçoit une licence d'utilisation non exclusive, pour le monde entier et pour la durée des droits, limitée à l'exploitation de ces livrables."
+        },
+        {
+          "type": "p",
+          "strong": "Livrables spécifiques.",
+          "text": " Le code source et la documentation développés spécifiquement pour le Client sont cédés au Client au fur et à mesure de leur réalisation, sous condition suspensive du paiement intégral du prix. La cession porte sur les droits de reproduction, de représentation, d'adaptation, de modification, de traduction et de distribution, pour tous usages, pour le monde entier et pour la durée légale de protection."
+        },
+        {
+          "type": "p",
+          "strong": "Logiciels libres.",
+          "text": " Les composants sous licence libre restent régis par leur licence. Le Prestataire indique au Client les licences utilisées, notamment celles qui imposent des obligations de redistribution."
+        },
+        {
+          "type": "p",
+          "text": "Le Prestataire reste libre de réutiliser le savoir-faire général acquis pendant la mission, sans reprendre d'élément confidentiel du Client."
+        }
+      ]
+    },
+    {
+      "title": "Article 9 — Solutions d'IA et services tiers",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Les solutions livrées peuvent s'appuyer sur des modèles et services d'IA de tiers (par exemple Mistral AI, OpenAI, Anthropic) ou sur des modèles ouverts hébergés. Le fournisseur retenu et la localisation des traitements, de préférence dans l'Union européenne, sont précisés au devis et validés avec le Client."
+        },
+        {
+          "type": "p",
+          "text": "Les conditions d'utilisation de ces services s'appliquent. Le Prestataire ne répond pas de leurs indisponibilités, de leurs évolutions fonctionnelles ou de leurs changements de tarifs."
+        },
+        {
+          "type": "p",
+          "text": "Les résultats produits par un modèle d'IA sont probabilistes et peuvent comporter des erreurs. Le Prestataire met en place des mesures raisonnables pour en limiter la portée (jeux de tests, évaluation, garde-fous, validation humaine), sans garantir l'exactitude de chaque résultat. Le Client détermine les usages de la solution et reste responsable des décisions prises sur la base de ses résultats, en particulier lorsqu'elles ont un impact sur des personnes."
+        },
+        {
+          "type": "p",
+          "text": "Les parties coopèrent pour respecter les obligations du règlement européen sur l'intelligence artificielle applicables aux usages retenus par le Client."
+        }
+      ]
+    },
+    {
+      "title": "Article 10 — Confidentialité",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Chaque partie garde confidentielles les informations de l'autre partie dont elle a connaissance à l'occasion de la mission, pendant toute sa durée et trois ans après son terme. Elle ne les utilise que pour l'exécution de la mission."
+        },
+        {
+          "type": "p",
+          "text": "Cette obligation ne s'applique pas aux informations publiques, déjà connues de la partie qui les reçoit, obtenues légitimement d'un tiers ou dont la divulgation est exigée par la loi. Un accord de confidentialité signé entre les parties prévaut sur cet article."
+        }
+      ]
+    },
+    {
+      "title": "Article 11 — Données personnelles",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Lorsque le Prestataire traite des données personnelles pour le compte du Client, il agit en qualité de sous-traitant au sens de l'article 28 du règlement général sur la protection des données (RGPD). Il s'engage notamment à :"
+        },
+        {
+          "type": "ul",
+          "items": [
+            {
+              "text": "ne traiter les données que sur instruction documentée du Client et pour les seuls besoins de la mission ;"
+            },
+            {
+              "text": "garantir la confidentialité et la sécurité des données ;"
+            },
+            {
+              "text": "informer le Client sans délai injustifié de toute violation de données ;"
+            },
+            {
+              "text": "n'avoir recours à des sous-traitants ultérieurs (hébergement, services d'IA) qu'avec l'accord du Client, la liste figurant au devis ;"
+            },
+            {
+              "text": "aider le Client à répondre aux demandes d'exercice des droits des personnes ;"
+            },
+            {
+              "text": "supprimer ou restituer les données au terme de la mission, au choix du Client."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Un accord de traitement des données peut être annexé au devis."
+        },
+        {
+          "type": "p",
+          "text": "Pour la gestion de la relation commerciale, le Prestataire traite les coordonnées professionnelles des interlocuteurs du Client en qualité de responsable de traitement. Ces personnes peuvent exercer leurs droits à l'adresse batard.florian.pro@gmail.com."
+        }
+      ]
+    },
+    {
+      "title": "Article 12 — Responsabilité et assurance",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Le Prestataire est tenu d'une obligation de moyens. Sa responsabilité ne peut être engagée que pour les dommages directs et prouvés résultant d'un manquement à ses obligations. Sont exclus les dommages indirects, notamment la perte de chiffre d'affaires, de clientèle, de données ou d'image."
+        },
+        {
+          "type": "p",
+          "text": "Sauf faute lourde ou dolosive et sauf dommage corporel, la responsabilité totale du Prestataire est plafonnée au montant hors taxes effectivement payé par le Client au titre de la commande concernée au cours des 12 mois précédant le fait générateur."
+        },
+        {
+          "type": "p",
+          "text": "Le Client reste responsable de la sauvegarde de ses données et de ses systèmes."
+        },
+        {
+          "type": "p",
+          "text": "Le Prestataire est assuré en responsabilité civile professionnelle auprès de Hiscox, par l'intermédiaire d'Orus. L'attestation d'assurance est fournie sur demande."
+        }
+      ]
+    },
+    {
+      "title": "Article 13 — Indépendance, sous-traitance et références",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Le Prestataire exerce en toute indépendance, sans lien de subordination avec le Client. Il détermine librement ses méthodes, ses moyens et l'organisation de son temps."
+        },
+        {
+          "type": "p",
+          "text": "Il peut confier une partie des prestations à un sous-traitant avec l'accord préalable écrit du Client ; il reste alors responsable de leur exécution."
+        },
+        {
+          "type": "p",
+          "text": "Sauf opposition écrite du Client, le Prestataire peut citer le nom du Client et décrire la prestation en termes généraux à titre de référence commerciale, sans divulguer d'information confidentielle."
+        }
+      ]
+    },
+    {
+      "title": "Article 14 — Résiliation et force majeure",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "En cas de manquement grave d'une partie non réparé dans les 30 jours suivant une mise en demeure par lettre recommandée avec accusé de réception, l'autre partie peut résilier la commande de plein droit."
+        },
+        {
+          "type": "p",
+          "text": "Une mission en régie sans terme défini peut être résiliée par chaque partie avec un préavis d'un mois."
+        },
+        {
+          "type": "p",
+          "text": "En cas de résiliation, les prestations réalisées restent dues : au prorata de l'avancement pour un forfait, selon les jours réalisés pour une régie. L'acompte reste acquis à hauteur des travaux effectués."
+        },
+        {
+          "type": "p",
+          "text": "Aucune partie n'est responsable d'un manquement causé par un cas de force majeure au sens de l'article 1218 du Code civil. Si l'empêchement dure plus de 30 jours, chaque partie peut résilier la commande sans indemnité."
+        }
+      ]
+    },
+    {
+      "title": "Article 15 — Droit applicable et litiges",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Les présentes CGV sont soumises au droit français."
+        },
+        {
+          "type": "p",
+          "text": "En cas de différend, les parties recherchent une solution amiable pendant 30 jours avant toute action. A défaut, le litige est porté devant les juridictions compétentes et, lorsque la loi le permet, devant celles du ressort de la cour d'appel de Paris."
+        }
+      ]
+    }
+  ],
+  "closing": "Version du 11 novembre 2026."
+}

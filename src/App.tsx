@@ -11,6 +11,7 @@ import OfferingDetail from "./pages/OfferingDetail";
 import CurriculumVitae from "./pages/CurriculumVitae";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import LegalNotice from "./pages/LegalNotice";
+import TermsOfSale from "./pages/TermsOfSale";
 import NotFound from "./pages/NotFound";
 import { ThemeProvider } from "./hooks/use-theme";
 import CookieBanner from "./components/CookieBanner";
@@ -60,6 +61,7 @@ const App = () => (
               <Route path="offering/:id" element={<OfferingDetail />} />
               <Route path="confidentialite" element={<PrivacyPolicy />} />
               <Route path="mentions-legales" element={<LegalNotice />} />
+              <Route path="conditions-generales-de-vente" element={<TermsOfSale />} />
             </Route>
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

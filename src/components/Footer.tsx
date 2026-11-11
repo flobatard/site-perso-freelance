@@ -53,6 +53,9 @@ const Footer = () => {
               <Link to={`/${lang}/mentions-legales`} className="hover:text-primary transition-colors">
                 {t("footer.legal")}
               </Link>
+              <Link to={`/${lang}/conditions-generales-de-vente`} className="hover:text-primary transition-colors">
+                {t("footer.terms")}
+              </Link>
             </div>
             <p>© {currentYear} {t("footer.rights")}</p>
           </div>

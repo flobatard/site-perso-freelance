@@ -13,6 +13,7 @@ import OfferingDetail from "./pages/OfferingDetail";
 import CurriculumVitae from "./pages/CurriculumVitae";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import LegalNotice from "./pages/LegalNotice";
+import TermsOfSale from "./pages/TermsOfSale";
 import NotFound from "./pages/NotFound";
 import "./i18n";
 
@@ -55,6 +56,7 @@ export function render(url: string) {
                 <Route path="offering/:id" element={<OfferingDetail />} />
                 <Route path="confidentialite" element={<PrivacyPolicy />} />
                 <Route path="mentions-legales" element={<LegalNotice />} />
+                <Route path="conditions-generales-de-vente" element={<TermsOfSale />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>

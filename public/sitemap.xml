@@ -38,6 +38,24 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Terms of sale (CGV) -->
+  <url>
+    <loc>https://fbatard.fr/fr/conditions-generales-de-vente</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fbatard.fr/fr/conditions-generales-de-vente"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fbatard.fr/en/conditions-generales-de-vente"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fbatard.fr/fr/conditions-generales-de-vente"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://fbatard.fr/en/conditions-generales-de-vente</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://fbatard.fr/fr/conditions-generales-de-vente"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fbatard.fr/en/conditions-generales-de-vente"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fbatard.fr/fr/conditions-generales-de-vente"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
   <!-- Projects -->
   <url>
     <loc>https://fbatard.fr/fr/projet/beta_order_capture</loc>

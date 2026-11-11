@@ -43,13 +43,14 @@ src/
 │   │   ├── EcommerceSite.constants.ts  # Types, constantes et helpers purs du formulaire EcommerceSite
 │   │   └── index.tsx  # Record<string, ComponentType> — map id → composant (offeringContents)
 │   └── ui/            # Composants shadcn/ui — ne pas modifier manuellement
-├── pages/             # Index.tsx, ProjectDetail.tsx, OfferingDetail.tsx, CurriculumVitae.tsx, PrivacyPolicy.tsx, LegalNotice.tsx, NotFound.tsx
+├── pages/             # Index.tsx, ProjectDetail.tsx, OfferingDetail.tsx, CurriculumVitae.tsx, PrivacyPolicy.tsx, LegalNotice.tsx, TermsOfSale.tsx, NotFound.tsx
 ├── locales/
 │   ├── fr.json        # Traductions françaises (source de vérité des textes)
 │   └── en.json        # Traductions anglaises
 ├── data/
 │   ├── portfolio.json      # Source de vérité pour les projets (id, title, stack, link, category)
 │   ├── offering.json       # Source de vérité pour les prestations (id, title)
+│   ├── cgv.json            # Texte des CGV (français uniquement, identique au PDF public/documents/conditions-generales-de-vente.pdf)
 │   └── social_links.json   # Liens vers les réseaux sociaux (GitHub, LinkedIn…)
 ├── hooks/             # use-mobile.tsx, use-toast.ts, use-theme.ts
 ├── i18n.ts            # Configuration i18next (LanguageDetector désactivé en SSR)
@@ -77,6 +78,7 @@ Toutes les routes sont préfixées par la langue :
 /:lang/offering/:id     → Détail d'une prestation
 /:lang/confidentialite  → Politique de confidentialité (RGPD)
 /:lang/mentions-legales → Mentions légales
+/:lang/conditions-generales-de-vente → CGV (texte français dans les deux langues, la version française fait foi)
 ```
 
 Le composant `LanguageRoute` dans `App.tsx` lit le paramètre `:lang`, appelle `i18n.changeLanguage(lang)` et valide que la langue est supportée (`fr` ou `en`). Une langue invalide redirige vers la langue détectée.
@@ -116,7 +118,8 @@ offering.*      — Pages détail prestation (labels génériques + contenu par 
   offering.offerings.<id>.pricing         — { label, value }[] (returnObjects: true)
   offering.offerings.<id>.pricing_total_label / pricing_total / pricing_note
 contact.*       — Section Contact (labels, placeholders, messages toast)
-footer.*        — Footer (rôle, droits)
+footer.*        — Footer (rôle, droits, liens légaux)
+terms.*         — Page CGV (titre EN, libellé de téléchargement, mention « version française seule ») — le texte juridique est dans data/cgv.json
 cv.*            — Page CV complète (sections, expériences, formation, compétences…)
 ```
 
@@ -211,11 +214,12 @@ Générées automatiquement depuis `portfolio.json` et `offering.json` × 2 lang
 /fr/curriculum_vitae, /en/curriculum_vitae
 /fr/confidentialite, /en/confidentialite       (politique de confidentialité — RGPD)
 /fr/mentions-legales, /en/mentions-legales     (mentions légales — micro-entrepreneur)
+/fr/conditions-generales-de-vente, /en/conditions-generales-de-vente  (CGV)
 /fr/projet/<id>, /en/projet/<id>               (un fichier par projet dans portfolio.json)
 /fr/offering/<id>, /en/offering/<id>           (un fichier par prestation dans offering.json)
 ```
 
-Les pages `confidentialite` et `mentions-legales` ont des balises SEO (`title`, `description`) personnalisées injectées par [scripts/prerender.ts](scripts/prerender.ts) (voir `if (section === "confidentialite")` etc.) pour éviter d'afficher le titre générique sur ces routes.
+Les pages `confidentialite`, `mentions-legales` et `conditions-generales-de-vente` ont des balises SEO (`title`, `description`) personnalisées injectées par [scripts/prerender.ts](scripts/prerender.ts) (voir `if (section === "confidentialite")` etc.) pour éviter d'afficher le titre générique sur ces routes.
 
 ### Ajouter une route prérendue
 

@@ -25,6 +25,7 @@ const routes = [
   ...langs.map((l) => `/${l}/curriculum_vitae`),
   ...langs.map((l) => `/${l}/confidentialite`),
   ...langs.map((l) => `/${l}/mentions-legales`),
+  ...langs.map((l) => `/${l}/conditions-generales-de-vente`),
   ...langs.flatMap((l) => projectIds.map((id) => `/${l}/projet/${id}`)),
   ...langs.flatMap((l) => offeringIds.map((id) => `/${l}/offering/${id}`)),
 ];
@@ -203,6 +204,24 @@ function getPageMeta(route: string): PageMeta {
           title: "Legal Notice — Florian Batard",
           description:
             "Legal notice of Florian Batard's site, self-employed micro-entrepreneur, freelance Lead Developer and AI Consultant.",
+          keywords: KEYWORDS_EN,
+        };
+  }
+
+  if (section === "conditions-generales-de-vente") {
+    return lang === "fr"
+      ? {
+          lang: "fr",
+          title: "Conditions générales de vente — Florian Batard",
+          description:
+            "Conditions générales de vente de Florian Batard EI : prestations de conseil, de développement logiciel et d'intégration de solutions d'IA.",
+          keywords: KEYWORDS_FR,
+        }
+      : {
+          lang: "en",
+          title: "Terms and Conditions of Sale — Florian Batard",
+          description:
+            "Terms and conditions of sale of Florian Batard EI for consulting, software development and AI integration services. Only the French version applies.",
           keywords: KEYWORDS_EN,
         };
   }
