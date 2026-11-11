@@ -697,14 +697,17 @@
     "success": "Thank you for your message! We will get back to you very soon.",
     "error_send": "An error occurred while sending your message, please try again later.",
     "consent_label": "I agree to my data being processed to respond to my request, in accordance with the <link>privacy policy</link>.",
-    "consent_required": "You must accept the privacy policy before sending the message."
+    "consent_required": "You must accept the privacy policy before sending the message.",
+    "booking_label": "Appointment",
+    "booking_link": "Book a 30-minute call"
   },
   "footer": {
     "role": "Freelance Full-Stack Developer",
     "rights": "All rights reserved.",
     "privacy": "Privacy policy",
     "legal": "Legal notice",
-    "terms": "Terms of sale"
+    "terms": "Terms of sale",
+    "booking": "Book a call"
   },
   "cv": {
     "download": "Download CV",

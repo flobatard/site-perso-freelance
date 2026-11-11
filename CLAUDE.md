@@ -51,7 +51,7 @@ src/
 │   ├── portfolio.json      # Source de vérité pour les projets (id, title, stack, link, category)
 │   ├── offering.json       # Source de vérité pour les prestations (id, title)
 │   ├── cgv.json            # Texte des CGV (français uniquement, identique au PDF public/documents/conditions-generales-de-vente.pdf)
-│   └── social_links.json   # Liens vers les réseaux sociaux (GitHub, LinkedIn…)
+│   └── social_links.json   # Liens externes (GitHub, LinkedIn, email, prise de rendez-vous Nextcloud `booking`)
 ├── hooks/             # use-mobile.tsx, use-toast.ts, use-theme.ts
 ├── i18n.ts            # Configuration i18next (LanguageDetector désactivé en SSR)
 ├── entry-client.tsx   # Point d'entrée client : hydrateRoot + pré-init langue depuis l'URL
@@ -198,6 +198,7 @@ Pour brancher un nouveau formulaire : suivre la même structure (scalaires dans 
 - La navigation charge dynamiquement les projets depuis `portfolio.json` pour le dropdown Portfolio
 - La navigation charge dynamiquement les prestations depuis `offering.json` pour le dropdown Prestations (trigger sans lien, pas d'ancre `#offering` sur la home)
 - Les liens vers les réseaux sociaux sont centralisés dans `social_links.json`
+- L'URL de prise de rendez-vous (page Nextcloud externe) est uniquement dans `social_links.json` (`booking.link`) ; elle s'ouvre dans un nouvel onglet (`target="_blank" rel="noopener noreferrer"`), jamais en iframe. Utilisée dans `Contact.tsx` et `Footer.tsx`
 - La page CV est accessible via `/:lang/curriculum_vitae`
 - SEO : meta tags dans `index.html` (Open Graph, Twitter Card) + balises `hreflang` pour `/fr` et `/en`
 - Les ancres de la page d'accueil (hero, about, skills, portfolio, contact) sont scrollées via `scrollIntoView` pour éviter les conflits avec le routage préfixé

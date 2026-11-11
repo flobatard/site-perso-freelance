@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { CalendarDays, Github, Linkedin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import social_links from "@/data/social_links.json"
 import { useTranslation } from "react-i18next";
@@ -18,6 +18,15 @@ const Footer = () => {
               <p className="text-muted-foreground">
                 {t("footer.role")}
               </p>
+              <a
+                href={social_links.booking.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 mt-3 text-sm font-medium text-primary hover:underline"
+              >
+                <CalendarDays size={16} />
+                {t("footer.booking")}
+              </a>
             </div>
 
             <div className="flex gap-4">

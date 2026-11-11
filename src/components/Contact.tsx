@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { CalendarDays, Mail, MapPin, Phone, Send } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -86,6 +86,23 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold mb-1">{t("contact.location_label")}</h4>
                     <p className="text-muted-foreground">{t("contact.location_value")}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-primary/10 rounded-lg">
+                    <CalendarDays className="text-primary" size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">{t("contact.booking_label")}</h4>
+                    <a
+                      href={social_links.booking.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {t("contact.booking_link")}
+                    </a>
                   </div>
                 </div>
               </div>

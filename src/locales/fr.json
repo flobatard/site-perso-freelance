@@ -697,14 +697,17 @@
     "success": "Merci pour votre message ! Nous vous recontacterons très prochainement.",
     "error_send": "Une erreur est survenue lors de l'envoi du message, veuillez réessayer ultérieurement.",
     "consent_label": "J'accepte que mes données soient traitées pour répondre à ma demande, conformément à la <link>politique de confidentialité</link>.",
-    "consent_required": "Vous devez accepter la politique de confidentialité pour envoyer le message."
+    "consent_required": "Vous devez accepter la politique de confidentialité pour envoyer le message.",
+    "booking_label": "Rendez-vous",
+    "booking_link": "Réserver un échange de 30 minutes"
   },
   "footer": {
     "role": "Développeur Full-Stack Freelance",
     "rights": "Tous droits réservés.",
     "privacy": "Politique de confidentialité",
     "legal": "Mentions légales",
-    "terms": "CGV"
+    "terms": "CGV",
+    "booking": "Prendre rendez-vous"
   },
   "cv": {
     "download": "Télécharger le CV",
