@@ -111,6 +111,7 @@ portfolio.*     — Section Portfolio + pages détail projet
   portfolio.projects.<id>.technical       — { name, desc }[] (returnObjects: true)
 offering.*      — Pages détail prestation (labels génériques + contenu par offering)
   offering.not_found / back / back_home   — Labels du fallback 404 et bouton retour
+  offering.booking                        — Bouton « Prendre un RDV » de l'intro de chaque page prestation
   offering.offerings.<id>.title           — Titre de la prestation (fallback sur offering.json)
   offering.offerings.<id>.description     — Description courte (intro page détail)
   offering.offerings.<id>.{context,features,technical,pricing}_title — Titres de sections
@@ -202,7 +203,7 @@ Pour brancher un nouveau formulaire : suivre la même structure (scalaires dans 
 - L'onglet « Services IA » (`/:lang/services`, offres IA) est distinct du dropdown Prestations (sites vitrine / e-commerce) et placé juste avant lui. En anglais, le dropdown s'appelle « Services » et l'onglet « AI services »
 - La barre de navigation complète s'affiche à partir de `lg` (1024 px, `whitespace-nowrap`, `gap-6 xl:gap-8`) ; en dessous, menu mobile. À 768 px la barre ne tenait déjà plus avant l'ajout de l'onglet Services IA
 - Les liens vers les réseaux sociaux sont centralisés dans `social_links.json`
-- L'URL de prise de rendez-vous (page Nextcloud externe) est uniquement dans `social_links.json` (`booking.link`) ; elle s'ouvre dans un nouvel onglet (`target="_blank" rel="noopener noreferrer"`), jamais en iframe. Utilisée dans `Contact.tsx` et `Footer.tsx`
+- L'URL de prise de rendez-vous (page Nextcloud externe) est uniquement dans `social_links.json` (`booking.link`) ; elle s'ouvre dans un nouvel onglet (`target="_blank" rel="noopener noreferrer"`), jamais en iframe. Utilisée dans `Contact.tsx`, `Footer.tsx`, `Services.tsx` et `OfferingDetail.tsx` (bouton « Prendre un RDV » dans l'intro de chaque prestation, accessible sans remplir le formulaire)
 - La page CV est accessible via `/:lang/curriculum_vitae`
 - SEO : meta tags dans `index.html` (Open Graph, Twitter Card) + balises `hreflang` pour `/fr` et `/en`
 - Les ancres de la page d'accueil (hero, about, skills, portfolio, contact) sont scrollées via `scrollIntoView` pour éviter les conflits avec le routage préfixé

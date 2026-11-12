@@ -2,8 +2,9 @@ import { useParams, Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, CalendarDays } from "lucide-react";
 import offeringData from "@/data/offering.json";
+import social_links from "@/data/social_links.json";
 import { useTranslation } from "react-i18next";
 import offeringContents from "@/components/offering";
 
@@ -54,6 +55,16 @@ const OfferingDetail = () => {
             <p className="text-lg md:text-xl text-foreground/90 leading-relaxed">
               {t(`offering.offerings.${offering.id}.description`)}
             </p>
+            <Button
+              size="lg"
+              className="mt-6 bg-gradient-warm shadow-soft hover:shadow-hover transition-all duration-300"
+              asChild
+            >
+              <a href={social_links.booking.link} target="_blank" rel="noopener noreferrer">
+                <CalendarDays className="mr-2 shrink-0" size={18} />
+                {t("offering.booking")}
+              </a>
+            </Button>
           </div>
 
           {offeringContents[offering.id] && (
