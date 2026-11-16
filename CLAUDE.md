@@ -171,6 +171,7 @@ Certains composants d'offering embarquent un formulaire qui pousse vers un backe
 - **Limites fichiers** : valider type MIME et taille avant d'accepter ; pour les uploads multiples, valider aussi le cumul. Helpers à mettre dans le sidecar `.constants.ts`.
 - **UX** : validation côté client → erreurs inline + toast `error_step_required` (suivant) ou `error_step_jump` (submit final) ; sinon `setSubmitting(true)`, `await onFormSubmit(...)`, reset + `toast.success` sur OK, `toast.error(form.error_submit)` sur échec (réseau ou statut non-2xx). Bouton submit désactivé pendant `submitting`. Pour les formulaires longs : récap repliable (`<details>`) à la dernière étape avec boutons "Modifier" qui jumpent à l'étape concernée.
 - **Clés i18n attendues** sous `offering.offerings.<id>.form` : `success`, `error_required`, `error_submit`, `error_step_required`, `error_step_jump`, `error_field_required`, `error_invalid_email`, `error_file_too_large`, `error_file_type`, `error_photos_total_too_large`, `error_max_*`, `review_title`, `review_edit`, `review_empty`, `draft_restored` (+ tout le reste du formulaire).
+- **Libellés du mail de notification** : le backend (`site-perso-freelance-back`, `src/labels.ts`) traduit les valeurs techniques (`gt_1000`, `above_threshold`…) en libellés français recopiés depuis `fr.json`. Ajouter ou renommer une option (`*_options`) d'un formulaire → mettre à jour `src/labels.ts` côté back, sinon le mail affiche la valeur brute.
 
 Endpoint actuel par offering :
 
